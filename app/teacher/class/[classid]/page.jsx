@@ -30,9 +30,9 @@ export default function ClassPage() {
   }, [classId]);
 
   const ICONS = {
-    'English': '📖', 'Hindi': '📝', 'Math': '🔢', 'Science': '🔬',
-    'Social Science': '🌍', 'Computer Science': '💻',
-    'Physical Education': '⚽', 'Art': '🎨', 'Music': '🎵',
+    'English': '📖','Mizo': '📝', 'Hindi': '📝', 'Mathematics': '🔢', 'Science': '🔬',
+    'Social Science': '🌍', 'EVS': '🌍', 'Information Technology': '💻',
+    'Moral Education': '⚽', 'Art': '🎨', 'Music': '🎵',
   };
 
   return (

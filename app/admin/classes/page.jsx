@@ -4,9 +4,9 @@ import { useState, useEffect } from 'react';
 const CLASS_NAMES = ['Class I','Class II','Class III','Class IV','Class V',
   'Class VI','Class VII','Class VIII','Class IX','Class X'];
 const SECTIONS = ['A', 'B', 'C'];
-const SUBJECTS = ['English','Hindi','Math','Science','Social Science',
-  'Computer Science','Physical Education','Art','Music'];
-const EMPTY = { name: 'Class I', section: 'A', subject: 'English', academicYear: '2024-25' };
+const SUBJECTS = ['English','Mizo','Hindi','Mathematics','Science','Social Science','EVS',
+  'Information Technology','Moral Education','Art','Music'];
+const EMPTY = { name: 'Class I', section: 'A', subject: 'English', academicYear: '2026' };
 
 export default function AdminClassesPage() {
   const [classes, setClasses] = useState([]);
@@ -53,8 +53,8 @@ export default function AdminClassesPage() {
     fontSize: '0.88rem', outline: 'none', marginTop: 4, background: 'white',
   };
 
-  const subjectIcons = { 'English':'📖','Hindi':'📝','Math':'🔢','Science':'🔬',
-    'Social Science':'🌍','Computer Science':'💻','Physical Education':'⚽','Art':'🎨','Music':'🎵' };
+  const subjectIcons = { 'English':'📖', 'Mizo':'📝', 'Hindi':'📝','Mathematics':'🔢','Science':'🔬',
+    'Social Science':'🌍', 'EVS':'🌍', 'Information Technology':'💻','Moral Education':'🙏','Art':'🎨','Music':'🎵' };
 
   return (
     <div style={{ padding: '1.5rem', maxWidth: 750, margin: '0 auto' }}>
