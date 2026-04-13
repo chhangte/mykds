@@ -2,7 +2,7 @@ import Providers from './providers';
 import './globals.css';
 
 export const metadata = {
-  title: 'my.kidsdenschool',
+  title: 'myKDS - Kids Den School',
   description: 'School Management Portal',
 };
 
