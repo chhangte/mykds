@@ -4,8 +4,13 @@ import bcrypt from 'bcryptjs';
 
 export async function PUT(req, { params }) {
   await connectDB();
-  const { name, username, password, role, assignedClasses } = await req.json();
-  const update = { name, username, role, assignedClasses: assignedClasses || [] };
+  const { name, username, password, role, assignedClasses, classTeacherClass, classTeacherSection } = await req.json();
+  const update = {
+    name, username, role,
+    assignedClasses: assignedClasses || [],
+    classTeacherClass: classTeacherClass || null,
+    classTeacherSection: classTeacherSection || null,
+  };
   if (password && password.trim()) update.password = await bcrypt.hash(password, 10);
   const user = await User.findByIdAndUpdate(params.id, update, { new: true })
     .select('-password').populate('assignedClasses');

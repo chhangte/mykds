@@ -9,6 +9,8 @@ const UserSchema = new mongoose.Schema({
   role: { type: String, enum: ['teacher', 'admin', 'classTeacher'], required: true },
   name: String,
   assignedClasses: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Class' }],
+  classTeacherClass: { type: String, default: null },
+  classTeacherSection: { type: String, enum: ['A', 'B', 'C', null], default: null },
 }, { timestamps: true });
 
 UserSchema.pre('save', async function () {

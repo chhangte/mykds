@@ -1,16 +1,19 @@
 'use client';
-import { useState, useEffect } from 'react';
-import { useParams, useRouter } from 'next/navigation';
+import { useState, useEffect, Suspense } from 'react';
+import { useParams, useRouter, useSearchParams } from 'next/navigation';
 import MarksTable from '@/components/MarksTable';
+import MarksViewer from '@/components/MarksViewer';
 import AttendanceTable from '@/components/AttendanceTable';
 import PageLoader from '@/components/PageLoader';
 
 const TABS = ['Class Tests', 'Exams', 'Attendance', 'Notes'];
 
-export default function ClassPage() {
+function ClassPageInner() {
   const params = useParams();
   const classId = params.classId || params.classid;
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const isCtView = searchParams.get('ctview') === '1';
 
   const [activeTab, setActiveTab] = useState(0);
   const [students, setStudents] = useState([]);
@@ -31,8 +34,8 @@ export default function ClassPage() {
   }, [classId]);
 
   const ICONS = {
-    'English': '📖','Mizo': '📝', 'Hindi': '📝', 'Mathematics': '🔢', 'Science': '🔬','Social Science': '🌍','EVS': '🌍', 'IT': '💻',
-    'Moral Values': '🙏', 'Art': '🎨', 'Music': '🎵',
+    'English': '📖','Mizo': '📝', 'Hindi': '📝', 'Mathematics': '🔢', 'Science': '🔬',
+    'Social Science': '🌍','EVS': '🌍', 'IT': '💻','Moral Values': '🙏', 'Art': '🎨', 'Music': '🎵',
   };
 
   if (loading) return <PageLoader message="Loading class" />;
@@ -47,8 +50,7 @@ export default function ClassPage() {
         .kds-class-content { animation: kds-fade-up 0.3s ease both; }
       `}</style>
 
-      <div className="kds-class-content"
-        style={{ padding: '1rem', maxWidth: 960, margin: '0 auto' }}>
+      <div className="kds-class-content" style={{ padding: '1rem', maxWidth: 960, margin: '0 auto' }}>
 
         {/* Back + Header */}
         <div style={{ marginBottom: '1.2rem' }}>
@@ -69,9 +71,19 @@ export default function ClassPage() {
               {ICONS[classInfo?.subject] ?? '📚'}
             </div>
             <div>
-              <h2 style={{ fontWeight: 700, fontSize: '1.15rem', color: 'var(--charcoal)', margin: 0 }}>
-                {classInfo?.name} {classInfo?.section} — {classInfo?.subject}
-              </h2>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', flexWrap: 'wrap' }}>
+                <h2 style={{ fontWeight: 700, fontSize: '1.15rem', color: 'var(--charcoal)', margin: 0 }}>
+                  {classInfo?.name} {classInfo?.section} — {classInfo?.subject}
+                </h2>
+                {isCtView && (
+                  <span style={{
+                    background: '#e6f9ee', color: '#1a8a3c',
+                    fontSize: '0.68rem', fontWeight: 700,
+                    padding: '2px 8px', borderRadius: 20,
+                    border: '1px solid #a8e6c0',
+                  }}>📋 Class Teacher View</span>
+                )}
+              </div>
               <p style={{ fontSize: '0.75rem', color: 'var(--charcoal-light)', margin: 0 }}>
                 {students.length} student{students.length !== 1 ? 's' : ''} · {classInfo?.academicYear}
               </p>
@@ -80,10 +92,7 @@ export default function ClassPage() {
         </div>
 
         {/* Tabs */}
-        <div style={{
-          display: 'flex', gap: '0.5rem', marginBottom: '1.5rem',
-          overflowX: 'auto', paddingBottom: 4,
-        }}>
+        <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '1.5rem', overflowX: 'auto', paddingBottom: 4 }}>
           {TABS.map((tab, i) => (
             <button key={tab} onClick={() => setActiveTab(i)} style={{
               padding: '0.5rem 1.1rem', borderRadius: 20,
@@ -112,19 +121,36 @@ export default function ClassPage() {
 
         {/* Tab content */}
         {activeTab === 0 && (
-          <MarksTable students={students} classId={classId} type="classtest" />
+          isCtView
+            ? <MarksViewer students={students} classId={classId} type="classtest" />
+            : <MarksTable students={students} classId={classId} type="classtest" />
         )}
         {activeTab === 1 && (
-          <MarksTable students={students} classId={classId} type="exam" />
+          isCtView
+            ? <MarksViewer students={students} classId={classId} type="exam" />
+            : <MarksTable students={students} classId={classId} type="exam" />
         )}
         {activeTab === 2 && (
-          <AttendanceTable students={students} classId={classId} />
+          <AttendanceTable students={students} classId={classId} readOnly={isCtView} />
         )}
-        {activeTab === 3 && (
+        {activeTab === 3 && !isCtView && (
           <NotesPanel students={students} classId={classId} />
+        )}
+        {activeTab === 3 && isCtView && (
+          <div style={{ padding: '2rem', textAlign: 'center', background: 'white', borderRadius: 16, border: '1.5px solid var(--sky-light)', color: 'var(--charcoal-light)', fontSize: '0.88rem' }}>
+            Notes are not available in Class Teacher view.
+          </div>
         )}
       </div>
     </>
+  );
+}
+
+export default function ClassPage() {
+  return (
+    <Suspense fallback={<PageLoader message="Loading class" />}>
+      <ClassPageInner />
+    </Suspense>
   );
 }
 
@@ -147,23 +173,15 @@ function NotesPanel({ students, classId }) {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
       {students.map(s => (
-        <div key={s._id} style={{
-          background: 'white', borderRadius: 12,
-          border: '1.5px solid var(--sky-light)', padding: '1rem',
-        }}>
-          <div style={{ fontWeight: 600, fontSize: '0.88rem',
-            marginBottom: '0.5rem', color: 'var(--charcoal)' }}>
+        <div key={s._id} style={{ background: 'white', borderRadius: 12, border: '1.5px solid var(--sky-light)', padding: '1rem' }}>
+          <div style={{ fontWeight: 600, fontSize: '0.88rem', marginBottom: '0.5rem', color: 'var(--charcoal)' }}>
             {s.rollNo} — {s.name}
           </div>
           <div style={{ display: 'flex', gap: '0.6rem' }}>
             <textarea rows={2} placeholder="Add a note for this student..."
               value={notes[s._id] || ''}
               onChange={e => setNotes(prev => ({ ...prev, [s._id]: e.target.value }))}
-              style={{
-                flex: 1, padding: '0.6rem 0.8rem', borderRadius: 8,
-                border: '1.5px solid var(--sky-light)', fontFamily: 'Poppins',
-                fontSize: '0.82rem', resize: 'vertical', outline: 'none',
-              }}
+              style={{ flex: 1, padding: '0.6rem 0.8rem', borderRadius: 8, border: '1.5px solid var(--sky-light)', fontFamily: 'Poppins', fontSize: '0.82rem', resize: 'vertical', outline: 'none' }}
             />
             <button onClick={() => handleSave(s._id)} style={{
               padding: '0.5rem 1rem', borderRadius: 8,

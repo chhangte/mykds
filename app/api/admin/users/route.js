@@ -13,7 +13,7 @@ export async function GET() {
 
 export async function POST(req) {
   await connectDB();
-  const { username, password, name, role, assignedClasses } = await req.json();
+  const { username, password, name, role, assignedClasses, classTeacherClass, classTeacherSection } = await req.json();
   if (!username || !password || !name || !role)
     return Response.json({ error: 'All fields required' }, { status: 400 });
   const exists = await User.findOne({ username });
@@ -23,6 +23,8 @@ export async function POST(req) {
   const user = await User.create({
     username, password: hashed, name, role,
     assignedClasses: assignedClasses || [],
+    classTeacherClass: classTeacherClass || null,
+    classTeacherSection: classTeacherSection || null,
   });
   const populated = await User.findById(user._id, '-password').populate('assignedClasses');
   return Response.json(populated, { status: 201 });

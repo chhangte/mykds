@@ -1,6 +1,6 @@
 import { connectDB } from '@/lib/mongodb';
 import User from '@/models/User';
-import Class from '@/models/Class';
+import Student from '@/models/Student';
 import Setting from '@/models/Settings';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
@@ -9,28 +9,19 @@ export async function GET() {
   await connectDB();
 
   const setting = await Setting.findOne({ key: 'classTeacherViewEnabled' });
-  if (!setting?.value) {
-    return Response.json({ enabled: false, assigned: false });
-  }
+  if (!setting?.value) return Response.json({ error: 'Feature disabled' }, { status: 403 });
 
   const session = await getServerSession(authOptions);
   if (!session?.user?.id) return Response.json({ error: 'Unauthorized' }, { status: 401 });
 
   const user = await User.findById(session.user.id);
-  if (!user || !user.classTeacherClass || !user.classTeacherSection) {
-    return Response.json({ enabled: true, assigned: false });
-  }
+  if (!user?.classTeacherClass || !user?.classTeacherSection)
+    return Response.json({ error: 'No class teacher assignment' }, { status: 403 });
 
-  const classes = await Class.find({
-    name: user.classTeacherClass,
+  const students = await Student.find({
+    class: user.classTeacherClass,
     section: user.classTeacherSection,
-  }).sort({ subject: 1 });
+  }).sort({ rollNo: 1 });
 
-  return Response.json({
-    enabled: true,
-    assigned: true,
-    classTeacherClass: user.classTeacherClass,
-    classTeacherSection: user.classTeacherSection,
-    classes,
-  });
+  return Response.json(students);
 }
