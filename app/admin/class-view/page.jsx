@@ -2,6 +2,7 @@
 import { useState, useEffect, Suspense } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import MarksViewer from '@/components/MarksViewer';
+import { generateReportCardPDF, generateMergedReportCardsPDF } from '@/lib/pdfGenerator';
 
 const TEST_TABS = [
   { label: 'Test 1', type: 'classtest', index: 1 },
@@ -109,14 +110,22 @@ function ClassViewContent() {
               {data?.students?.length ?? 0} students · {data?.subjects?.length ?? 0} subjects
             </p>
           </div>
-          {/* Export button */}
+          {/* Export and PDF buttons */}
           {data?.students?.length > 0 && (
-            <button
-              onClick={() => exportToExcel({ students: data.students, subjects: data.subjects, tabLabel: currentTab.label, className, section })}
-              style={{ padding: '0.5rem 1.1rem', borderRadius: 10, background: '#1a8a3c', color: 'white', border: 'none', fontFamily: 'Poppins', fontWeight: 600, fontSize: '0.82rem', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6 }}
-            >
-              📥 Export Excel
-            </button>
+            <div style={{ display: 'flex', gap: '0.8rem' }}>
+              <button
+                onClick={() => exportToExcel({ students: data.students, subjects: data.subjects, tabLabel: currentTab.label, className, section })}
+                style={{ padding: '0.5rem 1.1rem', borderRadius: 10, background: '#1a8a3c', color: 'white', border: 'none', fontFamily: 'Poppins', fontWeight: 600, fontSize: '0.82rem', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6 }}
+              >
+                📥 Export Excel
+              </button>
+              <button
+                onClick={() => generateMergedReportCardsPDF(data.students, { className, section, academicYear: data.classes?.[0]?.academicYear || '2024-25' }, data.subjects, currentTab.label, currentTab.type)}
+                style={{ padding: '0.5rem 1.1rem', borderRadius: 10, background: '#2b2b2b', color: 'white', border: 'none', fontFamily: 'Poppins', fontWeight: 600, fontSize: '0.82rem', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6 }}
+              >
+                📄 Generate All PDFs
+              </button>
+            </div>
           )}
         </div>
       </div>
@@ -160,6 +169,7 @@ function ClassViewContent() {
                     <th key={subject} style={{ ...thStyle, textAlign: 'center', minWidth: 110 }}>{subject}</th>
                   ))}
                   <th style={{ ...thStyle, textAlign: 'center', minWidth: 90, background: '#d0ecfd' }}>Total</th>
+                  <th style={{ ...thStyle, textAlign: 'center', minWidth: 70 }}>Action</th>
                 </tr>
               </thead>
               <tbody>
@@ -188,6 +198,15 @@ function ClassViewContent() {
                         <span style={{ fontWeight: 700, fontSize: '0.85rem', color: filled.length > 0 ? 'var(--charcoal)' : '#ccc' }}>
                           {filled.length > 0 ? total : '—'}
                         </span>
+                      </td>
+                      <td style={{ ...tdStyle, textAlign: 'center' }}>
+                        <button
+                          onClick={() => generateReportCardPDF(student, { className, section, academicYear: data.classes?.[0]?.academicYear || '2024-25' }, data.subjects, currentTab.label, currentTab.type)}
+                          title="Download Report Card"
+                          style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: '1.2rem', padding: '4px' }}
+                        >
+                          📄
+                        </button>
                       </td>
                     </tr>
                   );

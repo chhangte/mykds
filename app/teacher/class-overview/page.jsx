@@ -1,9 +1,7 @@
 'use client';
 import { useState, useEffect, Suspense } from 'react';
-import { useRouter } from 'next/navigation';
-import { useSession } from 'next-auth/react';
-import MarksViewer from '@/components/MarksViewer';
-import PageLoader from '@/components/PageLoader';
+import { useSearchParams, useRouter } from 'next/navigation';
+import { generateReportCardPDF, generateMergedReportCardsPDF } from '@/lib/pdfGenerator';
 
 const TEST_TABS = [
   { label: 'Test 1', type: 'classtest', index: 1 },
@@ -16,7 +14,6 @@ const TEST_TABS = [
   { label: 'Term 3', type: 'exam', index: 3 },
 ];
 
-// ── Pure-JS CSV/Excel export ──────────────────────────────────────────────────
 function exportToExcel({ students, subjects, tabLabel, className, section }) {
   const now = new Date();
   const dateStr = now.toLocaleString('en-IN', {
@@ -46,7 +43,6 @@ function exportToExcel({ students, subjects, tabLabel, className, section }) {
     rows.push(row.map(escape).join(','));
   });
 
-  // Timestamp row
   rows.push('');
   rows.push(escape(`Downloaded on: ${dateStr}`));
 
@@ -58,34 +54,27 @@ function exportToExcel({ students, subjects, tabLabel, className, section }) {
   a.click();
   URL.revokeObjectURL(url);
 }
-// ─────────────────────────────────────────────────────────────────────────────
 
-function ClassOverviewContent() {
+function TeacherClassOverviewContent() {
+  const searchParams = useSearchParams();
   const router = useRouter();
-  const { data: session } = useSession();
-  const [ctData, setCtData] = useState(null);
+  const className = searchParams.get('class');
+  const section = searchParams.get('section');
+
   const [activeTab, setActiveTab] = useState(0);
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [ctLoading, setCtLoading] = useState(true);
 
   const currentTab = TEST_TABS[activeTab];
 
   useEffect(() => {
-    fetch('/api/teacher/classteacher-view')
-      .then(r => r.json())
-      .then(d => { setCtData(d); setCtLoading(false); })
-      .catch(() => setCtLoading(false));
-  }, []);
-
-  useEffect(() => {
-    if (!ctData?.classTeacherClass || !ctData?.classTeacherSection) return;
+    if (!className || !section) return;
     setLoading(true);
-    fetch(`/api/admin/class-report?class=${encodeURIComponent(ctData.classTeacherClass)}&section=${ctData.classTeacherSection}&type=${currentTab.type}&index=${currentTab.index}`)
+    fetch(`/api/teacher/class-report?class=${encodeURIComponent(className)}&section=${section}&type=${currentTab.type}&index=${currentTab.index}`)
       .then(r => r.json())
       .then(d => { setData(d); setLoading(false); })
       .catch(() => setLoading(false));
-  }, [ctData, activeTab]);
+  }, [className, section, activeTab]);
 
   const thStyle = {
     padding: '0.6rem 0.8rem', fontWeight: 600, fontSize: '0.75rem',
@@ -103,55 +92,38 @@ function ClassOverviewContent() {
     return { bg: '#fdecea', color: '#c0392b' };
   };
 
-  if (ctLoading) return <PageLoader message="Loading" />;
-
-  if (!ctData?.enabled || !ctData?.assigned) {
-    return (
-      <div style={{ padding: '2rem', maxWidth: 500, margin: '4rem auto', textAlign: 'center', background: 'white', borderRadius: 16, border: '1.5px solid var(--sky-light)' }}>
-        <div style={{ fontSize: 36, marginBottom: '0.8rem' }}>🔒</div>
-        <div style={{ fontWeight: 600, color: 'var(--charcoal)' }}>Class Teacher view not available</div>
-        <div style={{ fontSize: '0.82rem', color: 'var(--charcoal-light)', marginTop: 6 }}>Contact your admin to enable this feature.</div>
-        <button onClick={() => router.push('/teacher')} style={{ marginTop: '1.5rem', padding: '0.6rem 1.4rem', borderRadius: 10, background: 'var(--sky)', border: 'none', fontFamily: 'Poppins', fontWeight: 600, fontSize: '0.85rem', cursor: 'pointer' }}>← Back</button>
-      </div>
-    );
-  }
-
-  const className = ctData.classTeacherClass;
-  const section = ctData.classTeacherSection;
-
   return (
     <div style={{ padding: '1rem', maxWidth: 1100, margin: '0 auto' }}>
-
-      {/* Back + Header */}
       <div style={{ marginBottom: '1.2rem' }}>
         <button onClick={() => router.back()} style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: '0.82rem', color: 'var(--charcoal-light)', fontFamily: 'Poppins', padding: 0, marginBottom: '0.6rem', display: 'flex', alignItems: 'center', gap: 4 }}>← Back</button>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '0.8rem' }}>
           <div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.7rem', flexWrap: 'wrap' }}>
-              <h2 style={{ fontWeight: 700, fontSize: '1.2rem', color: 'var(--charcoal)', margin: 0 }}>
-                📋 {className} — Section {section}
-              </h2>
-              <span style={{ background: '#e6f9ee', color: '#1a8a3c', fontSize: '0.68rem', fontWeight: 700, padding: '2px 8px', borderRadius: 20, border: '1px solid #a8e6c0' }}>
-                Class Teacher View
-              </span>
-            </div>
+            <h2 style={{ fontWeight: 700, fontSize: '1.2rem', color: 'var(--charcoal)', margin: 0 }}>
+              🏫 {className} — Section {section}
+            </h2>
             <p style={{ fontSize: '0.78rem', color: 'var(--charcoal-light)', marginTop: 4 }}>
               {data?.students?.length ?? 0} students · {data?.subjects?.length ?? 0} subjects
             </p>
           </div>
-          {/* Export button */}
           {data?.students?.length > 0 && (
-            <button
-              onClick={() => exportToExcel({ students: data.students, subjects: data.subjects, tabLabel: currentTab.label, className, section })}
-              style={{ padding: '0.5rem 1.1rem', borderRadius: 10, background: '#1a8a3c', color: 'white', border: 'none', fontFamily: 'Poppins', fontWeight: 600, fontSize: '0.82rem', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6 }}
-            >
-              📥 Export Excel
-            </button>
+            <div style={{ display: 'flex', gap: '0.8rem' }}>
+              <button
+                onClick={() => exportToExcel({ students: data.students, subjects: data.subjects, tabLabel: currentTab.label, className, section })}
+                style={{ padding: '0.5rem 1.1rem', borderRadius: 10, background: '#1a8a3c', color: 'white', border: 'none', fontFamily: 'Poppins', fontWeight: 600, fontSize: '0.82rem', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6 }}
+              >
+                📥 Export Excel
+              </button>
+              <button
+                onClick={() => generateMergedReportCardsPDF(data.students, { className, section, academicYear: data.classes?.[0]?.academicYear || '2024-25' }, data.subjects, currentTab.label, currentTab.type)}
+                style={{ padding: '0.5rem 1.1rem', borderRadius: 10, background: '#2b2b2b', color: 'white', border: 'none', fontFamily: 'Poppins', fontWeight: 600, fontSize: '0.82rem', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6 }}
+              >
+                📄 Generate All PDFs
+              </button>
+            </div>
           )}
         </div>
       </div>
 
-      {/* Tabs */}
       <div style={{ marginBottom: '0.5rem' }}>
         <div style={{ fontSize: '0.72rem', fontWeight: 600, color: 'var(--charcoal-light)', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: '0.4rem' }}>Class Tests</div>
         <div style={{ display: 'flex', gap: '0.4rem', flexWrap: 'wrap', marginBottom: '0.8rem' }}>
@@ -170,7 +142,6 @@ function ClassOverviewContent() {
         </div>
       </div>
 
-      {/* Table */}
       {loading ? (
         <div style={{ padding: '3rem', textAlign: 'center', color: 'var(--charcoal-light)', fontSize: '0.88rem' }}>Loading marks...</div>
       ) : !data?.students?.length ? (
@@ -190,6 +161,7 @@ function ClassOverviewContent() {
                     <th key={subject} style={{ ...thStyle, textAlign: 'center', minWidth: 110 }}>{subject}</th>
                   ))}
                   <th style={{ ...thStyle, textAlign: 'center', minWidth: 90, background: '#d0ecfd' }}>Total</th>
+                  <th style={{ ...thStyle, textAlign: 'center', minWidth: 70 }}>Action</th>
                 </tr>
               </thead>
               <tbody>
@@ -219,6 +191,15 @@ function ClassOverviewContent() {
                           {filled.length > 0 ? total : '—'}
                         </span>
                       </td>
+                      <td style={{ ...tdStyle, textAlign: 'center' }}>
+                        <button
+                          onClick={() => generateReportCardPDF(student, { className, section, academicYear: data.classes?.[0]?.academicYear || '2024-25' }, data.subjects, currentTab.label, currentTab.type)}
+                          title="Download Report Card"
+                          style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: '1.2rem', padding: '4px' }}
+                        >
+                          📄
+                        </button>
+                      </td>
                     </tr>
                   );
                 })}
@@ -226,22 +207,6 @@ function ClassOverviewContent() {
             </table>
           </div>
 
-          {/* Edit History by Subject (read-only) */}
-          <div style={{ marginTop: '1.5rem' }}>
-            <h3 style={{ fontSize: '0.82rem', fontWeight: 700, color: 'var(--charcoal-light)', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: '1rem' }}>
-              Edit History by Subject
-            </h3>
-            {data.classes.map(cls => (
-              <div key={cls._id} style={{ marginBottom: '1.5rem' }}>
-                <div style={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--charcoal)', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: 6 }}>
-                  <span style={{ background: 'var(--sky-light)', padding: '2px 10px', borderRadius: 20, fontSize: '0.75rem' }}>{cls.subject}</span>
-                </div>
-                <MarksViewer students={data.students} classId={cls._id} type={currentTab.type} />
-              </div>
-            ))}
-          </div>
-
-          {/* Legend */}
           <div style={{ display: 'flex', gap: '1rem', marginTop: '1rem', flexWrap: 'wrap', fontSize: '0.75rem' }}>
             {[
               { label: '≥ 80 — Good', bg: '#e6f9ee', color: '#1a8a3c' },
@@ -260,10 +225,10 @@ function ClassOverviewContent() {
   );
 }
 
-export default function ClassOverviewPage() {
+export default function TeacherClassOverviewPage() {
   return (
-    <Suspense fallback={<PageLoader message="Loading" />}>
-      <ClassOverviewContent />
+    <Suspense fallback={<div style={{ padding: '2rem', textAlign: 'center', color: 'var(--charcoal-light)' }}>Loading...</div>}>
+      <TeacherClassOverviewContent />
     </Suspense>
   );
 }

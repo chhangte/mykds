@@ -153,14 +153,44 @@ export default function TeacherDashboard() {
                 No subject classes set up yet for {ctData.classTeacherClass} – {ctData.classTeacherSection}.
               </div>
             ) : (
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))', gap: '0.9rem' }}>
-                {ctData.classes.map(cls => (
-                  <ClassTile
-                    key={cls._id}
-                    cls={cls}
-                    onClick={() => router.push(`/teacher/class/${cls._id}?ctview=1`)}
-                  />
-                ))}
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '0.9rem' }}>
+                <div
+                  onClick={() => router.push(`/teacher/class-overview?class=${encodeURIComponent(ctData.classTeacherClass)}&section=${encodeURIComponent(ctData.classTeacherSection)}`)}
+                  className="kds-tile"
+                  style={{
+                    background: 'linear-gradient(135deg, #e8f9f0, #c8eedb)', borderRadius: '16px', padding: '1.4rem',
+                    boxShadow: '0 2px 16px rgba(46, 204, 113, 0.18)',
+                    border: '1.5px solid #a3e4c4',
+                    cursor: 'pointer',
+                    transition: 'transform 0.15s, box-shadow 0.15s',
+                    display: 'flex', alignItems: 'center', gap: '0.9rem',
+                  }}
+                  onMouseEnter={e => {
+                    e.currentTarget.style.transform = 'translateY(-2px)';
+                    e.currentTarget.style.boxShadow = '0 6px 24px rgba(46, 204, 113, 0.3)';
+                  }}
+                  onMouseLeave={e => {
+                    e.currentTarget.style.transform = 'translateY(0)';
+                    e.currentTarget.style.boxShadow = '0 2px 16px rgba(46, 204, 113, 0.18)';
+                  }}
+                >
+                  <div style={{
+                    width: 52, height: 52, borderRadius: 12,
+                    background: '#ffffff',
+                    display: 'flex', alignItems: 'center',
+                    justifyContent: 'center', fontSize: 24, flexShrink: 0,
+                  }}>
+                    🏫
+                  </div>
+                  <div>
+                    <div style={{ fontWeight: 600, fontSize: '0.95rem', color: '#1a8a3c' }}>
+                      View Class Overview
+                    </div>
+                    <div style={{ fontSize: '0.82rem', color: '#27ae60', marginTop: 2 }}>
+                      {ctData.classTeacherClass} — Section {ctData.classTeacherSection}
+                    </div>
+                  </div>
+                </div>
               </div>
             )}
           </div>
