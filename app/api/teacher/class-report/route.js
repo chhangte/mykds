@@ -29,6 +29,8 @@ export async function GET(req) {
   const type = searchParams.get('type') || 'classtest';
   const index = parseInt(searchParams.get('index') || '1');
 
+  const isCumulative = searchParams.get('cumulative') === 'true';
+
   if (!className || !section) {
     return Response.json({ error: 'Missing params' }, { status: 400 });
   }
@@ -48,13 +50,29 @@ export async function GET(req) {
   const studentData = await Promise.all(students.map(async (student) => {
     const marksBySubject = {};
     await Promise.all(classes.map(async (cls) => {
-      const mark = await Mark.findOne({
-        student: student._id,
-        class: cls._id,
-        type,
-        index,
-      });
-      marksBySubject[cls.subject] = mark?.marksObtained ?? null;
+      if (isCumulative) {
+        const marks = await Mark.find({
+          student: student._id,
+          class: cls._id,
+          type: 'exam',
+          index: { $in: [1, 2, 3] }
+        });
+        const cumulativeMarks = { 1: null, 2: null, 3: null };
+        marks.forEach(m => {
+          if (m.index === 1 || m.index === 2 || m.index === 3) {
+            cumulativeMarks[m.index] = m.marksObtained ?? null;
+          }
+        });
+        marksBySubject[cls.subject] = cumulativeMarks;
+      } else {
+        const mark = await Mark.findOne({
+          student: student._id,
+          class: cls._id,
+          type,
+          index,
+        });
+        marksBySubject[cls.subject] = mark?.marksObtained ?? null;
+      }
     }));
     return {
       _id: student._id,
@@ -68,5 +86,6 @@ export async function GET(req) {
     students: studentData,
     subjects: classes.map(c => c.subject),
     classes,
+    classTeacherName: user.name || user.username || 'Class Teacher',
   });
 }

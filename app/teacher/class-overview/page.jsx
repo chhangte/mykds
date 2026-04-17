@@ -1,7 +1,7 @@
 'use client';
 import { useState, useEffect, Suspense } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
-import { generateReportCardPDF, generateMergedReportCardsPDF } from '@/lib/pdfGenerator';
+import { generateReportCardPDF, generateMergedReportCardsPDF, generateCumulativeMergedReportCardsPDF } from '@/lib/pdfGenerator';
 
 const TEST_TABS = [
   { label: 'Test 1', type: 'classtest', index: 1 },
@@ -64,6 +64,7 @@ function TeacherClassOverviewContent() {
   const [activeTab, setActiveTab] = useState(0);
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [isGeneratingCumulative, setIsGeneratingCumulative] = useState(false);
 
   const currentTab = TEST_TABS[activeTab];
 
@@ -75,6 +76,30 @@ function TeacherClassOverviewContent() {
       .then(d => { setData(d); setLoading(false); })
       .catch(() => setLoading(false));
   }, [className, section, activeTab]);
+
+  const handleGenerateFinalPDF = async () => {
+    try {
+      setIsGeneratingCumulative(true);
+      const res = await fetch(`/api/teacher/class-report?class=${encodeURIComponent(className)}&section=${section}&cumulative=true`);
+      const cumulativeData = await res.json();
+      
+      generateCumulativeMergedReportCardsPDF(
+        cumulativeData.students, 
+        { 
+          className, 
+          section, 
+          academicYear: data.classes?.[0]?.academicYear || '2024-25', 
+          classTeacherName: cumulativeData.classTeacherName || data.classTeacherName 
+        }, 
+        cumulativeData.subjects
+      );
+    } catch (e) {
+      console.error(e);
+      alert('Failed to generate cumulative PDF.');
+    } finally {
+      setIsGeneratingCumulative(false);
+    }
+  };
 
   const thStyle = {
     padding: '0.6rem 0.8rem', fontWeight: 600, fontSize: '0.75rem',
@@ -114,10 +139,17 @@ function TeacherClassOverviewContent() {
                 📥 Export Excel
               </button>
               <button
-                onClick={() => generateMergedReportCardsPDF(data.students, { className, section, academicYear: data.classes?.[0]?.academicYear || '2024-25' }, data.subjects, currentTab.label, currentTab.type)}
+                onClick={() => generateMergedReportCardsPDF(data.students, { className, section, academicYear: data.classes?.[0]?.academicYear || '2024-25', classTeacherName: data.classTeacherName }, data.subjects, currentTab.label, currentTab.type)}
                 style={{ padding: '0.5rem 1.1rem', borderRadius: 10, background: '#2b2b2b', color: 'white', border: 'none', fontFamily: 'Poppins', fontWeight: 600, fontSize: '0.82rem', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6 }}
               >
                 📄 Generate All PDFs
+              </button>
+              <button
+                onClick={handleGenerateFinalPDF}
+                disabled={isGeneratingCumulative}
+                style={{ padding: '0.5rem 1.1rem', borderRadius: 10, background: isGeneratingCumulative ? '#666' : '#d22b2b', color: 'white', border: 'none', fontFamily: 'Poppins', fontWeight: 600, fontSize: '0.82rem', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6 }}
+              >
+                🎓 {isGeneratingCumulative ? 'Generating...' : 'Generate Final PDF'}
               </button>
             </div>
           )}
@@ -193,7 +225,7 @@ function TeacherClassOverviewContent() {
                       </td>
                       <td style={{ ...tdStyle, textAlign: 'center' }}>
                         <button
-                          onClick={() => generateReportCardPDF(student, { className, section, academicYear: data.classes?.[0]?.academicYear || '2024-25' }, data.subjects, currentTab.label, currentTab.type)}
+                          onClick={() => generateReportCardPDF(student, { className, section, academicYear: data.classes?.[0]?.academicYear || '2024-25', classTeacherName: data.classTeacherName }, data.subjects, currentTab.label, currentTab.type)}
                           title="Download Report Card"
                           style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: '1.2rem', padding: '4px' }}
                         >
