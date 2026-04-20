@@ -13,13 +13,17 @@ export default function AdminStudentsPage() {
   const [form, setForm] = useState(EMPTY);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const [initialLoading, setInitialLoading] = useState(true);
   const [deleteConfirm, setDeleteConfirm] = useState(null);
   const [filterClass, setFilterClass] = useState('All');
   const [filterSection, setFilterSection] = useState('All');
   const [search, setSearch] = useState('');
 
   const fetchStudents = () =>
-    fetch('/api/admin/students').then(r => r.json()).then(setStudents);
+    fetch('/api/admin/students').then(r => r.json()).then(data => {
+      setStudents(data);
+      setInitialLoading(false);
+    });
 
   useEffect(() => { fetchStudents(); }, []);
 
@@ -125,13 +129,23 @@ export default function AdminStudentsPage() {
             </tr>
           </thead>
           <tbody>
-            {filtered.length === 0 && (
+            {initialLoading && Array.from({ length: 5 }).map((_, i) => (
+              <tr key={`skel-${i}`} style={{ background: i % 2 === 0 ? 'white' : '#fafeff' }}>
+                <td style={{ padding: '0.6rem 0.9rem' }}><div className="skeleton" style={{ height: 18, width: '60%', borderRadius: 4 }} /></td>
+                <td style={{ padding: '0.6rem 0.9rem' }}><div className="skeleton" style={{ height: 18, width: '80%', borderRadius: 4 }} /></td>
+                <td style={{ padding: '0.6rem 0.9rem' }}><div className="skeleton" style={{ height: 18, width: '90%', borderRadius: 4 }} /></td>
+                <td style={{ padding: '0.6rem 0.9rem' }}><div className="skeleton" style={{ height: 22, width: '70%', borderRadius: 12 }} /></td>
+                <td style={{ padding: '0.6rem 0.9rem' }}><div className="skeleton" style={{ height: 18, width: '50%', borderRadius: 4 }} /></td>
+                <td style={{ padding: '0.6rem 0.9rem' }}><div style={{ display: 'flex', gap: '0.4rem' }}><div className="skeleton" style={{ height: 26, width: 34, borderRadius: 7 }} /><div className="skeleton" style={{ height: 26, width: 34, borderRadius: 7 }} /></div></td>
+              </tr>
+            ))}
+            {!initialLoading && filtered.length === 0 && (
               <tr><td colSpan={6} style={{ padding: '2.5rem', textAlign: 'center',
                 color: 'var(--charcoal-light)', fontSize: '0.85rem' }}>
                 No students found.
               </td></tr>
             )}
-            {filtered.map((s, i) => (
+            {!initialLoading && filtered.map((s, i) => (
               <tr key={s._id} style={{ background: i % 2 === 0 ? 'white' : '#fafeff' }}>
                 <td style={{ padding: '0.6rem 0.9rem', fontSize: '0.85rem', fontWeight: 600 }}>{s.rollNo}</td>
                 <td style={{ padding: '0.6rem 0.9rem', fontSize: '0.85rem', fontWeight: 500 }}>{s.name}</td>

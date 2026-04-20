@@ -56,7 +56,29 @@ function LoginHistoryPanel() {
         </select>
       </div>
 
-      {loading && <div style={{ padding: '2rem', textAlign: 'center', color: 'var(--charcoal-light)', fontSize: '0.82rem' }}>Loading history...</div>}
+      {loading && (
+        <div style={{ background: 'white', borderRadius: 14, border: '1.5px solid var(--sky-light)', overflow: 'hidden' }}>
+          <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+            <thead>
+              <tr>
+                {['User', 'Role', 'Login Time', 'Edits This Session'].map(h => (
+                  <th key={h} style={{ padding: '0.65rem 1rem', fontWeight: 600, fontSize: '0.75rem', background: 'var(--sky-light)', color: 'var(--charcoal)', textAlign: 'left', whiteSpace: 'nowrap' }}>{h}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {Array.from({ length: 4 }).map((_, i) => (
+                <tr key={`skel-h-${i}`} style={{ background: i % 2 === 0 ? 'white' : '#fafeff' }}>
+                  <td style={{ padding: '0.6rem 1rem' }}><div className="skeleton" style={{ height: 16, width: 120, borderRadius: 4, marginBottom: 4 }} /><div className="skeleton" style={{ height: 12, width: 80, borderRadius: 4 }} /></td>
+                  <td style={{ padding: '0.6rem 1rem' }}><div className="skeleton" style={{ height: 18, width: 50, borderRadius: 10 }} /></td>
+                  <td style={{ padding: '0.6rem 1rem' }}><div className="skeleton" style={{ height: 14, width: 150, borderRadius: 4 }} /></td>
+                  <td style={{ padding: '0.6rem 1rem' }}><div className="skeleton" style={{ height: 18, width: 70, borderRadius: 10 }} /></td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
 
       {!loading && history.length === 0 && (
         <div style={{ padding: '3rem', textAlign: 'center', background: 'white', borderRadius: 16, border: '1.5px solid var(--sky-light)', color: 'var(--charcoal-light)', fontSize: '0.88rem' }}>
@@ -119,6 +141,7 @@ export default function AdminUsersPage() {
   const [form, setForm] = useState(EMPTY_USER);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const [initialLoading, setInitialLoading] = useState(true);
   const [deleteConfirm, setDeleteConfirm] = useState(null);
   const [tab, setTab] = useState('teacher');
   const [ctViewEnabled, setCtViewEnabled] = useState(false);
@@ -135,6 +158,7 @@ export default function AdminUsersPage() {
     const names = [...new Set(c.map(cls => cls.name))].sort();
     setClassOptions(names);
     setCtViewEnabled(s.classTeacherViewEnabled || false);
+    setInitialLoading(false);
   };
 
   useEffect(() => { fetchAll(); }, []);
@@ -263,12 +287,29 @@ export default function AdminUsersPage() {
       {/* User Cards */}
       {tab !== 'history' && (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-          {filtered.length === 0 && (
-            <div style={{ textAlign: 'center', padding: '3rem', color: 'var(--charcoal-light)', fontSize: '0.88rem' }}>
+          {initialLoading && Array.from({ length: 4 }).map((_, i) => (
+            <div key={`skel-${i}`} style={{ background: 'white', borderRadius: 14, border: '1.5px solid var(--sky-light)', padding: '1rem 1.2rem', boxShadow: '0 2px 10px rgba(135,206,250,0.1)' }}>
+              <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: '1rem', flexWrap: 'wrap' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
+                  <div className="skeleton" style={{ width: 42, height: 42, borderRadius: 10 }} />
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+                    <div className="skeleton" style={{ height: 18, width: 140, borderRadius: 4 }} />
+                    <div className="skeleton" style={{ height: 14, width: 100, borderRadius: 4 }} />
+                  </div>
+                </div>
+                <div style={{ display: 'flex', gap: '0.5rem' }}>
+                  <div className="skeleton" style={{ height: 28, width: 60, borderRadius: 8 }} />
+                  <div className="skeleton" style={{ height: 28, width: 34, borderRadius: 8 }} />
+                </div>
+              </div>
+            </div>
+          ))}
+          {!initialLoading && filtered.length === 0 && (
+            <div style={{ textAlign: 'center', padding: '3rem', color: 'var(--charcoal-light)', fontSize: '0.88rem', background: 'white', borderRadius: 14, border: '1.5px solid var(--sky-light)' }}>
               No {tab}s found. Click "+ Add User" to create one.
             </div>
           )}
-          {filtered.map(user => (
+          {!initialLoading && filtered.map(user => (
             <div key={user._id} style={{ background: 'white', borderRadius: 14, border: '1.5px solid var(--sky-light)', padding: '1rem 1.2rem', boxShadow: '0 2px 10px rgba(135,206,250,0.1)' }}>
               <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: '1rem', flexWrap: 'wrap' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem' }}>

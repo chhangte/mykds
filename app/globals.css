@@ -23,3 +23,6 @@ body { font-family: 'Poppins', sans-serif; background: var(--bg); color: var(--c
 main {
   padding-top: 72px;
 }
+
+@keyframes pulse { 50% { opacity: 0.5; } }
+.skeleton { animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; background: var(--sky-light); }

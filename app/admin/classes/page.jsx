@@ -15,10 +15,14 @@ export default function AdminClassesPage() {
   const [form, setForm] = useState(EMPTY);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const [initialLoading, setInitialLoading] = useState(true);
   const [deleteConfirm, setDeleteConfirm] = useState(null);
 
   const fetchClasses = () =>
-    fetch('/api/admin/classes').then(r => r.json()).then(setClasses);
+    fetch('/api/admin/classes').then(r => r.json()).then(data => {
+      setClasses(data);
+      setInitialLoading(false);
+    });
 
   useEffect(() => { fetchClasses(); }, []);
 
@@ -76,7 +80,26 @@ export default function AdminClassesPage() {
       </div>
 
       <div style={{ display: 'flex', flexDirection: 'column', gap: '0.7rem' }}>
-        {classes.length === 0 && (
+        {initialLoading && Array.from({ length: 4 }).map((_, i) => (
+          <div key={`skel-${i}`} style={{
+            background: 'white', borderRadius: 12, border: '1.5px solid var(--sky-light)',
+            padding: '0.9rem 1.2rem', display: 'flex', alignItems: 'center',
+            justifyContent: 'space-between', gap: '1rem',
+          }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
+              <div className="skeleton" style={{ width: 40, height: 40, borderRadius: 10 }} />
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+                <div className="skeleton" style={{ height: 18, width: 140, borderRadius: 4 }} />
+                <div className="skeleton" style={{ height: 14, width: 100, borderRadius: 4 }} />
+              </div>
+            </div>
+            <div style={{ display: 'flex', gap: '0.4rem' }}>
+              <div className="skeleton" style={{ height: 30, width: 60, borderRadius: 7 }} />
+              <div className="skeleton" style={{ height: 30, width: 34, borderRadius: 7 }} />
+            </div>
+          </div>
+        ))}
+        {!initialLoading && classes.length === 0 && (
           <div style={{ textAlign: 'center', padding: '3rem',
             color: 'var(--charcoal-light)', fontSize: '0.88rem',
             background: 'white', borderRadius: 14,
@@ -84,7 +107,7 @@ export default function AdminClassesPage() {
             No classes yet. Click "+ Add Class" to create one.
           </div>
         )}
-        {classes.map((cls, i) => (
+        {!initialLoading && classes.map((cls, i) => (
           <div key={cls._id} style={{
             background: 'white', borderRadius: 12,
             border: '1.5px solid var(--sky-light)',
