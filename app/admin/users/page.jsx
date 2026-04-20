@@ -231,7 +231,7 @@ export default function AdminUsersPage() {
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem', flexWrap: 'wrap', gap: '0.8rem' }}>
         <div>
           <BackButton />
-          <h2 style={{ fontWeight: 700, fontSize: '1.2rem', color: 'var(--charcoal)' }}>👥 User Management</h2>
+          <h2 style={{ fontWeight: 700, fontSize: '1.2rem', color: 'var(--charcoal)' }}>User Management</h2>
           <p style={{ fontSize: '0.78rem', color: 'var(--charcoal-light)', marginTop: 2 }}>Add, edit or remove staff accounts</p>
         </div>
         {tab !== 'history' && (
@@ -249,10 +249,10 @@ export default function AdminUsersPage() {
         }}>
           <div>
             <div style={{ fontWeight: 600, fontSize: '0.88rem', color: ctViewEnabled ? '#1a8a3c' : 'var(--charcoal)' }}>
-              {ctViewEnabled ? '✅' : '👁'} Allow Class Teachers to View Student Marks
+              {ctViewEnabled} Allow Class Teachers to View Student Marks
             </div>
             <div style={{ fontSize: '0.75rem', color: 'var(--charcoal-light)', marginTop: 2 }}>
-              {ctViewEnabled ? 'Class teachers can currently view their assigned class marks (read-only)' : 'Class teachers cannot view any marks right now'}
+              {ctViewEnabled ? '✔ Class teachers can currently view their assigned class marks (read-only)' : '✖ Class teachers cannot view any marks right now'}
             </div>
           </div>
           <button onClick={toggleCtView} disabled={settingLoading} style={{
@@ -267,9 +267,9 @@ export default function AdminUsersPage() {
       {/* Tabs */}
       <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '1.2rem', flexWrap: 'wrap' }}>
         {[
-          { key: 'teacher', label: '🧑‍🏫 Teachers' },
-          { key: 'admin', label: '🔑 Admins' },
-          { key: 'history', label: '🕐 Session History' },
+          { key: 'teacher', label: 'Teachers' },
+          { key: 'admin', label: 'Admins' },
+          { key: 'history', label: 'Session History' },
         ].map(({ key, label }) => (
           <button key={key} onClick={() => setTab(key)} style={{
             padding: '0.45rem 1.1rem', borderRadius: 20,
@@ -323,7 +323,7 @@ export default function AdminUsersPage() {
                       <span style={{ fontWeight: 600, fontSize: '0.92rem', color: 'var(--charcoal)' }}>{user.name}</span>
                       {hasCtAssignment(user) && (
                         <span style={{ background: '#e6f9ee', color: '#1a8a3c', fontSize: '0.68rem', fontWeight: 700, padding: '2px 8px', borderRadius: 20, border: '1px solid #a8e6c0' }}>
-                          📋 CT: {user.classTeacherClass} – {user.classTeacherSection}
+                          CT: {user.classTeacherClass} – {user.classTeacherSection}
                         </span>
                       )}
                     </div>
@@ -331,8 +331,8 @@ export default function AdminUsersPage() {
                   </div>
                 </div>
                 <div style={{ display: 'flex', gap: '0.5rem' }}>
-                  <button onClick={() => openEdit(user)} style={{ padding: '0.4rem 0.9rem', borderRadius: 8, border: '1.5px solid var(--sky-light)', background: 'white', fontFamily: 'Poppins', fontSize: '0.78rem', cursor: 'pointer', fontWeight: 500 }}>✏️ Edit</button>
-                  <button onClick={() => setDeleteConfirm(user)} style={{ padding: '0.4rem 0.9rem', borderRadius: 8, border: '1.5px solid #fde2e2', background: '#fff5f5', fontFamily: 'Poppins', fontSize: '0.78rem', cursor: 'pointer', color: '#c0392b' }}>🗑️</button>
+                  <button onClick={() => openEdit(user)} style={{ padding: '0.4rem 0.9rem', borderRadius: 8, border: '1.5px solid var(--sky-light)', background: 'white', fontFamily: 'Poppins', fontSize: '0.78rem', cursor: 'pointer', fontWeight: 500 }}>Edit</button>
+                  <button onClick={() => setDeleteConfirm(user)} style={{ padding: '0.4rem 0.9rem', borderRadius: 8, border: '1.5px solid #fde2e2', background: '#fff5f5', fontFamily: 'Poppins', fontSize: '0.78rem', cursor: 'pointer', fontWeight: 500, color: '#c0392b' }}>Delete</button>
                 </div>
               </div>
               {user.role === 'teacher' && user.assignedClasses?.length > 0 && (
@@ -354,7 +354,7 @@ export default function AdminUsersPage() {
         <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.35)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 1000, padding: '1rem' }}>
           <div style={{ background: 'white', borderRadius: 18, padding: '2rem', width: '100%', maxWidth: 500, boxShadow: '0 8px 40px rgba(135,206,250,0.25)', maxHeight: '92vh', overflowY: 'auto' }}>
             <h3 style={{ fontWeight: 700, fontSize: '1.1rem', marginBottom: '1.5rem', color: 'var(--charcoal)' }}>
-              {editing ? '✏️ Edit User' : '➕ Add New User'}
+              {editing ? 'Edit User' : 'Add New User'}
             </h3>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.9rem' }}>
               <div>
@@ -401,7 +401,6 @@ export default function AdminUsersPage() {
                   </div>
                   <div style={{ borderRadius: 12, border: '1.5px solid var(--sky-light)', padding: '1rem', background: '#fafeff' }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.6rem' }}>
-                      <span style={{ fontSize: 16 }}>📋</span>
                       <span style={{ fontSize: '0.82rem', fontWeight: 700, color: 'var(--charcoal)' }}>Class Teacher Assignment</span>
                       <span style={{ fontSize: '0.68rem', color: 'var(--charcoal-light)', background: '#f0f0f0', padding: '2px 8px', borderRadius: 20 }}>Optional</span>
                     </div>
@@ -426,7 +425,7 @@ export default function AdminUsersPage() {
                     </div>
                     {form.classTeacherClass && form.classTeacherSection && (
                       <div style={{ marginTop: '0.7rem', background: '#e6f9ee', borderRadius: 8, padding: '0.5rem 0.8rem', fontSize: '0.78rem', color: '#1a8a3c', fontWeight: 600 }}>
-                        ✅ Will be assigned as Class Teacher for {form.classTeacherClass} – Section {form.classTeacherSection}
+                        Will be assigned as Class Teacher for {form.classTeacherClass} – Section {form.classTeacherSection}
                       </div>
                     )}
                   </div>

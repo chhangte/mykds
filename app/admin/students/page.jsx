@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import BackButton from '@/components/BackButton';
 
 const CLASSES = ['KG I', 'KG II', 'Class I', 'Class II', 'Class III', 'Class IV', 'Class V',
-  'Class VI','Class VII','Class VIII','Class IX','Class X'];
+  'Class VI', 'Class VII', 'Class VIII', 'Class IX', 'Class X'];
 const SECTIONS = ['A', 'B', 'C'];
 const EMPTY = { rollNo: '', name: '', class: 'Class VIII', section: 'A', academicYear: '2026' };
 
@@ -34,8 +34,10 @@ export default function AdminStudentsPage() {
 
   const openEdit = (s) => {
     setEditing(s);
-    setForm({ rollNo: s.rollNo, name: s.name, class: s.class,
-      section: s.section || 'A', academicYear: s.academicYear });
+    setForm({
+      rollNo: s.rollNo, name: s.name, class: s.class,
+      section: s.section || 'A', academicYear: s.academicYear
+    });
     setError(''); setShowModal(true);
   };
 
@@ -79,12 +81,14 @@ export default function AdminStudentsPage() {
   return (
     <div style={{ padding: '1.5rem', maxWidth: 820, margin: '0 auto' }}>
       {/* Header */}
-      <div style={{ display: 'flex', justifyContent: 'space-between',
-        alignItems: 'center', marginBottom: '1.2rem', flexWrap: 'wrap', gap: '0.8rem' }}>
+      <div style={{
+        display: 'flex', justifyContent: 'space-between',
+        alignItems: 'center', marginBottom: '1.2rem', flexWrap: 'wrap', gap: '0.8rem'
+      }}>
         <div>
           <BackButton />
           <h2 style={{ fontWeight: 700, fontSize: '1.2rem', color: 'var(--charcoal)' }}>
-            🎒 Student Management
+            Student Management
           </h2>
           <p style={{ fontSize: '0.78rem', color: 'var(--charcoal-light)', marginTop: 2 }}>
             {students.length} students enrolled
@@ -98,9 +102,11 @@ export default function AdminStudentsPage() {
       </div>
 
       {/* Filters */}
-      <div style={{ display: 'flex', gap: '0.6rem', marginBottom: '1rem',
-        flexWrap: 'wrap', alignItems: 'center' }}>
-        <input placeholder="🔍 Search name or roll no..."
+      <div style={{
+        display: 'flex', gap: '0.6rem', marginBottom: '1rem',
+        flexWrap: 'wrap', alignItems: 'center'
+      }}>
+        <input placeholder="Search name or roll no..."
           value={search} onChange={e => setSearch(e.target.value)}
           style={{ ...inputStyle, marginTop: 0, flex: 1, minWidth: 180 }} />
         <select value={filterClass} onChange={e => setFilterClass(e.target.value)}
@@ -116,8 +122,10 @@ export default function AdminStudentsPage() {
       </div>
 
       {/* Table */}
-      <div style={{ overflowX: 'auto', borderRadius: 14,
-        border: '1.5px solid var(--sky-light)', background: 'white' }}>
+      <div style={{
+        overflowX: 'auto', borderRadius: 14,
+        border: '1.5px solid var(--sky-light)', background: 'white'
+      }}>
         <table style={{ width: '100%', borderCollapse: 'collapse', minWidth: 500 }}>
           <thead>
             <tr>
@@ -142,8 +150,10 @@ export default function AdminStudentsPage() {
               </tr>
             ))}
             {!initialLoading && filtered.length === 0 && (
-              <tr><td colSpan={6} style={{ padding: '2.5rem', textAlign: 'center',
-                color: 'var(--charcoal-light)', fontSize: '0.85rem' }}>
+              <tr><td colSpan={6} style={{
+                padding: '2.5rem', textAlign: 'center',
+                color: 'var(--charcoal-light)', fontSize: '0.85rem'
+              }}>
                 No students found.
               </td></tr>
             )}
@@ -162,8 +172,10 @@ export default function AdminStudentsPage() {
                     Section {s.section || 'A'}
                   </span>
                 </td>
-                <td style={{ padding: '0.6rem 0.9rem', fontSize: '0.78rem',
-                  color: 'var(--charcoal-light)' }}>{s.academicYear}</td>
+                <td style={{
+                  padding: '0.6rem 0.9rem', fontSize: '0.78rem',
+                  color: 'var(--charcoal-light)'
+                }}>{s.academicYear}</td>
                 <td style={{ padding: '0.6rem 0.9rem' }}>
                   <div style={{ display: 'flex', gap: '0.4rem' }}>
                     <button onClick={() => openEdit(s)} style={{
@@ -171,13 +183,13 @@ export default function AdminStudentsPage() {
                       border: '1.5px solid var(--sky-light)',
                       background: 'white', fontFamily: 'Poppins',
                       fontSize: '0.75rem', cursor: 'pointer',
-                    }}>✏️</button>
+                    }}>Edit</button>
                     <button onClick={() => setDeleteConfirm(s)} style={{
                       padding: '4px 12px', borderRadius: 7,
                       border: '1.5px solid #fde2e2',
                       background: '#fff5f5', fontFamily: 'Poppins',
                       fontSize: '0.75rem', cursor: 'pointer', color: '#c0392b',
-                    }}>🗑️</button>
+                    }}>Delete</button>
                   </div>
                 </td>
               </tr>
@@ -188,15 +200,21 @@ export default function AdminStudentsPage() {
 
       {/* Add/Edit Modal */}
       {showModal && (
-        <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.3)',
+        <div style={{
+          position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.3)',
           display: 'flex', alignItems: 'center', justifyContent: 'center',
-          zIndex: 1000, padding: '1rem' }}>
-          <div style={{ background: 'white', borderRadius: 18, padding: '2rem',
+          zIndex: 1000, padding: '1rem'
+        }}>
+          <div style={{
+            background: 'white', borderRadius: 18, padding: '2rem',
             width: '100%', maxWidth: 400,
-            boxShadow: '0 8px 40px rgba(135,206,250,0.25)' }}>
-            <h3 style={{ fontWeight: 700, fontSize: '1.05rem',
-              marginBottom: '1.4rem', color: 'var(--charcoal)' }}>
-              {editing ? '✏️ Edit Student' : '➕ Add Student'}
+            boxShadow: '0 8px 40px rgba(135,206,250,0.25)'
+          }}>
+            <h3 style={{
+              fontWeight: 700, fontSize: '1.05rem',
+              marginBottom: '1.4rem', color: 'var(--charcoal)'
+            }}>
+              {editing ? 'Edit Student' : 'Add Student'}
             </h3>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
               <div>
@@ -232,9 +250,11 @@ export default function AdminStudentsPage() {
                   value={form.academicYear} onChange={e => setForm({ ...form, academicYear: e.target.value })} />
               </div>
             </div>
-            {error && <p style={{ color: '#c0392b', fontSize: '0.78rem',
+            {error && <p style={{
+              color: '#c0392b', fontSize: '0.78rem',
               background: '#fff5f5', padding: '8px 12px',
-              borderRadius: 8, marginTop: '1rem' }}>{error}</p>}
+              borderRadius: 8, marginTop: '1rem'
+            }}>{error}</p>}
             <div style={{ display: 'flex', gap: '0.7rem', marginTop: '1.5rem' }}>
               <button onClick={() => setShowModal(false)} style={{
                 flex: 1, padding: '0.7rem', borderRadius: 10,
@@ -256,11 +276,15 @@ export default function AdminStudentsPage() {
 
       {/* Delete Confirm */}
       {deleteConfirm && (
-        <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.3)',
+        <div style={{
+          position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.3)',
           display: 'flex', alignItems: 'center', justifyContent: 'center',
-          zIndex: 1000, padding: '1rem' }}>
-          <div style={{ background: 'white', borderRadius: 18, padding: '2rem',
-            width: '100%', maxWidth: 340, textAlign: 'center' }}>
+          zIndex: 1000, padding: '1rem'
+        }}>
+          <div style={{
+            background: 'white', borderRadius: 18, padding: '2rem',
+            width: '100%', maxWidth: 340, textAlign: 'center'
+          }}>
             <div style={{ fontSize: 36, marginBottom: '0.7rem' }}>⚠️</div>
             <h3 style={{ fontWeight: 700, fontSize: '1rem', marginBottom: '0.4rem' }}>
               Remove {deleteConfirm.name}?

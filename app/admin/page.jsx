@@ -31,7 +31,7 @@ export default function AdminDashboard() {
       {/* Welcome */}
       <div style={{ marginBottom: '1.5rem' }}>
         <h2 style={{ fontSize: '1.3rem', fontWeight: 700, color: 'var(--charcoal)' }}>
-          Welcome, {session?.user?.name ?? 'Admin'} 👋
+          Welcome, {session?.user?.name ?? 'Admin'}
         </h2>
         <p style={{ fontSize: '0.82rem', color: 'var(--charcoal-light)', marginTop: 4 }}>
           Manage your school from here
@@ -85,19 +85,23 @@ export default function AdminDashboard() {
       {/* Loading */}
       {loading && (
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(180px,1fr))', gap: '1rem' }}>
-          {[1,2,3,4,5,6].map(i => (
-            <div key={i} style={{ height: 100, borderRadius: 16,
-              background: 'var(--sky-light)', opacity: 0.4 }} />
+          {[1, 2, 3, 4, 5, 6].map(i => (
+            <div key={i} style={{
+              height: 100, borderRadius: 16,
+              background: 'var(--sky-light)', opacity: 0.4
+            }} />
           ))}
         </div>
       )}
 
       {/* Empty state */}
       {!loading && classSections.length === 0 && (
-        <div style={{ textAlign: 'center', padding: '3rem',
+        <div style={{
+          textAlign: 'center', padding: '3rem',
           background: 'white', borderRadius: 16,
           border: '1.5px solid var(--sky-light)',
-          color: 'var(--charcoal-light)', fontSize: '0.88rem' }}>
+          color: 'var(--charcoal-light)', fontSize: '0.88rem'
+        }}>
           <div style={{ fontSize: 36, marginBottom: '0.8rem' }}>🏫</div>
           No classes configured yet.{' '}
           <span style={{ color: 'var(--sky-dark)', cursor: 'pointer', fontWeight: 600 }}
@@ -138,12 +142,16 @@ export default function AdminDashboard() {
                   e.currentTarget.style.boxShadow = '0 2px 16px rgba(135,206,250,0.18)';
                 }}
               >
-                <div style={{ display: 'flex', alignItems: 'center',
-                  justifyContent: 'space-between', marginBottom: '0.8rem' }}>
-                  <div style={{ width: 40, height: 40, borderRadius: 10,
+                <div style={{
+                  display: 'flex', alignItems: 'center',
+                  justifyContent: 'space-between', marginBottom: '0.8rem'
+                }}>
+                  <div style={{
+                    width: 40, height: 40, borderRadius: 10,
                     background: 'var(--sky-light)',
                     display: 'flex', alignItems: 'center',
-                    justifyContent: 'center', fontSize: 20 }}>🏫</div>
+                    justifyContent: 'center', fontSize: 20
+                  }}>🏫</div>
                   <span style={{
                     background: sc.bg, color: sc.color,
                     fontSize: '0.7rem', fontWeight: 700,
