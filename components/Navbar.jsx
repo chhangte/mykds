@@ -111,8 +111,10 @@ export default function Navbar({ role, name }) {
         padding: '0 1.25rem',
         boxShadow: '0 2px 12px rgba(135,206,250,0.12)',
       }}>
-        <div className="kds-nav-logo" onClick={() => router.push(role === 'admin' ? '/admin' : '/teacher')} style={{ cursor: 'pointer', display: 'flex', alignItems: 'center' }}>
-          <Image src="/kds-logo-tb-black-wm.png" alt="Kids Den School" width={150} height={36} style={{ objectFit: 'contain', height: 28, width: 'auto' }} priority />
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
+          <div className="kds-nav-logo" onClick={() => router.push(role === 'admin' ? '/admin' : '/teacher')} style={{ cursor: 'pointer', display: 'flex', alignItems: 'center' }}>
+            <Image src="/kds-logo-tb-black-wm.png" alt="Kids Den School" width={150} height={36} style={{ objectFit: 'contain', height: 28, width: 'auto' }} priority />
+          </div>
         </div>
 
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>

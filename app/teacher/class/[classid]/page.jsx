@@ -5,6 +5,7 @@ import MarksTable from '@/components/MarksTable';
 import MarksViewer from '@/components/MarksViewer';
 import AttendanceTable from '@/components/AttendanceTable';
 import PageLoader from '@/components/PageLoader';
+import BackButton from '@/components/BackButton';
 
 const TABS = ['Class Tests', 'Exams', 'Attendance', 'Notes'];
 
@@ -52,15 +53,9 @@ function ClassPageInner() {
 
       <div className="kds-class-content" style={{ padding: '1rem', maxWidth: 960, margin: '0 auto' }}>
 
-        {/* Back + Header */}
+        {/* Header */}
         <div style={{ marginBottom: '1.2rem' }}>
-          <button onClick={() => router.back()} style={{
-            background: 'none', border: 'none', cursor: 'pointer',
-            fontSize: '0.82rem', color: 'var(--charcoal-light)',
-            fontFamily: 'Poppins', padding: 0, marginBottom: '0.6rem',
-            display: 'flex', alignItems: 'center', gap: 4,
-          }}>← Back</button>
-
+          <BackButton />
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
             <div style={{
               width: 44, height: 44, borderRadius: 10,

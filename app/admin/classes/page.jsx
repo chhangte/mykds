@@ -1,5 +1,6 @@
 'use client';
 import { useState, useEffect } from 'react';
+import BackButton from '@/components/BackButton';
 
 const CLASS_NAMES = ['KG I','KG II','Class I','Class II','Class III','Class IV','Class V',
   'Class VI','Class VII','Class VIII','Class IX','Class X'];
@@ -65,6 +66,7 @@ export default function AdminClassesPage() {
       <div style={{ display: 'flex', justifyContent: 'space-between',
         alignItems: 'center', marginBottom: '1.5rem', flexWrap: 'wrap', gap: '0.8rem' }}>
         <div>
+          <BackButton />
           <h2 style={{ fontWeight: 700, fontSize: '1.2rem', color: 'var(--charcoal)' }}>
             🏫 Class Management
           </h2>

@@ -3,6 +3,7 @@ import { useState, useEffect, Suspense } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import MarksViewer from '@/components/MarksViewer';
 import { generateReportCardPDF, generateMergedReportCardsPDF, generateCumulativeMergedReportCardsPDF } from '@/lib/pdfGenerator';
+import BackButton from '@/components/BackButton';
 
 const TEST_TABS = [
   { label: 'Test 1', type: 'classtest', index: 1 },
@@ -123,11 +124,11 @@ function ClassViewContent() {
   return (
     <div style={{ padding: '1rem', maxWidth: 1100, margin: '0 auto' }}>
 
-      {/* Back + Header */}
+      {/* Header */}
       <div style={{ marginBottom: '1.2rem' }}>
-        <button onClick={() => router.back()} style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: '0.82rem', color: 'var(--charcoal-light)', fontFamily: 'Poppins', padding: 0, marginBottom: '0.6rem', display: 'flex', alignItems: 'center', gap: 4 }}>← Back</button>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '0.8rem' }}>
           <div>
+            <BackButton />
             <h2 style={{ fontWeight: 700, fontSize: '1.2rem', color: 'var(--charcoal)', margin: 0 }}>
               🏫 {className} — Section {section}
             </h2>

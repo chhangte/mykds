@@ -2,6 +2,7 @@
 'use client';
 import { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
+import BackButton from '@/components/BackButton';
 
 export default function StudentReport() {
   const { studentId } = useParams();
@@ -17,6 +18,7 @@ export default function StudentReport() {
   // report.subjects = [{ subject, classTests:[m1,m2,m3], exams:[e1,e2] }]
   return (
     <div style={{ padding:'1rem', maxWidth:900, margin:'0 auto' }}>
+      <BackButton />
       <h2 style={{ fontWeight:700 }}>{report.student.name}</h2>
       <p style={{ fontSize:'0.82rem', color:'var(--charcoal-light)' }}>
         Roll No: {report.student.rollNo} · {report.student.class}

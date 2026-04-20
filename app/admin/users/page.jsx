@@ -1,5 +1,6 @@
 'use client';
 import { useState, useEffect } from 'react';
+import BackButton from '@/components/BackButton';
 
 const ROLES = ['teacher', 'admin'];
 const SECTIONS = ['A', 'B', 'C'];
@@ -229,6 +230,7 @@ export default function AdminUsersPage() {
       {/* Header */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem', flexWrap: 'wrap', gap: '0.8rem' }}>
         <div>
+          <BackButton />
           <h2 style={{ fontWeight: 700, fontSize: '1.2rem', color: 'var(--charcoal)' }}>👥 User Management</h2>
           <p style={{ fontSize: '0.78rem', color: 'var(--charcoal-light)', marginTop: 2 }}>Add, edit or remove staff accounts</p>
         </div>
