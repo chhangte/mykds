@@ -32,7 +32,7 @@ export default function MarksViewer({ students, classId, type }) {
   };
   const tdStyle = {
     padding: '0.5rem 0.8rem', fontSize: '0.82rem',
-    borderBottom: '1px solid #f0f8ff',
+    borderBottom: '1px solid #f0f4ff',
   };
 
   const formatLogDate = (dateStr) => {
@@ -59,7 +59,7 @@ export default function MarksViewer({ students, classId, type }) {
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
             <span style={{ fontWeight: 600, fontSize: '0.88rem' }}>{label} Marks</span>
             <span style={{
-              background: '#f0f8ff', color: '#5aa8d0',
+              background: '#f0f4ff', color: '#4285F4',
               fontSize: '0.7rem', fontWeight: 600,
               padding: '3px 10px', borderRadius: 20,
               border: '1px solid var(--sky-light)',

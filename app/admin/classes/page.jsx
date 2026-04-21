@@ -146,7 +146,7 @@ export default function AdminClassesPage() {
             padding: '0.9rem 1.2rem',
             display: 'flex', alignItems: 'center',
             justifyContent: 'space-between', gap: '1rem',
-            boxShadow: '0 2px 8px rgba(135,206,250,0.08)',
+            boxShadow: '0 2px 8px rgba(66,133,244,0.06)',
           }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
               <div style={{
@@ -194,7 +194,7 @@ export default function AdminClassesPage() {
           <div style={{
             background: 'white', borderRadius: 18, padding: '2rem',
             width: '100%', maxWidth: 400,
-            boxShadow: '0 8px 40px rgba(135,206,250,0.25)'
+            boxShadow: '0 8px 40px rgba(66,133,244,0.15)'
           }}>
             <h3 style={{
               fontWeight: 700, fontSize: '1.05rem',

@@ -303,7 +303,7 @@ export default function AdminUsersPage() {
       {tab !== 'history' && (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
           {initialLoading && Array.from({ length: 4 }).map((_, i) => (
-            <div key={`skel-${i}`} style={{ background: 'white', borderRadius: 14, border: '1.5px solid var(--sky-light)', padding: '1rem 1.2rem', boxShadow: '0 2px 10px rgba(135,206,250,0.1)' }}>
+            <div key={`skel-${i}`} style={{ background: 'white', borderRadius: 14, border: '1.5px solid var(--sky-light)', padding: '1rem 1.2rem', boxShadow: '0 2px 10px rgba(66,133,244,0.08)' }}>
               <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: '1rem', flexWrap: 'wrap' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
                   <div className="skeleton" style={{ width: 42, height: 42, borderRadius: 10 }} />
@@ -330,7 +330,7 @@ export default function AdminUsersPage() {
             </div>
           )}
           {!initialLoading && filtered.map(user => (
-            <div key={user._id} style={{ background: 'white', borderRadius: 14, border: '1.5px solid var(--sky-light)', padding: '1rem 1.2rem', boxShadow: '0 2px 10px rgba(135,206,250,0.1)' }}>
+            <div key={user._id} style={{ background: 'white', borderRadius: 14, border: '1.5px solid var(--sky-light)', padding: '1rem 1.2rem', boxShadow: '0 2px 10px rgba(66,133,244,0.08)' }}>
               <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: '1rem', flexWrap: 'wrap' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
                   <div style={{ width: 42, height: 42, borderRadius: 10, background: hasCtAssignment(user) ? '#e6f9ee' : 'var(--sky-light)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 18, flexShrink: 0 }}>
@@ -370,7 +370,7 @@ export default function AdminUsersPage() {
       {/* Add/Edit Modal */}
       {showModal && (
         <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.35)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 1000, padding: '1rem' }}>
-          <div style={{ background: 'white', borderRadius: 18, padding: '2rem', width: '100%', maxWidth: 500, boxShadow: '0 8px 40px rgba(135,206,250,0.25)', maxHeight: '92vh', overflowY: 'auto' }}>
+          <div style={{ background: 'white', borderRadius: 18, padding: '2rem', width: '100%', maxWidth: 500, boxShadow: '0 8px 40px rgba(66,133,244,0.15)', maxHeight: '92vh', overflowY: 'auto' }}>
             <h3 style={{ fontWeight: 700, fontSize: '1.1rem', marginBottom: '1.5rem', color: 'var(--charcoal)' }}>
               {editing ? 'Edit User' : 'Add New User'}
             </h3>

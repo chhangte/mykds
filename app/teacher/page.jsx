@@ -13,7 +13,7 @@ function TileSkeleton() {
         }
         .kds-tile-skeleton {
           border-radius: 16px; height: 86px;
-          background: linear-gradient(90deg,#e8f4fd 25%,#d0ecfd 50%,#e8f4fd 75%);
+          background: linear-gradient(90deg,#e8f0fe 25%,#d2e3fc 50%,#e8f0fe 75%);
           background-size: 600px 100%;
           animation: kds-shimmer 1.4s ease-in-out infinite;
         }
@@ -58,7 +58,7 @@ export default function TeacherDashboard() {
       className="kds-tile"
       style={{
         background: 'white', borderRadius: '16px', padding: '1.4rem',
-        boxShadow: '0 2px 16px rgba(135,206,250,0.18)',
+        boxShadow: '0 2px 16px rgba(66,133,244,0.1)',
         border: '1.5px solid var(--sky-light)',
         cursor: 'pointer',
         transition: 'transform 0.15s, box-shadow 0.15s',
@@ -66,11 +66,11 @@ export default function TeacherDashboard() {
       }}
       onMouseEnter={e => {
         e.currentTarget.style.transform = 'translateY(-2px)';
-        e.currentTarget.style.boxShadow = '0 6px 24px rgba(135,206,250,0.3)';
+        e.currentTarget.style.boxShadow = '0 6px 24px rgba(66,133,244,0.2)';
       }}
       onMouseLeave={e => {
         e.currentTarget.style.transform = 'translateY(0)';
-        e.currentTarget.style.boxShadow = '0 2px 16px rgba(135,206,250,0.18)';
+        e.currentTarget.style.boxShadow = '0 2px 16px rgba(66,133,244,0.1)';
       }}
     >
       <div style={{

@@ -109,10 +109,10 @@ function TeacherClassOverviewContent() {
   };
   const tdStyle = {
     padding: '0.55rem 0.8rem', fontSize: '0.82rem',
-    borderBottom: '1px solid #f0f8ff',
+    borderBottom: '1px solid #f0f4ff',
   };
   const getScoreColor = (score) => {
-    if (score === null || score === undefined) return { bg: 'transparent', color: '#aaa' };
+    if (score === null || score === undefined) return { bg: 'transparent', color: '#888888' };
     if (score >= 40) return { bg: '#e6f9ee', color: '#1a8a3c' };
     return { bg: '#fdecea', color: '#c0392b' };
   };
@@ -192,7 +192,7 @@ function TeacherClassOverviewContent() {
                   {data.subjects.map(subject => (
                     <th key={subject} style={{ ...thStyle, textAlign: 'center', minWidth: 110 }}>{subject}</th>
                   ))}
-                  <th style={{ ...thStyle, textAlign: 'center', minWidth: 90, background: '#d0ecfd' }}>Total</th>
+                  <th style={{ ...thStyle, textAlign: 'center', minWidth: 90, background: '#d2e3fc' }}>Total</th>
                   <th style={{ ...thStyle, textAlign: 'center', minWidth: 70 }}>Report Card</th>
                 </tr>
               </thead>

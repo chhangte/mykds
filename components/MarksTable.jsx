@@ -103,7 +103,7 @@ export default function MarksTable({ students, classId, type }) {
   };
   const tdStyle = {
     padding: '0.5rem 0.8rem', fontSize: '0.82rem',
-    borderBottom: '1px solid #f0f8ff',
+    borderBottom: '1px solid #f0f4ff',
   };
 
   const formatLogDate = (dateStr) => {
@@ -421,7 +421,7 @@ export default function MarksTable({ students, classId, type }) {
                                     </span>
                                   )}
                                   {diff === 0 && (
-                                    <span style={{ color: '#aaa', fontSize: '0.75rem' }}>no change</span>
+                                    <span style={{ color: '#888888', fontSize: '0.75rem' }}>no change</span>
                                   )}
                                 </td>
                               </tr>

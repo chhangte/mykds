@@ -18,12 +18,12 @@ function NavbarWrapper() {
       borderBottom: '1.5px solid var(--sky-light)',
       display: 'flex', alignItems: 'center',
       padding: '0 1.25rem',
-      boxShadow: '0 2px 12px rgba(135,206,250,0.12)',
+      boxShadow: '0 2px 12px rgba(66,133,244,0.1)',
     }}>
       {/* Skeleton logo placeholder */}
       <div style={{
         width: 160, height: 32, borderRadius: 8,
-        background: 'linear-gradient(90deg,#e8f4fd 25%,#d0ecfd 50%,#e8f4fd 75%)',
+        background: 'linear-gradient(90deg,#e8f0fe 25%,#d2e3fc 50%,#e8f0fe 75%)',
         backgroundSize: '600px 100%',
         animation: 'kds-shimmer 1.4s ease-in-out infinite',
       }} />

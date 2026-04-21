@@ -13,7 +13,7 @@ export default function Tile({ icon, title, subtitle, onClick, small }) {
       gap: '0.9rem',
     }}
     onMouseEnter={e => { e.currentTarget.style.transform='translateY(-2px)';
-      e.currentTarget.style.boxShadow='0 6px 24px rgba(135,206,250,0.3)' }}
+      e.currentTarget.style.boxShadow='0 6px 24px rgba(66,133,244,0.2)' }}
     onMouseLeave={e => { e.currentTarget.style.transform='translateY(0)';
       e.currentTarget.style.boxShadow='var(--shadow)' }}
     >

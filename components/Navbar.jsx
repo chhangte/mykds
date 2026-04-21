@@ -50,7 +50,7 @@ function ProfileDrawer({ onClose }) {
         {loading && <div style={{ padding: '2rem', textAlign: 'center', color: 'var(--charcoal-light)', fontSize: '0.82rem' }}>Loading...</div>}
         {!loading && history.length === 0 && <div style={{ padding: '2rem', textAlign: 'center', color: 'var(--charcoal-light)', fontSize: '0.82rem' }}>No login history yet.</div>}
         {!loading && history.map((entry, i) => (
-          <div key={entry._id || i} style={{ padding: '0.7rem 1.2rem', borderBottom: '1px solid #f0f8ff', display: 'flex', alignItems: 'flex-start', gap: '0.7rem' }}>
+          <div key={entry._id || i} style={{ padding: '0.7rem 1.2rem', borderBottom: '1px solid #f0f4ff', display: 'flex', alignItems: 'flex-start', gap: '0.7rem' }}>
             <div style={{ width: 8, height: 8, borderRadius: '50%', flexShrink: 0, background: i === 0 ? '#1a8a3c' : 'var(--sky-light)', marginTop: 5 }} />
             <div style={{ flex: 1 }}>
               <div style={{ fontSize: '0.8rem', fontWeight: 600, color: 'var(--charcoal)' }}>{fmt(entry.loginAt)}</div>
@@ -109,7 +109,7 @@ export default function Navbar({ role, name }) {
         borderBottom: '1.5px solid var(--sky-light)',
         display: 'flex', alignItems: 'center', justifyContent: 'space-between',
         padding: '0 1.25rem',
-        boxShadow: '0 2px 12px rgba(135,206,250,0.12)',
+        boxShadow: '0 2px 12px rgba(66,133,244,0.08)',
       }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
           <div className="kds-nav-logo" onClick={() => router.push(role === 'admin' ? '/admin' : '/teacher')} style={{ cursor: 'pointer', display: 'flex', alignItems: 'center' }}>
@@ -122,7 +122,7 @@ export default function Navbar({ role, name }) {
           {name && <span className="kds-user-name" style={{ fontSize: '0.8rem', fontWeight: 500, color: 'var(--charcoal-light)', maxWidth: 140, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{name}</span>}
 
           {/* Profile avatar */}
-          <button className="kds-avatar" onClick={() => setShowDrawer(p => !p)} title="View login history" style={{ width: 36, height: 36, borderRadius: '50%', background: showDrawer ? 'var(--sky)' : 'var(--sky-light)', border: `2px solid ${showDrawer ? '#5aa8d0' : 'var(--sky-light)'}`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.72rem', fontWeight: 700, color: 'var(--charcoal)', cursor: 'pointer', transition: 'all 0.15s', flexShrink: 0 }}>
+          <button className="kds-avatar" onClick={() => setShowDrawer(p => !p)} title="View login history" style={{ width: 36, height: 36, borderRadius: '50%', background: showDrawer ? 'var(--sky)' : 'var(--sky-light)', border: `2px solid ${showDrawer ? '#4285F4' : 'var(--sky-light)'}`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.72rem', fontWeight: 700, color: 'var(--charcoal)', cursor: 'pointer', transition: 'all 0.15s', flexShrink: 0 }}>
             {initials}
           </button>
 

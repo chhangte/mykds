@@ -1,4 +1,4 @@
-export default function Spinner({ size = 20, color = 'var(--sky-dark, #5bb8f5)' }) {
+export default function Spinner({ size = 20, color = 'var(--sky-dark, #2b6fd4)' }) {
   return (
     <>
       <style>{`
@@ -13,7 +13,7 @@ export default function Spinner({ size = 20, color = 'var(--sky-dark, #5bb8f5)' 
       `}</style>
       <div className="kds-spinner" style={{
         width: size, height: size,
-        border: `${Math.max(2, size / 8)}px solid rgba(135,206,250,0.25)`,
+        border: `${Math.max(2, size / 8)}px solid rgba(66,133,244,0.2)`,
         borderTopColor: color,
       }} />
     </>

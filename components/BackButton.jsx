@@ -26,7 +26,7 @@ export default function BackButton() {
         }
         .kds-back-btn:hover {
           background: white;
-          box-shadow: 0 2px 8px rgba(135,206,250,0.25);
+          box-shadow: 0 2px 8px rgba(66,133,244,0.15);
         }
       `}</style>
       <button

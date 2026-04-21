@@ -49,17 +49,17 @@ export default function AdminDashboard() {
             background: 'white', borderRadius: 12, padding: '0.9rem 1.2rem',
             border: '1.5px solid var(--sky-light)', cursor: 'pointer',
             display: 'flex', alignItems: 'center', gap: '0.6rem',
-            boxShadow: '0 2px 10px rgba(135,206,250,0.1)',
+            boxShadow: '0 2px 10px rgba(66,133,244,0.08)',
             flex: 1, minWidth: 150,
             transition: 'transform 0.15s, box-shadow 0.15s',
           }}
             onMouseEnter={e => {
               e.currentTarget.style.transform = 'translateY(-2px)';
-              e.currentTarget.style.boxShadow = '0 6px 20px rgba(135,206,250,0.25)';
+              e.currentTarget.style.boxShadow = '0 6px 20px rgba(66,133,244,0.15)';
             }}
             onMouseLeave={e => {
               e.currentTarget.style.transform = 'translateY(0)';
-              e.currentTarget.style.boxShadow = '0 2px 10px rgba(135,206,250,0.1)';
+              e.currentTarget.style.boxShadow = '0 2px 10px rgba(66,133,244,0.08)';
             }}
           >
             <span style={{ fontSize: 22 }}>{item.icon}</span>
@@ -128,18 +128,18 @@ export default function AdminDashboard() {
                 )}
                 style={{
                   background: 'white', borderRadius: '16px', padding: '1.2rem',
-                  boxShadow: '0 2px 16px rgba(135,206,250,0.18)',
+                  boxShadow: '0 2px 16px rgba(66,133,244,0.1)',
                   border: '1.5px solid var(--sky-light)',
                   cursor: 'pointer',
                   transition: 'transform 0.15s, box-shadow 0.15s',
                 }}
                 onMouseEnter={e => {
                   e.currentTarget.style.transform = 'translateY(-2px)';
-                  e.currentTarget.style.boxShadow = '0 6px 24px rgba(135,206,250,0.3)';
+                  e.currentTarget.style.boxShadow = '0 6px 24px rgba(66,133,244,0.2)';
                 }}
                 onMouseLeave={e => {
                   e.currentTarget.style.transform = 'translateY(0)';
-                  e.currentTarget.style.boxShadow = '0 2px 16px rgba(135,206,250,0.18)';
+                  e.currentTarget.style.boxShadow = '0 2px 16px rgba(66,133,244,0.1)';
                 }}
               >
                 <div style={{
@@ -169,7 +169,7 @@ export default function AdminDashboard() {
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: 4, marginTop: '0.6rem' }}>
                   {cs.subjects.slice(0, 3).map(s => (
                     <span key={s._id} style={{
-                      background: '#f0f8ff', color: 'var(--charcoal-light)',
+                      background: '#f0f4ff', color: 'var(--charcoal-light)',
                       fontSize: '0.65rem', padding: '2px 7px', borderRadius: 10,
                     }}>{s.subject}</span>
                   ))}

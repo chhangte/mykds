@@ -169,7 +169,7 @@ export default function AdminStudentsPage() {
             <div style={{
               position: 'absolute', top: 'calc(100% + 8px)', right: 0,
               background: 'white', borderRadius: 12, border: '1.5px solid var(--sky-light)',
-              boxShadow: '0 8px 24px rgba(135,206,250,0.15)', zIndex: 50,
+              boxShadow: '0 8px 24px rgba(66,133,244,0.12)', zIndex: 50,
               overflow: 'hidden', minWidth: 170, display: 'flex', flexDirection: 'column'
             }}>
               <button onClick={() => { setMenuOpen(false); openAdd(); }} style={{
@@ -301,7 +301,7 @@ export default function AdminStudentsPage() {
           <div style={{
             background: 'white', borderRadius: 18, padding: '2rem',
             width: '100%', maxWidth: 400,
-            boxShadow: '0 8px 40px rgba(135,206,250,0.25)'
+            boxShadow: '0 8px 40px rgba(66,133,244,0.15)'
           }}>
             <h3 style={{
               fontWeight: 700, fontSize: '1.05rem',
@@ -417,7 +417,7 @@ export default function AdminStudentsPage() {
           <div style={{
             background: 'white', borderRadius: 18, padding: '2rem',
             width: '100%', maxWidth: 480,
-            boxShadow: '0 8px 40px rgba(135,206,250,0.25)'
+            boxShadow: '0 8px 40px rgba(66,133,244,0.15)'
           }}>
             <h3 style={{ fontWeight: 700, fontSize: '1.1rem', marginBottom: '0.5rem', color: 'var(--charcoal)' }}>
               Bulk Import Students

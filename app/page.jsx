@@ -23,7 +23,7 @@ export default function LandingPage() {
 
         body {
           font-family: 'Poppins', sans-serif;
-          color: #2b2b2b;
+          color: #222222;
           overflow-x: hidden;
         }
 
@@ -34,29 +34,29 @@ export default function LandingPage() {
           padding: 0.75rem 2.5rem;
           background: rgba(255,255,255,0.92);
           backdrop-filter: blur(14px);
-          border-bottom: 1px solid rgba(135,206,250,0.2);
+          border-bottom: 1px solid rgba(66,133,244,0.2);
         }
         .nav-logo { display: flex; align-items: center; text-decoration: none; }
         .nav-right { display: flex; align-items: center; gap: 1.5rem; }
         .nav-link {
-          font-size: 0.85rem; color: #555; text-decoration: none;
+          font-size: 0.85rem; color: #555555; text-decoration: none;
           font-weight: 500; transition: color 0.2s;
         }
-        .nav-link:hover { color: #2b2b2b; }
+        .nav-link:hover { color: #222222; }
         .nav-ext {
-          font-size: 0.85rem; color: #555; font-weight: 500;
+          font-size: 0.85rem; color: #555555; font-weight: 500;
           display: flex; align-items: center; gap: 4px;
           text-decoration: none; transition: color 0.2s;
         }
-        .nav-ext:hover { color: #2b2b2b; }
+        .nav-ext:hover { color: #222222; }
         .nav-btn {
-          background: #87cefa; color: #2b2b2b; border: none;
+          background: #4285F4; color: #fff; border: none;
           border-radius: 30px; padding: 0.55rem 1.5rem;
           font-family: 'Poppins', sans-serif; font-weight: 600;
           font-size: 0.88rem; cursor: pointer; transition: all 0.2s;
-          box-shadow: 0 2px 12px rgba(135,206,250,0.4);
+          box-shadow: 0 2px 12px rgba(66,133,244,0.3);
         }
-        .nav-btn:hover { background: #5bb8f5; transform: translateY(-1px); }
+        .nav-btn:hover { background: #2b6fd4; transform: translateY(-1px); }
 
         /* ── HERO ── */
         .hero {
@@ -83,7 +83,7 @@ export default function LandingPage() {
           position: absolute;
           top: -10%; left: -5%;
           width: 60%; height: 80%;
-          background: radial-gradient(ellipse, rgba(135,206,250,0.3) 0%, transparent 70%);
+          background: radial-gradient(ellipse, rgba(66,133,244,0.15) 0%, transparent 70%);
           pointer-events: none;
         }
         .hero::after {
@@ -105,12 +105,12 @@ export default function LandingPage() {
         .hero-left { }
         .hero-eyebrow {
           font-size: 0.78rem; font-weight: 600; letter-spacing: 0.08em;
-          color: #5aa8d0; text-transform: uppercase; margin-bottom: 1rem;
+          color: #4285F4; text-transform: uppercase; margin-bottom: 1rem;
         }
         .hero-title {
           font-size: clamp(2rem, 4vw, 3.2rem);
           line-height: 1.15;
-          color: #1a1a1a;
+          color: #222222;
           margin-bottom: 1.2rem;
         }
         .hero-title em {
@@ -123,22 +123,22 @@ export default function LandingPage() {
   display: block;
 }
         .hero-sub {
-          font-size: 1rem; color: #555; line-height: 1.7;
+          font-size: 1rem; color: #555555; line-height: 1.7;
           max-width: 440px; margin-bottom: 2.5rem; font-weight: 400;
         }
         .hero-signin-btn {
-          background: #87cefa; color: #1a1a1a;
+          background: #4285F4; color: #fff;
           border: none; border-radius: 40px;
           padding: 1rem 2.8rem;
           font-family: 'Poppins', sans-serif; font-weight: 700;
           font-size: 1rem; cursor: pointer;
           transition: all 0.25s;
-          box-shadow: 0 6px 24px rgba(135,206,250,0.45);
+          box-shadow: 0 6px 24px rgba(66,133,244,0.35);
           display: inline-flex; align-items: center; gap: 8px;
         }
         .hero-signin-btn:hover {
-          background: #5bb8f5; transform: translateY(-2px);
-          box-shadow: 0 10px 32px rgba(135,206,250,0.5);
+          background: #2b6fd4; transform: translateY(-2px);
+          box-shadow: 0 10px 32px rgba(66,133,244,0.45);
         }
 
         /* mock card on right */
@@ -152,30 +152,30 @@ export default function LandingPage() {
         .mock-card {
           background: white;
           border-radius: 16px;
-          border: 1px solid rgba(135,206,250,0.3);
+          border: 1px solid rgba(66,133,244,0.2);
           box-shadow: 0 12px 48px rgba(100,160,200,0.2);
           overflow: hidden;
         }
         .mock-bar {
-          background: linear-gradient(90deg, #87cefa 0%, #b8e4fd 100%);
+          background: linear-gradient(90deg, #4285F4 0%, #74a9f8 100%);
           padding: 0.7rem 1.2rem;
           display: flex; align-items: center; gap: 6px;
         }
         .mock-dot { width: 9px; height: 9px; border-radius: 50%; background: rgba(255,255,255,0.55); }
         .mock-bar-title {
-          margin-left: 6px; font-size: 0.78rem; font-weight: 600; color: #1a4a6b;
+          margin-left: 6px; font-size: 0.78rem; font-weight: 600; color: #222222;
         }
         .mock-body { padding: 0.8rem 1rem; }
         .mock-row {
           display: grid;
           grid-template-columns: 52px 1fr 60px 60px 60px;
           gap: 4px; padding: 0.38rem 0;
-          border-bottom: 1px solid #f0f8ff;
+          border-bottom: 1px solid #f0f4ff;
           font-size: 0.75rem; align-items: center;
         }
         .mock-row.hd {
           font-weight: 600; font-size: 0.68rem;
-          text-transform: uppercase; letter-spacing: 0.04em; color: #888;
+          text-transform: uppercase; letter-spacing: 0.04em; color: #555555;
         }
         .chip {
           border-radius: 6px; padding: 3px 8px;
@@ -188,8 +188,8 @@ export default function LandingPage() {
         .float-chip {
           position: absolute;
           background: white; border-radius: 12px;
-          border: 1px solid rgba(135,206,250,0.35);
-          box-shadow: 0 4px 20px rgba(135,206,250,0.18);
+          border: 1px solid rgba(66,133,244,0.22);
+          box-shadow: 0 4px 20px rgba(66,133,244,0.1);
           padding: 0.65rem 0.9rem;
           display: flex; align-items: center; gap: 8px;
           font-size: 0.75rem; white-space: nowrap;
@@ -199,12 +199,12 @@ export default function LandingPage() {
         .float-chip.fc-right { right: -30px; bottom: 18%; animation-delay: 1.2s; }
         .fc-icon {
           width: 30px; height: 30px; border-radius: 8px;
-          background: #d0ecfd;
+          background: #d2e3fc;
           display: flex; align-items: center; justify-content: center;
           font-size: 15px; flex-shrink: 0;
         }
-        .fc-label { font-weight: 700; font-size: 0.8rem; color: #2b2b2b; }
-        .fc-sub { font-size: 0.68rem; color: #888; }
+        .fc-label { font-weight: 700; font-size: 0.8rem; color: #222222; }
+        .fc-sub { font-size: 0.68rem; color: #555555; }
 
         /* ── FEATURES ── */
         .features-section {
@@ -215,15 +215,15 @@ export default function LandingPage() {
         .section-eyebrow {
           text-align: center; font-size: 0.75rem; font-weight: 600;
           text-transform: uppercase; letter-spacing: 0.1em;
-          color: #5aa8d0; margin-bottom: 0.7rem;
+          color: #4285F4; margin-bottom: 0.7rem;
         }
         .section-title {
           text-align: center;
           font-size: clamp(1.5rem, 3vw, 2.2rem);
-          font-weight: 700; color: #1a1a1a; margin-bottom: 0.7rem;
+          font-weight: 700; color: #222222; margin-bottom: 0.7rem;
         }
         .section-sub {
-          text-align: center; font-size: 0.88rem; color: #666;
+          text-align: center; font-size: 0.88rem; color: #555555;
           max-width: 440px; margin: 0 auto 3rem; line-height: 1.7;
         }
         .features-grid {
@@ -233,24 +233,24 @@ export default function LandingPage() {
         }
         .feat-card {
           background: white; border-radius: 16px;
-          border: 1px solid rgba(135,206,250,0.25);
+          border: 1px solid rgba(66,133,244,0.18);
           padding: 1.5rem;
-          box-shadow: 0 2px 12px rgba(135,206,250,0.08);
+          box-shadow: 0 2px 12px rgba(66,133,244,0.06);
           transition: all 0.2s;
         }
         .feat-card:hover {
           transform: translateY(-3px);
-          box-shadow: 0 8px 28px rgba(135,206,250,0.18);
-          border-color: rgba(135,206,250,0.5);
+          box-shadow: 0 8px 28px rgba(66,133,244,0.14);
+          border-color: rgba(66,133,244,0.4);
         }
         .feat-icon {
           width: 46px; height: 46px; border-radius: 12px;
-          background: linear-gradient(135deg, #d0ecfd, #e8f7ff);
+          background: linear-gradient(135deg, #d2e3fc, #eaf1fe);
           display: flex; align-items: center; justify-content: center;
           font-size: 20px; margin-bottom: 0.9rem;
         }
         .feat-title { font-weight: 600; font-size: 0.92rem; margin-bottom: 0.35rem; }
-        .feat-desc { font-size: 0.8rem; color: #666; line-height: 1.6; }
+        .feat-desc { font-size: 0.8rem; color: #555555; line-height: 1.6; }
 
         /* ── PORTALS ── */
         .portals-section {
@@ -268,8 +268,8 @@ export default function LandingPage() {
         }
         .portal-card:hover { transform: translateY(-3px); box-shadow: 0 10px 32px rgba(0,0,0,0.1); }
         .pc-teacher {
-          background: linear-gradient(135deg, #e8f6fe, #d0ecfd);
-          border: 1.5px solid rgba(135,206,250,0.4);
+          background: linear-gradient(135deg, #eaf1fe, #d2e3fc);
+          border: 1.5px solid rgba(66,133,244,0.3);
         }
         .pc-admin {
           background: linear-gradient(135deg, #2b2b2b, #3a4a5a);
@@ -277,7 +277,7 @@ export default function LandingPage() {
         }
         .pc-student {
           background: white;
-          border: 1.5px dashed rgba(135,206,250,0.5);
+          border: 1.5px dashed rgba(66,133,244,0.4);
         }
         .portal-emoji { font-size: 30px; display: block; margin-bottom: 0.9rem; }
         .portal-name { font-weight: 700; font-size: 1.05rem; margin-bottom: 0.45rem; }
@@ -288,18 +288,18 @@ export default function LandingPage() {
           font-size: 0.7rem; font-weight: 600;
         }
         .pb-avail {
-          background: rgba(135,206,250,0.2);
-          border: 1px solid rgba(135,206,250,0.4);
-          color: #2a7ab0;
+          background: rgba(66,133,244,0.12);
+          border: 1px solid rgba(66,133,244,0.3);
+          color: #2b6fd4;
         }
         .pb-admin-avail {
-          background: rgba(135,206,250,0.15);
-          border: 1px solid rgba(135,206,250,0.3);
-          color: #87cefa;
+          background: rgba(66,133,244,0.1);
+          border: 1px solid rgba(66,133,244,0.25);
+          color: #4285F4;
         }
         .pb-coming {
-          background: #f4faff;
-          border: 1px solid #d0ecfd;
+          background: #f0f4ff;
+          border: 1px solid #d2e3fc;
           color: #aaa;
         }
 

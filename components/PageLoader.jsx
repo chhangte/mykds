@@ -17,7 +17,7 @@ export default function PageLoader({ message = 'Loading...' }) {
         }
         .kds-loader-icon {
           width: 56px; height: 56px; border-radius: 16px;
-          background: var(--sky-light, #d0ecfd);
+          background: var(--sky-light, #d2e3fc);
           display: flex; align-items: center;
           justify-content: center; font-size: 26px;
           animation: kds-pulse 1.8s ease-in-out infinite;
