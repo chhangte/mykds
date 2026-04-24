@@ -69,6 +69,22 @@ export default function LoginPage() {
     }, 600);
   };
 
+  const getInitials = (fullName) => {
+    if (!fullName) return '?';
+    const salutations = ['sir', 'miss', 'ma\'am', 'maam', 'mr', 'mrs', 'ms', 'dr', 'prof'];
+    const words = fullName.trim().split(/\s+/).filter(Boolean);
+    if (words.length === 0) return '?';
+
+    const isSalutation = salutations.includes(words[0].toLowerCase().replace(/\.$/, ''));
+    let targetWords = words;
+
+    if (isSalutation && words.length > 2) {
+      targetWords = words.slice(1);
+    }
+
+    return targetWords.map(w => w[0]).join('').toUpperCase().slice(0, 2);
+  };
+
   const inputStyle = {
     width: '100%', padding: '0.85rem 1rem', borderRadius: 12,
     border: '1.5px solid var(--sky-light, #d2e3fc)', fontFamily: 'Poppins',
@@ -194,11 +210,15 @@ export default function LoginPage() {
             {success ? (
               <div style={{ textAlign: 'center' }}>
                 <div className="kds-success-icon" style={{
-                  width: 64, height: 64, borderRadius: 18,
-                  background: '#e6f9ee', margin: '0 auto 1.5rem',
+                  width: 64, height: 64, borderRadius: '50%',
+                  background: '#FFDD00', border: '3px solid #e6c700',
+                  margin: '0 auto 1.5rem',
                   display: 'flex', alignItems: 'center',
-                  justifyContent: 'center', fontSize: 30,
-                }}>K</div>
+                  justifyContent: 'center', fontSize: '1.6rem',
+                  fontWeight: 700, color: 'var(--charcoal)'
+                }}>
+                  {getInitials(recognizedUser?.name || form.username)}
+                </div>
                 <h1 style={{ fontSize: '1.4rem', fontWeight: 700, color: 'var(--charcoal)', marginBottom: 8 }}>
                   Welcome back!
                 </h1>
@@ -306,7 +326,7 @@ export default function LoginPage() {
                         title="Change account"
                       >
                         <div className="avatar-circle">
-                          {recognizedUser?.name?.charAt(0)?.toUpperCase() || form.username.charAt(0).toUpperCase()}
+                          {form.username.charAt(0).toUpperCase()}
                         </div>
                         <span style={{ fontSize: '0.85rem', color: 'var(--charcoal, #333)', fontWeight: 500 }}>
                           {form.username}

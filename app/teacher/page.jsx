@@ -118,7 +118,7 @@ export default function TeacherDashboard() {
             {loading ? 'Welcome ' : `Welcome, ${session?.user?.name ?? 'Teacher'}`}
           </h2>
           <p style={{ fontSize: '0.82rem', color: 'var(--charcoal-light)', marginTop: 4 }}>
-            Your assigned classes this year
+            Your classes
           </p>
         </div>
 

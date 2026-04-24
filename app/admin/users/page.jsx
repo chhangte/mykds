@@ -378,11 +378,11 @@ export default function AdminUsersPage() {
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.9rem' }}>
               <div>
                 <label style={{ fontSize: '0.78rem', fontWeight: 600, color: 'var(--charcoal)' }}>Full Name</label>
-                <input style={inputStyle} placeholder="e.g. Mrs. Sharma" value={form.name} onChange={e => setForm({ ...form, name: e.target.value })} />
+                <input style={inputStyle} placeholder="e.g. Miss Joanne Doe" value={form.name} onChange={e => setForm({ ...form, name: e.target.value })} />
               </div>
               <div>
                 <label style={{ fontSize: '0.78rem', fontWeight: 600, color: 'var(--charcoal)' }}>Username</label>
-                <input style={inputStyle} placeholder="e.g. teacher1" value={form.username} onChange={e => setForm({ ...form, username: e.target.value })} />
+                <input style={inputStyle} placeholder="e.g. joanne201" value={form.username} onChange={e => setForm({ ...form, username: e.target.value })} />
               </div>
               <div>
                 <label style={{ fontSize: '0.78rem', fontWeight: 600, color: 'var(--charcoal)' }}>

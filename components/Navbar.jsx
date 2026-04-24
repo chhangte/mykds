@@ -8,6 +8,7 @@ function ProfileDrawer({ onClose, role, name, username }) {
   const [history, setHistory] = useState([]);
   const [loading, setLoading] = useState(true);
   const drawerRef = useRef(null);
+  const router = useRouter();
 
   useEffect(() => {
     fetch('/api/auth/login-history')
@@ -82,7 +83,7 @@ function ProfileDrawer({ onClose, role, name, username }) {
       </div>
 
       <div style={{ padding: '0.8rem 1.2rem', borderTop: '1.5px solid var(--sky-light)' }}>
-        <button onClick={() => signOut({ callbackUrl: '/login' })} style={{ width: '100%', padding: '0.6rem', borderRadius: 10, background: '#fff5f5', border: '1.5px solid #fde2e2', color: '#c0392b', fontFamily: 'Poppins', fontWeight: 600, fontSize: '0.82rem', cursor: 'pointer' }}>
+        <button onClick={() => router.push('/signout')} style={{ width: '100%', padding: '0.6rem', borderRadius: 10, background: '#fff5f5', border: '1.5px solid #fde2e2', color: '#c0392b', fontFamily: 'Poppins', fontWeight: 600, fontSize: '0.82rem', cursor: 'pointer' }}>
           Sign Out
         </button>
       </div>
@@ -156,7 +157,7 @@ export default function Navbar({ role, name, username }) {
             {initials}
           </button>
 
-          <button className="kds-signout-btn" onClick={() => signOut({ callbackUrl: '/login' })} style={{ background: 'transparent', border: '1.5px solid var(--sky-light)', borderRadius: 8, padding: '5px 12px', fontFamily: 'Poppins', fontSize: '0.78rem', fontWeight: 500, color: 'var(--charcoal)', cursor: 'pointer', transition: 'background 0.15s' }}>
+          <button className="kds-signout-btn" onClick={() => router.push('/signout')} style={{ background: 'transparent', border: '1.5px solid var(--sky-light)', borderRadius: 8, padding: '5px 12px', fontFamily: 'Poppins', fontSize: '0.78rem', fontWeight: 500, color: 'var(--charcoal)', cursor: 'pointer', transition: 'background 0.15s' }}>
             Sign out
           </button>
         </div>
