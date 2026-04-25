@@ -1,12 +1,16 @@
 export const dynamic = 'force-dynamic';
 import { connectDB } from '@/lib/mongodb';
-import LoginHistory from '@/models/LoginHistory';
-import MarksLog from '@/models/MarksLog';
 import { getServerSession } from 'next-auth/next';
 import { authOptions } from '@/lib/auth';
+import { unstable_noStore as noStore } from 'next/cache';
 
 export async function GET() {
+  noStore();
   await connectDB();
+  
+  const LoginHistory = (await import('@/models/LoginHistory')).default;
+  const MarksLog = (await import('@/models/MarksLog')).default;
+
   const session = await getServerSession(authOptions);
   if (!session?.user?.id) return Response.json({ error: 'Unauthorized' }, { status: 401 });
 

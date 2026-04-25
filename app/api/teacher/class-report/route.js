@@ -18,7 +18,7 @@ export async function GET(req) {
   }
 
   const session = await getServerSession(authOptions);
-  if (!session?.user?.id) return Response.json({ error: 'Unauthorized' }, { status: 401 });
+  if (!session?.user?.id);
 
   const user = await User.findById(session.user.id);
   if (!user || !user.classTeacherClass || !user.classTeacherSection) {

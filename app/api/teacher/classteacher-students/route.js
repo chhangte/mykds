@@ -13,7 +13,9 @@ export async function GET() {
   if (!setting?.value) return Response.json({ error: 'Feature disabled' }, { status: 403 });
 
   const session = await getServerSession(authOptions);
-  if (!session?.user?.id) return Response.json({ error: 'Unauthorized' }, { status: 401 });
+  if (!session?.user?.id) {
+    return Response.json({ error: 'Unauthorized' }, { status: 401 });
+  }
 
   const user = await User.findById(session.user.id);
   if (!user?.classTeacherClass || !user?.classTeacherSection)
