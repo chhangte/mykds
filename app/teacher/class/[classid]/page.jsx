@@ -81,7 +81,6 @@ function ClassPageInner() {
                     background: '#e6f9ee', color: '#1a8a3c',
                     fontSize: '0.68rem', fontWeight: 700,
                     padding: '2px 8px', borderRadius: 20,
-                    border: '1px solid #a8e6c0',
                   }}>Class Teacher View</span>
                 )}
               </div>
@@ -101,7 +100,7 @@ function ClassPageInner() {
               color: activeTab === tab.id ? 'white' : 'var(--charcoal)',
               fontFamily: 'Poppins', fontWeight: activeTab === tab.id ? 600 : 400,
               fontSize: '0.82rem', cursor: 'pointer', whiteSpace: 'nowrap',
-              border: `1.5px solid ${activeTab === tab.id ? 'var(--sky)' : 'var(--sky-light)'}`,
+              border: activeTab === tab.id ? 'none' : '1px solid #e0e0e0',
               transition: 'all 0.15s',
             }}>{tab.label}</button>
           ))}
@@ -110,7 +109,7 @@ function ClassPageInner() {
         {/* No students warning */}
         {students.length === 0 && (
           <div style={{
-            background: '#fffbe6', border: '1.5px solid #ffe58f',
+            background: '#fffbe6', border: '1px solid #ffe58f',
             borderRadius: 12, padding: '1rem 1.2rem',
             fontSize: '0.82rem', color: '#7c5e00', marginBottom: '1.2rem',
             display: 'flex', alignItems: 'center', gap: '0.6rem',
@@ -138,7 +137,7 @@ function ClassPageInner() {
           <NotesPanel students={students} classId={classId} />
         )}
         {activeTab === 3 && isCtView && (
-          <div style={{ padding: '2rem', textAlign: 'center', background: 'white', borderRadius: 16, border: '1.5px solid var(--sky-light)', color: 'var(--charcoal-light)', fontSize: '0.88rem' }}>
+          <div style={{ padding: '2rem', textAlign: 'center', background: 'white', borderRadius: 16, border: '1px solid #f0f4ff', color: 'var(--charcoal-light)', fontSize: '0.88rem' }}>
             Notes are not available in Class Teacher view.
           </div>
         )}
@@ -174,7 +173,7 @@ function NotesPanel({ students, classId }) {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
       {students.map(s => (
-        <div key={s._id} style={{ background: 'white', borderRadius: 12, border: '1.5px solid var(--sky-light)', padding: '1rem' }}>
+        <div key={s._id} style={{ background: 'white', borderRadius: 12, border: '1px solid #f0f4ff', padding: '1rem' }}>
           <div style={{ fontWeight: 600, fontSize: '0.88rem', marginBottom: '0.5rem', color: 'var(--charcoal)' }}>
             {s.rollNo} — {s.name}
           </div>
@@ -182,14 +181,14 @@ function NotesPanel({ students, classId }) {
             <textarea rows={2} placeholder="Add a note for this student..."
               value={notes[s._id] || ''}
               onChange={e => setNotes(prev => ({ ...prev, [s._id]: e.target.value }))}
-              style={{ flex: 1, padding: '0.6rem 0.8rem', borderRadius: 8, border: '1.5px solid var(--sky-light)', fontFamily: 'Poppins', fontSize: '0.82rem', resize: 'vertical', outline: 'none' }}
+              style={{ flex: 1, padding: '0.6rem 0.8rem', borderRadius: 8, border: '1px solid #e0e0e0', background: 'white', fontFamily: 'Poppins', fontSize: '0.82rem', resize: 'vertical', outline: 'none' }}
             />
             <button onClick={() => handleSave(s._id)} style={{
               padding: '0.5rem 1rem', borderRadius: 8,
               background: saved[s._id] ? '#e6f9ee' : 'var(--sky)',
               border: 'none', fontFamily: 'Poppins', fontSize: '0.78rem',
               fontWeight: 600, cursor: 'pointer', alignSelf: 'flex-end',
-              color: saved[s._id] ? '#1a8a3c' : 'var(--charcoal)',
+              color: saved[s._id] ? '#1a8a3c' : 'white',
               transition: 'all 0.2s',
             }}>
               {saved[s._id] ? '✓ Saved' : 'Save'}

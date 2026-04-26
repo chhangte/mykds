@@ -57,20 +57,21 @@ export default function TeacherDashboard() {
       onClick={onClick}
       className="kds-tile"
       style={{
-        background: 'white', borderRadius: '16px', padding: '1.4rem',
-        boxShadow: '0 2px 16px rgba(66,133,244,0.1)',
-        border: '1.5px solid var(--sky-light)',
+        background: 'var(--card-bg)', borderRadius: '16px', padding: '1.4rem',
+        border: '1.5px solid var(--border)',
         cursor: 'pointer',
-        transition: 'transform 0.15s, box-shadow 0.15s',
+        transition: 'transform 0.15s, background 0.15s, box-shadow 0.15s',
         display: 'flex', alignItems: 'center', gap: '0.9rem',
       }}
       onMouseEnter={e => {
         e.currentTarget.style.transform = 'translateY(-2px)';
-        e.currentTarget.style.boxShadow = '0 6px 24px rgba(66,133,244,0.2)';
+        e.currentTarget.style.boxShadow = '0 8px 30px rgba(66,133,244,0.12)';
+        e.currentTarget.style.background = 'var(--bg)';
       }}
       onMouseLeave={e => {
         e.currentTarget.style.transform = 'translateY(0)';
-        e.currentTarget.style.boxShadow = '0 2px 16px rgba(66,133,244,0.1)';
+        e.currentTarget.style.boxShadow = 'none';
+        e.currentTarget.style.background = 'var(--card-bg)';
       }}
     >
       <div style={{
@@ -145,9 +146,9 @@ export default function TeacherDashboard() {
             {ctData.classes?.length === 0 ? (
               <div style={{
                 padding: '1.5rem', textAlign: 'center',
-                background: 'white', borderRadius: 16,
+                background: 'var(--card-bg)', borderRadius: 16,
                 border: '1.5px solid var(--sky-light)',
-                color: 'var(--charcoal-light)', fontSize: '0.88rem',
+                color: 'var(--text-light)', fontSize: '0.88rem',
               }}>
                 No subject classes set up yet for {ctData.classTeacherClass} – {ctData.classTeacherSection}.
               </div>
@@ -158,19 +159,18 @@ export default function TeacherDashboard() {
                   className="kds-tile"
                   style={{
                     background: 'linear-gradient(135deg, #e8f9f0, #c8eedb)', borderRadius: '16px', padding: '1.4rem',
-                    boxShadow: '0 2px 16px rgba(46, 204, 113, 0.18)',
                     border: '1.5px solid #a3e4c4',
                     cursor: 'pointer',
-                    transition: 'transform 0.15s, box-shadow 0.15s',
+                    transition: 'transform 0.15s',
                     display: 'flex', alignItems: 'center', gap: '0.9rem',
                   }}
                   onMouseEnter={e => {
                     e.currentTarget.style.transform = 'translateY(-2px)';
-                    e.currentTarget.style.boxShadow = '0 6px 24px rgba(46, 204, 113, 0.3)';
+                    e.currentTarget.style.boxShadow = '0 8px 30px rgba(46, 204, 113, 0.2)';
                   }}
                   onMouseLeave={e => {
                     e.currentTarget.style.transform = 'translateY(0)';
-                    e.currentTarget.style.boxShadow = '0 2px 16px rgba(46, 204, 113, 0.18)';
+                    e.currentTarget.style.boxShadow = 'none';
                   }}
                 >
                   <div style={{

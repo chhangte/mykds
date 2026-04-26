@@ -46,20 +46,21 @@ export default function AdminDashboard() {
           { path: '/admin/classes', icon: '🏫', title: 'Manage Classes', sub: 'Subjects & sections' },
         ].map(item => (
           <div key={item.path} onClick={() => router.push(item.path)} style={{
-            background: 'white', borderRadius: 12, padding: '0.9rem 1.2rem',
-            border: '1.5px solid var(--sky-light)', cursor: 'pointer',
+            background: 'var(--card-bg)', borderRadius: 12, padding: '0.9rem 1.2rem',
+            border: '1px solid var(--border)', cursor: 'pointer',
             display: 'flex', alignItems: 'center', gap: '0.6rem',
-            boxShadow: '0 2px 10px rgba(66,133,244,0.08)',
             flex: 1, minWidth: 150,
-            transition: 'transform 0.15s, box-shadow 0.15s',
+            transition: 'background 0.15s, box-shadow 0.15s, transform 0.15s',
           }}
             onMouseEnter={e => {
+              e.currentTarget.style.background = 'var(--bg)';
+              e.currentTarget.style.boxShadow = '0 8px 30px rgba(66,133,244,0.12)';
               e.currentTarget.style.transform = 'translateY(-2px)';
-              e.currentTarget.style.boxShadow = '0 6px 20px rgba(66,133,244,0.15)';
             }}
             onMouseLeave={e => {
+              e.currentTarget.style.background = 'var(--card-bg)';
+              e.currentTarget.style.boxShadow = 'none';
               e.currentTarget.style.transform = 'translateY(0)';
-              e.currentTarget.style.boxShadow = '0 2px 10px rgba(66,133,244,0.08)';
             }}
           >
             <span style={{ fontSize: 22 }}>{item.icon}</span>
@@ -98,9 +99,9 @@ export default function AdminDashboard() {
       {!loading && classSections.length === 0 && (
         <div style={{
           textAlign: 'center', padding: '3rem',
-          background: 'white', borderRadius: 16,
+          background: 'var(--card-bg)', borderRadius: 16,
           border: '1.5px solid var(--sky-light)',
-          color: 'var(--charcoal-light)', fontSize: '0.88rem'
+          color: 'var(--text-light)', fontSize: '0.88rem'
         }}>
           <div style={{ fontSize: 36, marginBottom: '0.8rem' }}>🏫</div>
           No classes configured yet.{' '}
@@ -127,19 +128,20 @@ export default function AdminDashboard() {
                   `/admin/class-view?class=${encodeURIComponent(cs.className)}&section=${cs.section}`
                 )}
                 style={{
-                  background: 'white', borderRadius: '16px', padding: '1.2rem',
-                  boxShadow: '0 2px 16px rgba(66,133,244,0.1)',
-                  border: '1.5px solid var(--sky-light)',
+                  background: 'var(--card-bg)', borderRadius: '16px', padding: '1.2rem',
+                  border: '1px solid var(--border)',
                   cursor: 'pointer',
-                  transition: 'transform 0.15s, box-shadow 0.15s',
+                  transition: 'background 0.15s, box-shadow 0.15s, transform 0.15s',
                 }}
                 onMouseEnter={e => {
+                  e.currentTarget.style.background = 'var(--bg)';
+                  e.currentTarget.style.boxShadow = '0 8px 30px rgba(66,133,244,0.12)';
                   e.currentTarget.style.transform = 'translateY(-2px)';
-                  e.currentTarget.style.boxShadow = '0 6px 24px rgba(66,133,244,0.2)';
                 }}
                 onMouseLeave={e => {
+                  e.currentTarget.style.background = 'var(--card-bg)';
+                  e.currentTarget.style.boxShadow = 'none';
                   e.currentTarget.style.transform = 'translateY(0)';
-                  e.currentTarget.style.boxShadow = '0 2px 16px rgba(66,133,244,0.1)';
                 }}
               >
                 <div style={{

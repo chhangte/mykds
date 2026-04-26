@@ -104,7 +104,7 @@ export default function MarksTable({ students, classId, type, classInfo }) {
   };
   const tdStyle = {
     padding: '0.5rem 0.8rem', fontSize: '0.82rem',
-    borderBottom: '1px solid #f0f4ff',
+    borderBottom: '1px solid var(--border)',
   };
 
   const formatLogDate = (dateStr) => {
@@ -120,7 +120,7 @@ export default function MarksTable({ students, classId, type, classInfo }) {
       {/* ── TABLE CARD ── */}
       <div style={{
         borderRadius: '16px', border: '1.5px solid var(--sky-light)',
-        background: 'white', overflow: 'hidden',
+        background: 'var(--card-bg)', overflow: 'hidden',
       }}>
 
         {/* Header bar */}
@@ -162,8 +162,8 @@ export default function MarksTable({ students, classId, type, classInfo }) {
               <>
                 <button onClick={handleCancel} style={{
                   padding: '0.4rem 1rem', borderRadius: 8,
-                  background: 'white', color: 'var(--charcoal)',
-                  border: '1.5px solid var(--sky-light)',
+                  background: 'var(--card-bg)', color: 'var(--text)',
+                  border: 'none',
                   fontFamily: 'Poppins', fontWeight: 500,
                   fontSize: '0.8rem', cursor: 'pointer',
                 }}>
@@ -217,7 +217,6 @@ export default function MarksTable({ students, classId, type, classInfo }) {
                             background: '#434343', border: 'none', borderRadius: 6,
                             padding: '4px 12px', fontSize: '0.72rem', cursor: 'pointer',
                             color: 'white', fontFamily: 'Poppins', fontWeight: 600,
-                            boxShadow: '0 2px 4px rgba(0,0,0,0.15)'
                           }}>Edit</button>
                         ) : (
                           <div style={{ height: 21 }}></div>
@@ -241,7 +240,7 @@ export default function MarksTable({ students, classId, type, classInfo }) {
               )}
               {students.map((s, idx) => (
                 <tr key={s._id}
-                  style={{ background: idx % 2 === 0 ? 'white' : '#fafeff' }}>
+                  style={{ background: idx % 2 === 0 ? 'var(--card-bg)' : 'var(--bg)' }}>
                   <td style={{ ...tdStyle, fontWeight: 600 }}>{s.rollNo}</td>
                   <td style={{ ...tdStyle, fontWeight: 500 }}>{s.name}</td>
                   {Array.from({ length: numTests }, (_, i) => {
@@ -271,10 +270,10 @@ export default function MarksTable({ students, classId, type, classInfo }) {
                             }))}
                             style={{
                               width: 64, padding: '5px 8px',
-                              border: '2px solid var(--sky)',
+                              border: '1px solid var(--border)',
                               borderRadius: 8, fontFamily: 'Poppins',
                               fontSize: '0.82rem', textAlign: 'center',
-                              outline: 'none', background: '#f0fbff',
+                              outline: 'none', background: 'var(--card-bg)', color: 'var(--text)',
                             }}
                           />
                         ) : (
@@ -324,8 +323,8 @@ export default function MarksTable({ students, classId, type, classInfo }) {
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
               {logs.map((log, i) => (
                 <div key={log._id || i} style={{
-                  background: 'white', borderRadius: 12,
-                  border: '1.5px solid var(--sky-light)',
+                  background: 'var(--card-bg)', borderRadius: 12,
+                  border: '1px solid var(--border)',
                   overflow: 'hidden',
                 }}>
                   {/* Log header */}
@@ -335,7 +334,7 @@ export default function MarksTable({ students, classId, type, classInfo }) {
                       padding: '0.7rem 1rem',
                       display: 'flex', alignItems: 'center',
                       justifyContent: 'space-between', cursor: 'pointer',
-                      background: activeLogIndex === i ? '#f5fbff' : 'white',
+                      background: activeLogIndex === i ? 'var(--bg)' : 'var(--card-bg)',
                     }}
                   >
                     <div style={{ display: 'flex', alignItems: 'center', gap: '0.7rem' }}>
@@ -372,9 +371,9 @@ export default function MarksTable({ students, classId, type, classInfo }) {
                             {['Roll No', 'Student', 'Old Value', 'New Value', 'Change'].map(h => (
                               <th key={h} style={{
                                 padding: '0.5rem 0.9rem',
-                                background: '#f5fbff',
+                                background: 'var(--bg)',
                                 fontSize: '0.72rem', fontWeight: 600,
-                                color: 'var(--charcoal-light)',
+                                color: 'var(--text-light)',
                                 textAlign: 'left',
                               }}>{h}</th>
                             ))}
@@ -387,7 +386,7 @@ export default function MarksTable({ students, classId, type, classInfo }) {
                             const isDown = diff < 0;
                             return (
                               <tr key={j} style={{
-                                background: j % 2 === 0 ? 'white' : '#fafeff',
+                                background: j % 2 === 0 ? 'var(--card-bg)' : 'var(--bg)',
                               }}>
                                 <td style={{ padding: '0.5rem 0.9rem', fontSize: '0.8rem', fontWeight: 600 }}>
                                   {ch.rollNo}

@@ -99,8 +99,9 @@ export default function AttendanceTable({ students, classId }) {
           onChange={e => setNewDate(e.target.value)}
           style={{
             padding: '0.45rem 0.8rem', borderRadius: 10,
-            border: '1.5px solid var(--sky-light)',
+            border: '1px solid var(--border)',
             fontFamily: 'Poppins', fontSize: '0.82rem', outline: 'none',
+            background: 'var(--card-bg)', color: 'var(--text)',
           }}
         />
         <button
@@ -110,7 +111,7 @@ export default function AttendanceTable({ students, classId }) {
             background: 'var(--sky)', border: 'none',
             fontFamily: 'Poppins', fontWeight: 600,
             fontSize: '0.82rem', cursor: 'pointer',
-            color: 'var(--charcoal)',
+            color: 'white',
           }}
         >
           + Add Date
@@ -141,7 +142,7 @@ export default function AttendanceTable({ students, classId }) {
       {/* Table */}
       <div style={{
         overflowX: 'auto', borderRadius: '16px',
-        border: '1.5px solid var(--sky-light)', background: 'white',
+        border: '1px solid var(--border)', background: 'var(--card-bg)',
       }}>
         <table style={{ width: '100%', borderCollapse: 'collapse', minWidth: 400 }}>
           <thead>
@@ -176,7 +177,7 @@ export default function AttendanceTable({ students, classId }) {
               });
 
               return (
-                <tr key={s._id} style={{ background: idx % 2 === 0 ? 'white' : '#fafeff' }}>
+                <tr key={s._id} style={{ background: idx % 2 === 0 ? 'var(--card-bg)' : 'var(--bg)' }}>
                   <td style={{ ...tdStyle, textAlign: 'left', padding: '0.5rem 0.8rem' }}>
                     {s.rollNo}
                   </td>
@@ -195,7 +196,7 @@ export default function AttendanceTable({ students, classId }) {
                           style={{
                             background: style.bg,
                             color: style.color,
-                            border: 'none',
+                            border: '1px solid #e0e0e0',
                             borderRadius: 8,
                             padding: '3px 6px',
                             fontFamily: 'Poppins',

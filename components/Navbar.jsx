@@ -3,6 +3,7 @@ import { signOut } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { useState, useEffect, useRef } from 'react';
+import ThemeToggle from './ThemeToggle';
 
 function ProfileDrawer({ onClose, role, name, username }) {
   const [history, setHistory] = useState([]);
@@ -36,9 +37,8 @@ function ProfileDrawer({ onClose, role, name, username }) {
   return (
     <div ref={drawerRef} style={{
       position: 'fixed', top: 66, right: 12, width: 320,
-      background: 'white', borderRadius: 16, zIndex: 200,
-      boxShadow: '0 8px 40px rgba(0,0,0,0.15)',
-      border: '1.5px solid var(--sky-light)',
+      background: 'var(--card-bg)', borderRadius: 16, zIndex: 200,
+      border: '1px solid var(--border)',
       maxHeight: '75vh', display: 'flex', flexDirection: 'column',
       animation: 'kds-fade-up 0.2s ease both',
     }}>
@@ -54,7 +54,7 @@ function ProfileDrawer({ onClose, role, name, username }) {
           <button onClick={onClose} style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: '1rem', color: 'var(--charcoal-light)', padding: 0, alignSelf: 'flex-start' }}>✕</button>
         </div>
 
-        <a href="https://link.kidsdenschool.in/u1T4boZT" style={{ display: 'block', width: '100%', padding: '0.6rem', borderRadius: 8, background: '#f0fbff', border: '1.5px solid var(--sky)', color: 'var(--sky)', fontFamily: 'Poppins', fontWeight: 600, fontSize: '0.8rem', cursor: 'pointer', textAlign: 'center', textDecoration: 'none' }}>
+        <a href="https://link.kidsdenschool.in/u1T4boZT" style={{ display: 'block', width: '100%', padding: '0.6rem', borderRadius: 8, background: '#f0fbff', border: 'none', color: 'var(--sky)', fontFamily: 'Poppins', fontWeight: 600, fontSize: '0.8rem', cursor: 'pointer', textAlign: 'center', textDecoration: 'none' }}>
           Contact Support
         </a>
       </div>
@@ -83,7 +83,7 @@ function ProfileDrawer({ onClose, role, name, username }) {
       </div>
 
       <div style={{ padding: '0.8rem 1.2rem', borderTop: '1.5px solid var(--sky-light)' }}>
-        <button onClick={() => router.push('/signout')} style={{ width: '100%', padding: '0.6rem', borderRadius: 10, background: '#fff5f5', border: '1.5px solid #fde2e2', color: '#c0392b', fontFamily: 'Poppins', fontWeight: 600, fontSize: '0.82rem', cursor: 'pointer' }}>
+        <button onClick={() => router.push('/signout')} style={{ width: '100%', padding: '0.6rem', borderRadius: 10, background: '#fff5f5', border: 'none', color: '#c0392b', fontFamily: 'Poppins', fontWeight: 600, fontSize: '0.82rem', cursor: 'pointer' }}>
           Sign Out
         </button>
       </div>
@@ -136,11 +136,10 @@ export default function Navbar({ role, name, username }) {
 
       <nav className="kds-nav" style={{
         position: 'fixed', top: 0, left: 0, right: 0,
-        height: '60px', background: 'white', zIndex: 100,
-        borderBottom: '1.5px solid var(--sky-light)',
+        height: '60px', background: 'var(--card-bg)', zIndex: 100,
+        borderBottom: '1px solid var(--border)',
         display: 'flex', alignItems: 'center', justifyContent: 'space-between',
         padding: '0 1.25rem',
-        boxShadow: '0 2px 12px rgba(66,133,244,0.08)',
       }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
           <div className="kds-nav-logo" onClick={() => router.push(role === 'admin' ? '/admin' : '/teacher')} style={{ cursor: 'pointer', display: 'flex', alignItems: 'center' }}>
@@ -149,15 +148,16 @@ export default function Navbar({ role, name, username }) {
         </div>
 
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-          <span className="kds-role-badge" style={{ background: 'var(--sky-light)', color: 'var(--charcoal)', fontSize: '0.72rem', fontWeight: 600, padding: '3px 10px', borderRadius: 20, textTransform: 'capitalize' }}>{role}</span>
-          {name && <span className="kds-user-name" style={{ fontSize: '0.8rem', fontWeight: 500, color: 'var(--charcoal-light)', maxWidth: 140, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{name}</span>}
+          <ThemeToggle />
+          <span className="kds-role-badge" style={{ background: 'var(--sky-light)', color: 'var(--text)', fontSize: '0.72rem', fontWeight: 600, padding: '3px 10px', borderRadius: 20, textTransform: 'capitalize' }}>{role}</span>
+          {name && <span className="kds-user-name" style={{ fontSize: '0.8rem', fontWeight: 500, color: 'var(--text-light)', maxWidth: 140, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{name}</span>}
 
           {/* Profile avatar */}
-          <button className="kds-avatar" onClick={() => setShowDrawer(p => !p)} title="View profile and login history" style={{ width: 36, height: 36, borderRadius: '50%', background: showDrawer ? '#e6c700' : '#FFDD00', border: `2px solid ${showDrawer ? '#e6c700' : '#FFDD00'}`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.72rem', fontWeight: 700, color: 'var(--charcoal)', cursor: 'pointer', transition: 'all 0.15s', flexShrink: 0 }}>
+          <button className="kds-avatar" onClick={() => setShowDrawer(p => !p)} title="View profile and login history" style={{ width: 36, height: 36, borderRadius: '50%', background: showDrawer ? '#e6c700' : '#FFDD00', border: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.72rem', fontWeight: 700, color: 'var(--charcoal)', cursor: 'pointer', transition: 'all 0.15s', flexShrink: 0 }}>
             {initials}
           </button>
 
-          <button className="kds-signout-btn" onClick={() => router.push('/signout')} style={{ background: 'transparent', border: '1.5px solid var(--sky-light)', borderRadius: 8, padding: '5px 12px', fontFamily: 'Poppins', fontSize: '0.78rem', fontWeight: 500, color: 'var(--charcoal)', cursor: 'pointer', transition: 'background 0.15s' }}>
+          <button className="kds-signout-btn" onClick={() => router.push('/signout')} style={{ background: 'transparent', border: 'none', borderRadius: 8, padding: '5px 12px', fontFamily: 'Poppins', fontSize: '0.78rem', fontWeight: 500, color: 'var(--charcoal)', cursor: 'pointer', transition: 'background 0.15s' }}>
             Sign out
           </button>
         </div>

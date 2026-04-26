@@ -12,7 +12,7 @@ export default function BackButton() {
           align-items: center;
           gap: 0.35rem;
           background: #f0f4f8;
-          border: 1.5px solid var(--sky-light);
+          border: none;
           height: 30px;
           border-radius: 20px;
           padding: 0 0.75rem;
@@ -25,8 +25,7 @@ export default function BackButton() {
           margin-bottom: 0.6rem;
         }
         .kds-back-btn:hover {
-          background: white;
-          box-shadow: 0 2px 8px rgba(66,133,244,0.15);
+          background: #e1e9f0;
         }
       `}</style>
       <button

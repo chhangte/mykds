@@ -109,7 +109,7 @@ function TeacherClassOverviewContent() {
   };
   const tdStyle = {
     padding: '0.55rem 0.8rem', fontSize: '0.82rem',
-    borderBottom: '1px solid #f0f4ff',
+    borderBottom: '1px solid var(--border)',
   };
   const getScoreColor = (score) => {
     if (score === null || score === undefined) return { bg: 'transparent', color: '#888888' };
@@ -160,7 +160,7 @@ function TeacherClassOverviewContent() {
         <div style={{ fontSize: '0.72rem', fontWeight: 600, color: 'var(--charcoal-light)', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: '0.4rem' }}>Class Tests</div>
         <div style={{ display: 'flex', gap: '0.4rem', flexWrap: 'wrap', marginBottom: '0.8rem' }}>
           {TEST_TABS.filter(t => t.type === 'classtest').map((tab, i) => (
-            <button key={i} onClick={() => setActiveTab(i)} style={{ padding: '0.4rem 1rem', borderRadius: 20, background: activeTab === i ? 'var(--sky)' : 'white', color: activeTab === i ? 'white' : 'var(--charcoal)', fontFamily: 'Poppins', fontWeight: activeTab === i ? 600 : 400, fontSize: '0.78rem', cursor: 'pointer', border: `1.5px solid ${activeTab === i ? 'var(--sky)' : 'var(--sky-light)'}` }}>{tab.label}</button>
+            <button key={i} onClick={() => setActiveTab(i)} style={{ padding: '0.4rem 1rem', borderRadius: 20, background: activeTab === i ? 'var(--sky)' : 'var(--card-bg)', color: activeTab === i ? 'white' : 'var(--text)', fontFamily: 'Poppins', fontWeight: activeTab === i ? 600 : 400, fontSize: '0.78rem', cursor: 'pointer', border: activeTab === i ? 'none' : '1px solid var(--border)' }}>{tab.label}</button>
           ))}
         </div>
         <div style={{ fontSize: '0.72rem', fontWeight: 600, color: 'var(--charcoal-light)', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: '0.4rem' }}>Exam / Term Marks</div>
@@ -168,7 +168,7 @@ function TeacherClassOverviewContent() {
           {TEST_TABS.filter(t => t.type === 'exam').map((tab, i) => {
             const realIndex = i + 5;
             return (
-              <button key={realIndex} onClick={() => setActiveTab(realIndex)} style={{ padding: '0.4rem 1rem', borderRadius: 20, background: activeTab === realIndex ? '#434343' : 'white', color: activeTab === realIndex ? 'white' : 'var(--charcoal)', fontFamily: 'Poppins', fontWeight: activeTab === realIndex ? 600 : 400, fontSize: '0.78rem', cursor: 'pointer', border: `1.5px solid ${activeTab === realIndex ? '#434343' : 'var(--sky-light)'}` }}>{tab.label}</button>
+              <button key={realIndex} onClick={() => setActiveTab(realIndex)} style={{ padding: '0.4rem 1rem', borderRadius: 20, background: activeTab === realIndex ? '#434343' : 'var(--card-bg)', color: activeTab === realIndex ? 'white' : 'var(--text)', fontFamily: 'Poppins', fontWeight: activeTab === realIndex ? 600 : 400, fontSize: '0.78rem', cursor: 'pointer', border: activeTab === realIndex ? 'none' : '1px solid var(--border)' }}>{tab.label}</button>
             );
           })}
         </div>
@@ -177,13 +177,13 @@ function TeacherClassOverviewContent() {
       {loading ? (
         <div style={{ padding: '3rem', textAlign: 'center', color: 'var(--charcoal-light)', fontSize: '0.88rem' }}>Loading marks...</div>
       ) : !data?.students?.length ? (
-        <div style={{ padding: '3rem', textAlign: 'center', background: 'white', borderRadius: 16, border: '1.5px solid var(--sky-light)', color: 'var(--charcoal-light)', fontSize: '0.88rem' }}>
+        <div style={{ padding: '3rem', textAlign: 'center', background: 'var(--card-bg)', borderRadius: 16, border: '1px solid var(--border)', color: 'var(--text-light)', fontSize: '0.88rem' }}>
           <div style={{ fontSize: 32, marginBottom: '0.6rem' }}>📭</div>
           No students found for {className} Section {section}.
         </div>
       ) : (
         <>
-          <div style={{ overflowX: 'auto', borderRadius: 16, border: '1.5px solid var(--sky-light)', background: 'white', marginBottom: '1.5rem' }}>
+          <div style={{ overflowX: 'auto', borderRadius: 16, border: '1px solid var(--border)', background: 'var(--card-bg)', marginBottom: '1.5rem' }}>
             <table style={{ width: '100%', borderCollapse: 'collapse', minWidth: 400 + (data.subjects.length * 100) }}>
               <thead>
                 <tr>
@@ -218,7 +218,7 @@ function TeacherClassOverviewContent() {
                           </td>
                         );
                       })}
-                      <td style={{ ...tdStyle, textAlign: 'center', background: idx % 2 === 0 ? '#f5fbff' : '#eef7ff' }}>
+                      <td style={{ ...tdStyle, textAlign: 'center', background: idx % 2 === 0 ? 'var(--sky-light)' : 'rgba(66,133,244,0.05)' }}>
                         <span style={{ fontWeight: 700, fontSize: '0.85rem', color: filled.length > 0 ? 'var(--charcoal)' : '#ccc' }}>
                           {filled.length > 0 ? total : '—'}
                         </span>

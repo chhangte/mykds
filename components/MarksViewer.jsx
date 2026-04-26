@@ -34,12 +34,12 @@ export default function MarksViewer({ students, classId, type, classInfo }) {
 
   const thStyle = {
     padding: '0.6rem 0.8rem', fontWeight: 600, fontSize: '0.78rem',
-    background: 'var(--sky-light)', color: 'var(--charcoal)',
+    background: 'var(--sky-light)', color: 'var(--text)',
     textAlign: 'left', whiteSpace: 'nowrap',
   };
   const tdStyle = {
     padding: '0.5rem 0.8rem', fontSize: '0.82rem',
-    borderBottom: '1px solid #f0f4ff',
+    borderBottom: '1px solid var(--border)',
   };
 
   const formatLogDate = (dateStr) => {
@@ -53,23 +53,22 @@ export default function MarksViewer({ students, classId, type, classInfo }) {
   return (
     <div>
       <div style={{
-        borderRadius: '16px', border: '1.5px solid var(--sky-light)',
-        background: 'white', overflow: 'hidden',
+        borderRadius: '16px', border: '1px solid var(--border)',
+        background: 'var(--card-bg)', overflow: 'hidden',
       }}>
         {/* Header */}
         <div style={{
           padding: '0.8rem 1rem',
           display: 'flex', justifyContent: 'space-between',
           alignItems: 'center', flexWrap: 'wrap', gap: '0.6rem',
-          borderBottom: '1.5px solid var(--sky-light)',
+          borderBottom: '1px solid var(--border)',
         }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
             <span style={{ fontWeight: 600, fontSize: '0.88rem' }}>{label} Marks</span>
             <span style={{
-              background: '#f0f4ff', color: '#4285F4',
+              background: 'var(--sky-light)', color: 'var(--sky)',
               fontSize: '0.7rem', fontWeight: 600,
               padding: '3px 10px', borderRadius: 20,
-              border: '1px solid var(--sky-light)',
             }}>👁 View Only</span>
           </div>
         </div>
@@ -95,11 +94,11 @@ export default function MarksViewer({ students, classId, type, classInfo }) {
               {students.length === 0 && (
                 <tr><td colSpan={2 + numTests} style={{
                   ...tdStyle, textAlign: 'center',
-                  padding: '2rem', color: 'var(--charcoal-light)',
+                  padding: '2rem', color: 'var(--text-light)',
                 }}>No students found</td></tr>
               )}
               {students.map((s, idx) => (
-                <tr key={s._id} style={{ background: idx % 2 === 0 ? 'white' : '#fafeff' }}>
+                <tr key={s._id} style={{ background: idx % 2 === 0 ? 'var(--card-bg)' : 'var(--bg)' }}>
                   <td style={{ ...tdStyle, fontWeight: 600 }}>{s.rollNo}</td>
                   <td style={{ ...tdStyle, fontWeight: 500 }}>{s.name}</td>
                   {Array.from({ length: numTests }, (_, i) => {
@@ -140,7 +139,7 @@ export default function MarksViewer({ students, classId, type, classInfo }) {
             display: 'flex', alignItems: 'center', gap: 6,
             background: 'none', border: 'none', fontFamily: 'Poppins',
             fontSize: '0.82rem', fontWeight: 600,
-            color: 'var(--charcoal-light)', cursor: 'pointer',
+            color: 'var(--text-light)', cursor: 'pointer',
             padding: 0, marginBottom: '0.6rem',
           }}>
             <span style={{
@@ -155,15 +154,15 @@ export default function MarksViewer({ students, classId, type, classInfo }) {
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
               {logs.map((log, i) => (
                 <div key={log._id || i} style={{
-                  background: 'white', borderRadius: 12,
-                  border: '1.5px solid var(--sky-light)', overflow: 'hidden',
+                  background: 'var(--card-bg)', borderRadius: 12,
+                  border: '1px solid var(--border)', overflow: 'hidden',
                 }}>
                   <div onClick={() => setActiveLogIndex(activeLogIndex === i ? null : i)}
                     style={{
                       padding: '0.7rem 1rem', display: 'flex',
                       alignItems: 'center', justifyContent: 'space-between',
                       cursor: 'pointer',
-                      background: activeLogIndex === i ? '#f5fbff' : 'white',
+                      background: activeLogIndex === i ? 'var(--bg)' : 'var(--card-bg)',
                     }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '0.7rem' }}>
                       <span style={{
@@ -172,31 +171,31 @@ export default function MarksViewer({ students, classId, type, classInfo }) {
                         justifyContent: 'center', fontSize: 14, flexShrink: 0,
                       }}>📝</span>
                       <div>
-                        <div style={{ fontWeight: 600, fontSize: '0.82rem', color: 'var(--charcoal)' }}>
+                        <div style={{ fontWeight: 600, fontSize: '0.82rem', color: 'var(--text)' }}>
                           {log.changes?.length ?? 0} change{log.changes?.length !== 1 ? 's' : ''} in {label} {log.index}
                         </div>
-                        <div style={{ fontSize: '0.72rem', color: 'var(--charcoal-light)', marginTop: 1 }}>
+                        <div style={{ fontSize: '0.72rem', color: 'var(--text-light)', marginTop: 1 }}>
                           by {log.editedByName} · {formatLogDate(log.editedAt)}
                         </div>
                       </div>
                     </div>
                     <span style={{
-                      fontSize: '0.72rem', color: 'var(--charcoal-light)',
+                      fontSize: '0.72rem', color: 'var(--text-light)',
                       transform: activeLogIndex === i ? 'rotate(180deg)' : 'rotate(0)',
                       transition: 'transform 0.2s', display: 'inline-block',
                     }}>▼</span>
                   </div>
 
                   {activeLogIndex === i && log.changes?.length > 0 && (
-                    <div style={{ borderTop: '1px solid var(--sky-light)' }}>
+                    <div style={{ borderTop: '1px solid var(--border)' }}>
                       <table style={{ width: '100%', borderCollapse: 'collapse' }}>
                         <thead>
                           <tr>
                             {['Roll No', 'Student', 'Old Value', 'New Value', 'Change'].map(h => (
                               <th key={h} style={{
-                                padding: '0.5rem 0.9rem', background: '#f5fbff',
+                                padding: '0.5rem 0.9rem', background: 'var(--bg)',
                                 fontSize: '0.72rem', fontWeight: 600,
-                                color: 'var(--charcoal-light)', textAlign: 'left',
+                                color: 'var(--text-light)', textAlign: 'left',
                               }}>{h}</th>
                             ))}
                           </tr>
@@ -205,7 +204,7 @@ export default function MarksViewer({ students, classId, type, classInfo }) {
                           {log.changes.map((ch, j) => {
                             const diff = (ch.newValue ?? 0) - (ch.oldValue ?? 0);
                             return (
-                              <tr key={j} style={{ background: j % 2 === 0 ? 'white' : '#fafeff' }}>
+                              <tr key={j} style={{ background: j % 2 === 0 ? 'var(--card-bg)' : 'var(--bg)' }}>
                                 <td style={{ padding: '0.5rem 0.9rem', fontSize: '0.8rem', fontWeight: 600 }}>{ch.rollNo}</td>
                                 <td style={{ padding: '0.5rem 0.9rem', fontSize: '0.8rem' }}>{ch.studentName}</td>
                                 <td style={{ padding: '0.5rem 0.9rem' }}>

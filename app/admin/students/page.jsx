@@ -133,8 +133,9 @@ export default function AdminStudentsPage() {
 
   const inputStyle = {
     width: '100%', padding: '0.65rem 0.9rem', borderRadius: 10,
-    border: '1.5px solid var(--sky-light)', fontFamily: 'Poppins',
+    border: '1px solid #e0e0e0', fontFamily: 'Poppins',
     fontSize: '0.88rem', outline: 'none', marginTop: 4,
+    background: 'white',
   };
 
   const sectionColors = { A: '#e6f9ee', B: '#e8f0ff', C: '#fff8e1' };
@@ -168,14 +169,14 @@ export default function AdminStudentsPage() {
           {menuOpen && (
             <div style={{
               position: 'absolute', top: 'calc(100% + 8px)', right: 0,
-              background: 'white', borderRadius: 12, border: '1.5px solid var(--sky-light)',
-              boxShadow: '0 8px 24px rgba(66,133,244,0.12)', zIndex: 50,
+              background: 'white', borderRadius: 12, border: '1px solid #f0f4ff',
+              zIndex: 50,
               overflow: 'hidden', minWidth: 170, display: 'flex', flexDirection: 'column'
             }}>
               <button onClick={() => { setMenuOpen(false); openAdd(); }} style={{
                 background: 'transparent', border: 'none', padding: '0.8rem 1.1rem',
                 textAlign: 'left', fontFamily: 'Poppins', fontSize: '0.85rem',
-                cursor: 'pointer', borderBottom: '1.5px solid var(--sky-light)'
+                cursor: 'pointer', borderBottom: '1px solid #f0f4ff'
               }}>➕ Add Manually</button>
               <button onClick={() => { setMenuOpen(false); setShowImport(true); setImportSuccess(''); setImportError(''); }} style={{
                 background: 'transparent', border: 'none', padding: '0.8rem 1.1rem',
@@ -196,12 +197,12 @@ export default function AdminStudentsPage() {
           value={search} onChange={e => setSearch(e.target.value)}
           style={{ ...inputStyle, marginTop: 0, flex: 1, minWidth: 180 }} />
         <select value={filterClass} onChange={e => setFilterClass(e.target.value)}
-          style={{ ...inputStyle, marginTop: 0, width: 'auto', background: 'white' }}>
+          style={{ ...inputStyle, marginTop: 0, width: 'auto' }}>
           <option value="All">All Classes</option>
           {CLASSES.map(c => <option key={c} value={c}>{c}</option>)}
         </select>
         <select value={filterSection} onChange={e => setFilterSection(e.target.value)}
-          style={{ ...inputStyle, marginTop: 0, width: 'auto', background: 'white' }}>
+          style={{ ...inputStyle, marginTop: 0, width: 'auto' }}>
           <option value="All">All Sections</option>
           {SECTIONS.map(s => <option key={s} value={s}>Section {s}</option>)}
         </select>
@@ -210,7 +211,7 @@ export default function AdminStudentsPage() {
       {/* Table */}
       <div style={{
         overflowX: 'auto', borderRadius: 14,
-        border: '1.5px solid var(--sky-light)', background: 'white'
+        border: '1px solid #f0f4ff', background: 'white'
       }}>
         <table style={{ width: '100%', borderCollapse: 'collapse', minWidth: 500 }}>
           <thead>
@@ -273,13 +274,13 @@ export default function AdminStudentsPage() {
                   <div style={{ display: 'flex', gap: '0.4rem' }}>
                     <button onClick={() => openEdit(s)} style={{
                       padding: '4px 12px', borderRadius: 7,
-                      border: '1.5px solid var(--sky-light)',
-                      background: 'white', fontFamily: 'Poppins',
+                      border: 'none',
+                      background: '#f5fbff', fontFamily: 'Poppins',
                       fontSize: '0.75rem', cursor: 'pointer',
                     }}>Edit</button>
                     <button onClick={() => setDeleteConfirm(s)} style={{
                       padding: '4px 12px', borderRadius: 7,
-                      border: '1.5px solid #fde2e2',
+                      border: 'none',
                       background: '#fff5f5', fontFamily: 'Poppins',
                       fontSize: '0.75rem', cursor: 'pointer', color: '#c0392b',
                     }}>Delete</button>
@@ -301,7 +302,6 @@ export default function AdminStudentsPage() {
           <div style={{
             background: 'white', borderRadius: 18, padding: '2rem',
             width: '100%', maxWidth: 400,
-            boxShadow: '0 8px 40px rgba(66,133,244,0.15)'
           }}>
             <h3 style={{
               fontWeight: 700, fontSize: '1.05rem',
@@ -356,7 +356,7 @@ export default function AdminStudentsPage() {
             <div style={{ display: 'flex', gap: '0.7rem', marginTop: '1.5rem' }}>
               <button onClick={() => setShowModal(false)} style={{
                 flex: 1, padding: '0.7rem', borderRadius: 10,
-                border: '1.5px solid var(--sky-light)', background: 'white',
+                border: 'none', background: '#f5f5f5',
                 fontFamily: 'Poppins', fontSize: '0.88rem', cursor: 'pointer',
               }}>Cancel</button>
               <button onClick={handleSubmit} disabled={loading} style={{
@@ -393,7 +393,7 @@ export default function AdminStudentsPage() {
             <div style={{ display: 'flex', gap: '0.7rem' }}>
               <button onClick={() => setDeleteConfirm(null)} style={{
                 flex: 1, padding: '0.7rem', borderRadius: 10,
-                border: '1.5px solid var(--sky-light)', background: 'white',
+                border: 'none', background: '#f5f5f5',
                 fontFamily: 'Poppins', fontSize: '0.85rem', cursor: 'pointer',
               }}>Cancel</button>
               <button onClick={() => handleDelete(deleteConfirm._id)} style={{
@@ -417,7 +417,6 @@ export default function AdminStudentsPage() {
           <div style={{
             background: 'white', borderRadius: 18, padding: '2rem',
             width: '100%', maxWidth: 480,
-            boxShadow: '0 8px 40px rgba(66,133,244,0.15)'
           }}>
             <h3 style={{ fontWeight: 700, fontSize: '1.1rem', marginBottom: '0.5rem', color: 'var(--charcoal)' }}>
               Bulk Import Students
@@ -430,7 +429,7 @@ export default function AdminStudentsPage() {
             </p>
 
             <div style={{
-              border: '2px dashed var(--sky-light)', borderRadius: 12, padding: '2rem',
+              border: '2px dashed #f0f4ff', borderRadius: 12, padding: '2rem',
               textAlign: 'center', background: '#fafeff', marginBottom: '1rem'
             }}>
               <input
@@ -466,7 +465,7 @@ export default function AdminStudentsPage() {
             <div style={{ display: 'flex', gap: '0.7rem' }}>
               <button onClick={() => setShowImport(false)} disabled={importLoading} style={{
                 flex: 1, padding: '0.7rem', borderRadius: 10,
-                border: '1.5px solid var(--sky-light)', background: 'white',
+                border: 'none', background: '#f5f5f5',
                 fontFamily: 'Poppins', fontSize: '0.88rem', cursor: 'pointer',
               }}>Close</button>
             </div>

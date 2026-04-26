@@ -48,7 +48,7 @@ function LoginHistoryPanel() {
         <select
           value={filterUser}
           onChange={e => setFilterUser(e.target.value)}
-          style={{ padding: '0.4rem 0.8rem', borderRadius: 8, border: '1.5px solid var(--sky-light)', fontFamily: 'Poppins', fontSize: '0.82rem', outline: 'none', background: 'white' }}
+          style={{ padding: '0.4rem 0.8rem', borderRadius: 8, border: '1px solid #e0e0e0', fontFamily: 'Poppins', fontSize: '0.82rem', outline: 'none', background: 'white' }}
         >
           <option value="">All users</option>
           {users.filter(u => u.role !== 'admin' || true).map(u => (
@@ -58,7 +58,7 @@ function LoginHistoryPanel() {
       </div>
 
       {loading && (
-        <div style={{ background: 'white', borderRadius: 14, border: '1.5px solid var(--sky-light)', overflow: 'hidden' }}>
+        <div style={{ background: 'white', borderRadius: 14, border: '1px solid #f0f4ff', overflow: 'hidden' }}>
           <table style={{ width: '100%', borderCollapse: 'collapse' }}>
             <thead>
               <tr>
@@ -82,13 +82,13 @@ function LoginHistoryPanel() {
       )}
 
       {!loading && history.length === 0 && (
-        <div style={{ padding: '3rem', textAlign: 'center', background: 'white', borderRadius: 16, border: '1.5px solid var(--sky-light)', color: 'var(--charcoal-light)', fontSize: '0.88rem' }}>
+        <div style={{ padding: '3rem', textAlign: 'center', background: 'white', borderRadius: 16, border: '1px solid #f0f4ff', color: 'var(--charcoal-light)', fontSize: '0.88rem' }}>
           No login history found.
         </div>
       )}
 
       {!loading && history.length > 0 && (
-        <div style={{ background: 'white', borderRadius: 14, border: '1.5px solid var(--sky-light)', overflow: 'hidden' }}>
+        <div style={{ background: 'white', borderRadius: 14, border: '1px solid #f0f4ff', overflow: 'hidden' }}>
           <table style={{ width: '100%', borderCollapse: 'collapse' }}>
             <thead>
               <tr>
@@ -225,8 +225,9 @@ export default function AdminUsersPage() {
 
   const inputStyle = {
     width: '100%', padding: '0.65rem 0.9rem', borderRadius: 10,
-    border: '1.5px solid var(--sky-light)', fontFamily: 'Poppins',
+    border: '1px solid #e0e0e0', fontFamily: 'Poppins',
     fontSize: '0.88rem', outline: 'none', marginTop: 4, boxSizing: 'border-box',
+    background: 'white',
   };
   const classLabel = (cls) => `${cls.name} ${cls.section} — ${cls.subject}`;
 
@@ -248,7 +249,7 @@ export default function AdminUsersPage() {
       {tab === 'teacher' && (
         <div style={{
           background: ctViewEnabled ? '#e6f9ee' : 'white',
-          border: `1.5px solid ${ctViewEnabled ? '#a8e6c0' : 'var(--sky-light)'}`,
+          border: `1px solid ${ctViewEnabled ? '#a8e6c0' : '#f0f4ff'}`,
           borderRadius: 14, padding: '1rem 1.2rem', marginBottom: '1.5rem',
           display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '0.8rem', transition: 'all 0.3s',
         }}>
@@ -283,7 +284,7 @@ export default function AdminUsersPage() {
               color: tab === key ? 'white' : 'var(--charcoal-light)',
               fontFamily: 'Poppins', fontWeight: tab === key ? 600 : 400, fontSize: '0.82rem',
               cursor: 'pointer',
-              border: `1.5px solid ${tab === key ? 'var(--sky)' : 'var(--sky-light)'}`,
+              border: tab === key ? 'none' : '1px solid #e0e0e0',
             }}>
               {label}{key !== 'history' && ` (${users.filter(u => u.role === key).length})`}
             </button>
@@ -304,7 +305,7 @@ export default function AdminUsersPage() {
       {tab !== 'history' && (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
           {initialLoading && Array.from({ length: 4 }).map((_, i) => (
-            <div key={`skel-${i}`} style={{ background: 'white', borderRadius: 14, border: '1.5px solid var(--sky-light)', padding: '1rem 1.2rem', boxShadow: '0 2px 10px rgba(66,133,244,0.08)' }}>
+            <div key={`skel-${i}`} style={{ background: 'white', borderRadius: 14, border: '1px solid #f0f4ff', padding: '1rem 1.2rem' }}>
               <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: '1rem', flexWrap: 'wrap' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
                   <div className="skeleton" style={{ width: 42, height: 42, borderRadius: 10 }} />
@@ -321,17 +322,17 @@ export default function AdminUsersPage() {
             </div>
           ))}
           {!initialLoading && users.filter(u => tab === 'admin' ? u.role === 'admin' : u.role === 'teacher').length === 0 && (
-            <div style={{ textAlign: 'center', padding: '3rem', color: 'var(--charcoal-light)', fontSize: '0.88rem', background: 'white', borderRadius: 14, border: '1.5px solid var(--sky-light)' }}>
+            <div style={{ textAlign: 'center', padding: '3rem', color: 'var(--charcoal-light)', fontSize: '0.88rem', background: 'white', borderRadius: 14, border: '1px solid #f0f4ff' }}>
               No {tab}s found. Click "+ Add User" to create one.
             </div>
           )}
           {!initialLoading && users.filter(u => tab === 'admin' ? u.role === 'admin' : u.role === 'teacher').length > 0 && filtered.length === 0 && (
-            <div style={{ textAlign: 'center', padding: '3rem', color: 'var(--charcoal-light)', fontSize: '0.88rem', background: 'white', borderRadius: 14, border: '1.5px solid var(--sky-light)' }}>
+            <div style={{ textAlign: 'center', padding: '3rem', color: 'var(--charcoal-light)', fontSize: '0.88rem', background: 'white', borderRadius: 14, border: '1px solid #f0f4ff' }}>
               No {tab}s found matching "{search}".
             </div>
           )}
           {!initialLoading && filtered.map(user => (
-            <div key={user._id} style={{ background: 'white', borderRadius: 14, border: '1.5px solid var(--sky-light)', padding: '1rem 1.2rem', boxShadow: '0 2px 10px rgba(66,133,244,0.08)' }}>
+            <div key={user._id} style={{ background: 'white', borderRadius: 14, border: '1px solid #f0f4ff', padding: '1rem 1.2rem' }}>
               <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: '1rem', flexWrap: 'wrap' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
                   <div style={{ width: 42, height: 42, borderRadius: 10, background: hasCtAssignment(user) ? '#e6f9ee' : 'var(--sky-light)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 18, flexShrink: 0 }}>
@@ -341,7 +342,7 @@ export default function AdminUsersPage() {
                     <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexWrap: 'wrap' }}>
                       <span style={{ fontWeight: 600, fontSize: '0.92rem', color: 'var(--charcoal)' }}>{user.name}</span>
                       {hasCtAssignment(user) && (
-                        <span style={{ background: '#e6f9ee', color: '#1a8a3c', fontSize: '0.68rem', fontWeight: 700, padding: '2px 8px', borderRadius: 20, border: '1px solid #a8e6c0' }}>
+                        <span style={{ background: '#e6f9ee', color: '#1a8a3c', fontSize: '0.68rem', fontWeight: 700, padding: '2px 8px', borderRadius: 20 }}>
                           CT: {user.classTeacherClass} – {user.classTeacherSection}
                         </span>
                       )}
@@ -350,8 +351,8 @@ export default function AdminUsersPage() {
                   </div>
                 </div>
                 <div style={{ display: 'flex', gap: '0.5rem' }}>
-                  <button onClick={() => openEdit(user)} style={{ padding: '0.4rem 0.9rem', borderRadius: 8, border: '1.5px solid var(--sky-light)', background: 'white', fontFamily: 'Poppins', fontSize: '0.78rem', cursor: 'pointer', fontWeight: 500 }}>Edit</button>
-                  <button onClick={() => setDeleteConfirm(user)} style={{ padding: '0.4rem 0.9rem', borderRadius: 8, border: '1.5px solid #fde2e2', background: '#fff5f5', fontFamily: 'Poppins', fontSize: '0.78rem', cursor: 'pointer', fontWeight: 500, color: '#c0392b' }}>Delete</button>
+                  <button onClick={() => openEdit(user)} style={{ padding: '0.4rem 0.9rem', borderRadius: 8, border: 'none', background: '#f5fbff', fontFamily: 'Poppins', fontSize: '0.78rem', cursor: 'pointer', fontWeight: 500 }}>Edit</button>
+                  <button onClick={() => setDeleteConfirm(user)} style={{ padding: '0.4rem 0.9rem', borderRadius: 8, border: 'none', background: '#fff5f5', fontFamily: 'Poppins', fontSize: '0.78rem', cursor: 'pointer', fontWeight: 500, color: '#c0392b' }}>Delete</button>
                 </div>
               </div>
               {user.role === 'teacher' && user.assignedClasses?.length > 0 && (
@@ -371,7 +372,7 @@ export default function AdminUsersPage() {
       {/* Add/Edit Modal */}
       {showModal && (
         <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.35)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 1000, padding: '1rem' }}>
-          <div style={{ background: 'white', borderRadius: 18, padding: '2rem', width: '100%', maxWidth: 500, boxShadow: '0 8px 40px rgba(66,133,244,0.15)', maxHeight: '92vh', overflowY: 'auto' }}>
+          <div style={{ background: 'white', borderRadius: 18, padding: '2rem', width: '100%', maxWidth: 500, maxHeight: '92vh', overflowY: 'auto' }}>
             <h3 style={{ fontWeight: 700, fontSize: '1.1rem', marginBottom: '1.5rem', color: 'var(--charcoal)' }}>
               {editing ? 'Edit User' : 'Add New User'}
             </h3>
@@ -405,7 +406,7 @@ export default function AdminUsersPage() {
                         No classes created yet. Go to <a href="/admin/classes" style={{ color: 'var(--sky-dark)' }}>Manage Classes</a> first.
                       </p>
                     ) : (
-                      <div style={{ marginTop: 6, display: 'flex', flexDirection: 'column', gap: '0.4rem', maxHeight: 180, overflowY: 'auto', border: '1.5px solid var(--sky-light)', borderRadius: 10, padding: '0.6rem' }}>
+                      <div style={{ marginTop: 6, display: 'flex', flexDirection: 'column', gap: '0.4rem', maxHeight: 180, overflowY: 'auto', border: '1px solid #f0f4ff', borderRadius: 10, padding: '0.6rem' }}>
                         {allClasses.map(cls => {
                           const selected = form.assignedClasses.includes(cls._id);
                           return (
@@ -418,7 +419,7 @@ export default function AdminUsersPage() {
                       </div>
                     )}
                   </div>
-                  <div style={{ borderRadius: 12, border: '1.5px solid var(--sky-light)', padding: '1rem', background: '#fafeff' }}>
+                  <div style={{ borderRadius: 12, border: '1px solid #f0f4ff', padding: '1rem', background: '#fafeff' }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.6rem' }}>
                       <span style={{ fontSize: '0.82rem', fontWeight: 700, color: 'var(--charcoal)' }}>Class Teacher Assignment</span>
                       <span style={{ fontSize: '0.68rem', color: 'var(--charcoal-light)', background: '#f0f0f0', padding: '2px 8px', borderRadius: 20 }}>Optional</span>
@@ -453,7 +454,7 @@ export default function AdminUsersPage() {
             </div>
             {error && <p style={{ color: '#c0392b', fontSize: '0.78rem', background: '#fff5f5', padding: '8px 12px', borderRadius: 8, marginTop: '1rem' }}>{error}</p>}
             <div style={{ display: 'flex', gap: '0.7rem', marginTop: '1.5rem' }}>
-              <button onClick={() => setShowModal(false)} style={{ flex: 1, padding: '0.7rem', borderRadius: 10, border: '1.5px solid var(--sky-light)', background: 'white', fontFamily: 'Poppins', fontSize: '0.88rem', cursor: 'pointer' }}>Cancel</button>
+              <button onClick={() => setShowModal(false)} style={{ flex: 1, padding: '0.7rem', borderRadius: 10, border: 'none', background: '#f5f5f5', fontFamily: 'Poppins', fontSize: '0.88rem', cursor: 'pointer' }}>Cancel</button>
               <button onClick={handleSubmit} disabled={loading} style={{ flex: 2, padding: '0.7rem', borderRadius: 10, background: 'var(--sky)', border: 'none', fontFamily: 'Poppins', fontWeight: 600, fontSize: '0.88rem', cursor: 'pointer', color: 'white' }}>
                 {loading ? 'Saving...' : editing ? 'Save Changes' : 'Create User'}
               </button>
@@ -469,7 +470,7 @@ export default function AdminUsersPage() {
             <h3 style={{ fontWeight: 700, fontSize: '1rem', marginBottom: '0.5rem' }}>Delete {deleteConfirm.name}?</h3>
             <p style={{ fontSize: '0.82rem', color: 'var(--charcoal-light)', marginBottom: '1.5rem' }}>This will permanently remove @{deleteConfirm.username}.</p>
             <div style={{ display: 'flex', gap: '0.7rem' }}>
-              <button onClick={() => setDeleteConfirm(null)} style={{ flex: 1, padding: '0.7rem', borderRadius: 10, border: '1.5px solid var(--sky-light)', background: 'white', fontFamily: 'Poppins', fontSize: '0.88rem', cursor: 'pointer' }}>Cancel</button>
+              <button onClick={() => setDeleteConfirm(null)} style={{ flex: 1, padding: '0.7rem', borderRadius: 10, border: 'none', background: '#f5f5f5', fontFamily: 'Poppins', fontSize: '0.88rem', cursor: 'pointer' }}>Cancel</button>
               <button onClick={() => handleDelete(deleteConfirm._id)} style={{ flex: 1, padding: '0.7rem', borderRadius: 10, background: '#c0392b', border: 'none', color: 'white', fontFamily: 'Poppins', fontWeight: 600, fontSize: '0.88rem', cursor: 'pointer' }}>Delete</button>
             </div>
           </div>

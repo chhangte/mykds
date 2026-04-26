@@ -86,7 +86,7 @@ export default function AdminClassesPage() {
 
   const inputStyle = {
     width: '100%', padding: '0.65rem 0.9rem', borderRadius: 10,
-    border: '1.5px solid var(--sky-light)', fontFamily: 'Poppins',
+    border: '1px solid #e0e0e0', fontFamily: 'Poppins',
     fontSize: '0.88rem', outline: 'none', marginTop: 4, background: 'white',
   };
 
@@ -133,7 +133,7 @@ export default function AdminClassesPage() {
       <div style={{ display: 'flex', flexDirection: 'column', gap: '0.7rem' }}>
         {initialLoading && Array.from({ length: 4 }).map((_, i) => (
           <div key={`skel-${i}`} style={{
-            background: 'white', borderRadius: 12, border: '1.5px solid var(--sky-light)',
+            background: 'white', borderRadius: 12, border: '1px solid #f0f4ff',
             padding: '0.9rem 1.2rem', display: 'flex', alignItems: 'center',
             justifyContent: 'space-between', gap: '1rem',
           }}>
@@ -155,7 +155,7 @@ export default function AdminClassesPage() {
             textAlign: 'center', padding: '3rem',
             color: 'var(--charcoal-light)', fontSize: '0.88rem',
             background: 'white', borderRadius: 14,
-            border: '1.5px solid var(--sky-light)'
+            border: '1px solid #f0f4ff'
           }}>
             No classes yet. Click "+ Add Class" to create one.
           </div>
@@ -165,7 +165,7 @@ export default function AdminClassesPage() {
             textAlign: 'center', padding: '3rem',
             color: 'var(--charcoal-light)', fontSize: '0.88rem',
             background: 'white', borderRadius: 14,
-            border: '1.5px solid var(--sky-light)'
+            border: '1px solid #f0f4ff'
           }}>
             No classes found matching "{search}".
           </div>
@@ -173,11 +173,10 @@ export default function AdminClassesPage() {
         {!initialLoading && filteredClasses.map((cls, i) => (
           <div key={cls._id} style={{
             background: 'white', borderRadius: 12,
-            border: '1.5px solid var(--sky-light)',
+            border: '1px solid #f0f4ff',
             padding: '0.9rem 1.2rem',
             display: 'flex', alignItems: 'center',
             justifyContent: 'space-between', gap: '1rem',
-            boxShadow: '0 2px 8px rgba(66,133,244,0.06)',
           }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
               <div style={{
@@ -200,19 +199,19 @@ export default function AdminClassesPage() {
             <div style={{ display: 'flex', gap: '0.4rem' }}>
               <button onClick={() => openLocks(cls)} style={{
                 padding: '4px 12px', borderRadius: 7,
-                border: '1.5px solid var(--sky-light)',
-                background: 'white', fontFamily: 'Poppins',
+                border: 'none',
+                background: '#f5fbff', fontFamily: 'Poppins',
                 fontSize: '0.78rem', cursor: 'pointer',
               }}>Edit Lock</button>
               <button onClick={() => openEdit(cls)} style={{
                 padding: '4px 12px', borderRadius: 7,
-                border: '1.5px solid var(--sky-light)',
-                background: 'white', fontFamily: 'Poppins',
+                border: 'none',
+                background: '#f5fbff', fontFamily: 'Poppins',
                 fontSize: '0.78rem', cursor: 'pointer',
               }}>Edit</button>
               <button onClick={() => setDeleteConfirm(cls)} style={{
                 padding: '4px 12px', borderRadius: 7,
-                border: '1.5px solid #fde2e2', background: '#fff5f5',
+                border: 'none', background: '#fff5f5',
                 fontFamily: 'Poppins', fontSize: '0.78rem',
                 cursor: 'pointer', color: '#c0392b',
               }}>Delete</button>
@@ -231,7 +230,6 @@ export default function AdminClassesPage() {
           <div style={{
             background: 'white', borderRadius: 18, padding: '2rem',
             width: '100%', maxWidth: 400,
-            boxShadow: '0 8px 40px rgba(66,133,244,0.15)'
           }}>
             <h3 style={{
               fontWeight: 700, fontSize: '1.05rem',
@@ -301,7 +299,7 @@ export default function AdminClassesPage() {
             <div style={{ display: 'flex', gap: '0.7rem', marginTop: '1.5rem' }}>
               <button onClick={() => setShowModal(false)} style={{
                 flex: 1, padding: '0.7rem', borderRadius: 10,
-                border: '1.5px solid var(--sky-light)', background: 'white',
+                border: 'none', background: '#f5f5f5',
                 fontFamily: 'Poppins', fontSize: '0.88rem', cursor: 'pointer',
               }}>Cancel</button>
               <button onClick={handleSubmit} disabled={loading} style={{
@@ -336,7 +334,7 @@ export default function AdminClassesPage() {
             <div style={{ display: 'flex', gap: '0.7rem' }}>
               <button onClick={() => setDeleteConfirm(null)} style={{
                 flex: 1, padding: '0.7rem', borderRadius: 10,
-                border: '1.5px solid var(--sky-light)', background: 'white',
+                border: 'none', background: '#f5f5f5',
                 fontFamily: 'Poppins', fontSize: '0.85rem', cursor: 'pointer',
               }}>Cancel</button>
               <button onClick={() => handleDelete(deleteConfirm._id)} style={{
@@ -359,7 +357,6 @@ export default function AdminClassesPage() {
           <div style={{
             background: 'white', borderRadius: 18, padding: '2rem',
             width: '100%', maxWidth: 450,
-            boxShadow: '0 8px 40px rgba(66,133,244,0.15)',
             maxHeight: '90vh', overflowY: 'auto'
           }}>
             <h3 style={{
@@ -414,7 +411,7 @@ export default function AdminClassesPage() {
             <div style={{ display: 'flex', gap: '0.7rem', marginTop: '2rem' }}>
               <button onClick={() => setShowLocksModal(false)} style={{
                 flex: 1, padding: '0.7rem', borderRadius: 10,
-                border: '1.5px solid var(--sky-light)', background: 'white',
+                border: 'none', background: '#f5f5f5',
                 fontFamily: 'Poppins', fontSize: '0.88rem', cursor: 'pointer',
               }}>Cancel</button>
               <button onClick={handleSaveLocks} disabled={loading} style={{

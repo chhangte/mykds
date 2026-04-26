@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import Spinner from '@/components/Spinner';
+import ThemeToggle from '@/components/ThemeToggle';
 
 export default function LoginPage() {
   const [form, setForm] = useState({ username: '', password: '' });
@@ -87,8 +88,9 @@ export default function LoginPage() {
 
   const inputStyle = {
     width: '100%', padding: '0.85rem 1rem', borderRadius: 12,
-    border: '1.5px solid var(--sky-light, #d2e3fc)', fontFamily: 'Poppins',
+    border: '1px solid #e0e0e0', fontFamily: 'Poppins',
     fontSize: '0.95rem', outline: 'none', transition: 'border-color 0.2s',
+    background: 'white',
   };
 
   return (
@@ -109,7 +111,6 @@ export default function LoginPage() {
         }
         .kds-input:focus {
           border-color: var(--sky, #4285F4) !important;
-          box-shadow: 0 0 0 3px rgba(66,133,244,0.12);
         }
         .kds-success-icon {
           animation: kds-success-pop 0.4s cubic-bezier(.22,1,.36,1) both;
@@ -200,18 +201,20 @@ export default function LoginPage() {
         </div>
 
         <div className="right-pane">
+          <div style={{ position: 'absolute', top: 20, right: 20 }}>
+            <ThemeToggle />
+          </div>
           <div className="login-card" style={{
-            background: 'white', borderRadius: 24,
+            background: 'var(--card-bg)', borderRadius: 24,
             padding: '3rem 2.5rem', width: '100%', maxWidth: 420,
-            boxShadow: '0 10px 40px rgba(0, 0, 0, 0.05)',
-            border: '1px solid #f0f0f0',
+            border: '1px solid var(--border)',
           }}>
 
             {success ? (
               <div style={{ textAlign: 'center' }}>
                 <div className="kds-success-icon" style={{
                   width: 64, height: 64, borderRadius: '50%',
-                  background: '#FFDD00', border: '3px solid #e6c700',
+                  background: '#FFDD00',
                   margin: '0 auto 1.5rem',
                   display: 'flex', alignItems: 'center',
                   justifyContent: 'center', fontSize: '1.6rem',
@@ -292,7 +295,6 @@ export default function LoginPage() {
                         color: '#c0392b', fontSize: '0.85rem',
                         background: '#fff5f5', padding: '10px 14px',
                         borderRadius: 10, marginBottom: '1.5rem',
-                        border: '1px solid #fde2e2',
                         display: 'flex', alignItems: 'center', gap: 8,
                       }}>
                         {error}
@@ -361,7 +363,6 @@ export default function LoginPage() {
                         color: '#c0392b', fontSize: '0.85rem',
                         background: '#fff5f5', padding: '10px 14px',
                         borderRadius: 10, marginBottom: '1.5rem',
-                        border: '1px solid #fde2e2',
                         display: 'flex', alignItems: 'center', gap: 8,
                       }}>
                         {error}

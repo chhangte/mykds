@@ -34,7 +34,7 @@ export default function LandingPage() {
           padding: 0.75rem 2.5rem;
           background: rgba(255,255,255,0.92);
           backdrop-filter: blur(14px);
-          border-bottom: 1px solid rgba(66,133,244,0.2);
+          border-bottom: 1px solid rgba(66,133,244,0.15);
         }
         .nav-logo { display: flex; align-items: center; text-decoration: none; }
         .nav-right { display: flex; align-items: center; gap: 1.5rem; }
@@ -54,9 +54,8 @@ export default function LandingPage() {
           border-radius: 30px; padding: 0.55rem 1.5rem;
           font-family: 'Poppins', sans-serif; font-weight: 600;
           font-size: 0.88rem; cursor: pointer; transition: all 0.2s;
-          box-shadow: 0 2px 12px rgba(66,133,244,0.3);
         }
-        .nav-btn:hover { background: #2b6fd4; transform: translateY(-1px); }
+        .nav-btn:hover { background: #2b6fd4; }
 
         /* ── HERO ── */
         .hero {
@@ -133,12 +132,10 @@ export default function LandingPage() {
           font-family: 'Poppins', sans-serif; font-weight: 700;
           font-size: 1rem; cursor: pointer;
           transition: all 0.25s;
-          box-shadow: 0 6px 24px rgba(66,133,244,0.35);
           display: inline-flex; align-items: center; gap: 8px;
         }
         .hero-signin-btn:hover {
-          background: #2b6fd4; transform: translateY(-2px);
-          box-shadow: 0 10px 32px rgba(66,133,244,0.45);
+          background: #2b6fd4;
         }
 
         /* mock card on right */
@@ -152,8 +149,7 @@ export default function LandingPage() {
         .mock-card {
           background: white;
           border-radius: 16px;
-          border: 1px solid rgba(66,133,244,0.2);
-          box-shadow: 0 12px 48px rgba(100,160,200,0.2);
+          border: 1px solid rgba(66,133,244,0.15);
           overflow: hidden;
         }
         .mock-bar {
@@ -188,8 +184,7 @@ export default function LandingPage() {
         .float-chip {
           position: absolute;
           background: white; border-radius: 12px;
-          border: 1px solid rgba(66,133,244,0.22);
-          box-shadow: 0 4px 20px rgba(66,133,244,0.1);
+          border: 1px solid rgba(66,133,244,0.15);
           padding: 0.65rem 0.9rem;
           display: flex; align-items: center; gap: 8px;
           font-size: 0.75rem; white-space: nowrap;
@@ -233,14 +228,11 @@ export default function LandingPage() {
         }
         .feat-card {
           background: white; border-radius: 16px;
-          border: 1px solid rgba(66,133,244,0.18);
+          border: 1px solid rgba(66,133,244,0.15);
           padding: 1.5rem;
-          box-shadow: 0 2px 12px rgba(66,133,244,0.06);
           transition: all 0.2s;
         }
         .feat-card:hover {
-          transform: translateY(-3px);
-          box-shadow: 0 8px 28px rgba(66,133,244,0.14);
           border-color: rgba(66,133,244,0.4);
         }
         .feat-icon {
@@ -264,9 +256,9 @@ export default function LandingPage() {
         }
         .portal-card {
           border-radius: 18px; padding: 2rem 1.5rem;
-          transition: transform 0.2s, box-shadow 0.2s;
+          transition: transform 0.2s;
         }
-        .portal-card:hover { transform: translateY(-3px); box-shadow: 0 10px 32px rgba(0,0,0,0.1); }
+        .portal-card:hover { transform: translateY(-3px); }
         .pc-teacher {
           background: linear-gradient(135deg, #eaf1fe, #d2e3fc);
           border: 1.5px solid rgba(66,133,244,0.3);
