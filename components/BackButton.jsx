@@ -18,7 +18,7 @@ export default function BackButton() {
           padding: 0 0.75rem;
           cursor: pointer;
           color: var(--charcoal);
-          font-family: Poppins, sans-serif;
+          font-family: Inter, sans-serif;
           font-weight: 600;
           font-size: 0.78rem;
           transition: all 0.2s ease;

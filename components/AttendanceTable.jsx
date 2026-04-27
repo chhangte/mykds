@@ -100,7 +100,7 @@ export default function AttendanceTable({ students, classId }) {
           style={{
             padding: '0.45rem 0.8rem', borderRadius: 10,
             border: '1px solid var(--border)',
-            fontFamily: 'Poppins', fontSize: '0.82rem', outline: 'none',
+            fontFamily: 'Inter', fontSize: '0.82rem', outline: 'none',
             background: 'var(--card-bg)', color: 'var(--text)',
           }}
         />
@@ -109,7 +109,7 @@ export default function AttendanceTable({ students, classId }) {
           style={{
             padding: '0.45rem 1rem', borderRadius: 10,
             background: 'var(--sky)', border: 'none',
-            fontFamily: 'Poppins', fontWeight: 600,
+            fontFamily: 'Inter', fontWeight: 600,
             fontSize: '0.82rem', cursor: 'pointer',
             color: 'white',
           }}
@@ -199,7 +199,7 @@ export default function AttendanceTable({ students, classId }) {
                             border: '1px solid #e0e0e0',
                             borderRadius: 8,
                             padding: '3px 6px',
-                            fontFamily: 'Poppins',
+                            fontFamily: 'Inter',
                             fontWeight: 700,
                             fontSize: '0.75rem',
                             cursor: 'pointer',

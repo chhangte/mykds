@@ -62,7 +62,7 @@ export default function ThemeToggle() {
           cursor: 'pointer',
           fontSize: '0.78rem',
           fontWeight: 600,
-          fontFamily: 'Poppins',
+          fontFamily: 'Inter',
           transition: 'all 0.2s',
         }}
       >
@@ -97,7 +97,7 @@ export default function ThemeToggle() {
               cursor: 'pointer',
               fontSize: '0.78rem',
               fontWeight: 500,
-              fontFamily: 'Poppins',
+              fontFamily: 'Inter',
             }}
           >
             Light
@@ -113,7 +113,7 @@ export default function ThemeToggle() {
               cursor: 'pointer',
               fontSize: '0.78rem',
               fontWeight: 500,
-              fontFamily: 'Poppins',
+              fontFamily: 'Inter',
             }}
           >
             Dark (Beta)

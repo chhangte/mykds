@@ -164,7 +164,7 @@ export default function MarksTable({ students, classId, type, classInfo }) {
                   padding: '0.4rem 1rem', borderRadius: 8,
                   background: 'var(--card-bg)', color: 'var(--text)',
                   border: 'none',
-                  fontFamily: 'Poppins', fontWeight: 500,
+                  fontFamily: 'Inter', fontWeight: 500,
                   fontSize: '0.8rem', cursor: 'pointer',
                 }}>
                   Cancel
@@ -173,7 +173,7 @@ export default function MarksTable({ students, classId, type, classInfo }) {
                   padding: '0.4rem 1.1rem', borderRadius: 8,
                   background: saving ? 'var(--sky-light)' : '#1a8a3c',
                   color: 'white', border: 'none',
-                  fontFamily: 'Poppins', fontWeight: 600,
+                  fontFamily: 'Inter', fontWeight: 600,
                   fontSize: '0.8rem', cursor: saving ? 'not-allowed' : 'pointer',
                   display: 'flex', alignItems: 'center', gap: 5,
                 }}>
@@ -216,7 +216,7 @@ export default function MarksTable({ students, classId, type, classInfo }) {
                           <button onClick={() => handleEdit(colIdx)} style={{
                             background: '#434343', border: 'none', borderRadius: 6,
                             padding: '4px 12px', fontSize: '0.72rem', cursor: 'pointer',
-                            color: 'white', fontFamily: 'Poppins', fontWeight: 600,
+                            color: 'white', fontFamily: 'Inter', fontWeight: 600,
                           }}>Edit</button>
                         ) : (
                           <div style={{ height: 21 }}></div>
@@ -271,7 +271,7 @@ export default function MarksTable({ students, classId, type, classInfo }) {
                             style={{
                               width: 64, padding: '5px 8px',
                               border: '1px solid var(--border)',
-                              borderRadius: 8, fontFamily: 'Poppins',
+                              borderRadius: 8, fontFamily: 'Inter',
                               fontSize: '0.82rem', textAlign: 'center',
                               outline: 'none', background: 'var(--card-bg)', color: 'var(--text)',
                             }}
@@ -306,7 +306,7 @@ export default function MarksTable({ students, classId, type, classInfo }) {
             style={{
               display: 'flex', alignItems: 'center', gap: 6,
               background: 'none', border: 'none',
-              fontFamily: 'Poppins', fontSize: '0.82rem',
+              fontFamily: 'Inter', fontSize: '0.82rem',
               fontWeight: 600, color: 'var(--charcoal-light)',
               cursor: 'pointer', padding: 0, marginBottom: '0.6rem',
             }}

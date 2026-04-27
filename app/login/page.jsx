@@ -88,7 +88,7 @@ export default function LoginPage() {
 
   const inputStyle = {
     width: '100%', padding: '0.85rem 1rem', borderRadius: 12,
-    border: '1px solid #e0e0e0', fontFamily: 'Poppins',
+    border: '1px solid #e0e0e0', fontFamily: 'Inter',
     fontSize: '0.95rem', outline: 'none', transition: 'border-color 0.2s',
     background: 'white',
   };
@@ -306,7 +306,7 @@ export default function LoginPage() {
                         padding: '0.75rem 2rem',
                         background: loading ? 'var(--sky-light, #d2e3fc)' : 'var(--sky, #4285F4)',
                         color: 'white', border: 'none', borderRadius: 24,
-                        fontFamily: 'Poppins', fontWeight: 600, fontSize: '0.95rem',
+                        fontFamily: 'Inter', fontWeight: 600, fontSize: '0.95rem',
                         cursor: loading ? 'not-allowed' : 'pointer',
                         transition: 'all 0.2s',
                         display: 'flex', alignItems: 'center',
@@ -378,7 +378,7 @@ export default function LoginPage() {
                         padding: '0.75rem 2rem',
                         background: loading ? 'var(--sky-light, #d2e3fc)' : 'var(--sky, #4285F4)',
                         color: 'white', border: 'none', borderRadius: 24,
-                        fontFamily: 'Poppins', fontWeight: 600, fontSize: '0.95rem',
+                        fontFamily: 'Inter', fontWeight: 600, fontSize: '0.95rem',
                         cursor: loading ? 'not-allowed' : 'pointer',
                         transition: 'all 0.2s',
                         display: 'flex', alignItems: 'center',

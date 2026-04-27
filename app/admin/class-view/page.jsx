@@ -140,20 +140,20 @@ function ClassViewContent() {
             <div style={{ display: 'flex', gap: '0.8rem' }}>
               <button
                 onClick={() => exportToExcel({ students: data.students, subjects: data.subjects, tabLabel: currentTab.label, className, section })}
-                style={{ padding: '0.5rem 1.1rem', borderRadius: 10, background: '#1a8a3c', color: 'white', border: 'none', fontFamily: 'Poppins', fontWeight: 600, fontSize: '0.82rem', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6 }}
+                style={{ padding: '0.5rem 1.1rem', borderRadius: 10, background: '#1a8a3c', color: 'white', border: 'none', fontFamily: 'Inter', fontWeight: 600, fontSize: '0.82rem', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6 }}
               >
                 Export Excel
               </button>
               <button
                 onClick={() => generateMergedReportCardsPDF(data.students, { className, section, academicYear: data.classes?.[0]?.academicYear || '2024-25', classTeacherName: data.classTeacherName }, data.subjects, currentTab.label, currentTab.type)}
-                style={{ padding: '0.5rem 1.1rem', borderRadius: 10, background: '#2b2b2b', color: 'white', border: 'none', fontFamily: 'Poppins', fontWeight: 600, fontSize: '0.82rem', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6 }}
+                style={{ padding: '0.5rem 1.1rem', borderRadius: 10, background: '#2b2b2b', color: 'white', border: 'none', fontFamily: 'Inter', fontWeight: 600, fontSize: '0.82rem', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6 }}
               >
                 Generate All PDFs
               </button>
               <button
                 onClick={handleGenerateFinalPDF}
                 disabled={isGeneratingCumulative}
-                style={{ padding: '0.5rem 1.1rem', borderRadius: 10, background: isGeneratingCumulative ? '#666' : '#d22b2b', color: 'white', border: 'none', fontFamily: 'Poppins', fontWeight: 600, fontSize: '0.82rem', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6 }}
+                style={{ padding: '0.5rem 1.1rem', borderRadius: 10, background: isGeneratingCumulative ? '#666' : '#d22b2b', color: 'white', border: 'none', fontFamily: 'Inter', fontWeight: 600, fontSize: '0.82rem', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6 }}
               >
                 {isGeneratingCumulative ? 'Generating...' : 'Generate Final PDF'}
               </button>
@@ -167,7 +167,7 @@ function ClassViewContent() {
         <div style={{ fontSize: '0.72rem', fontWeight: 600, color: 'var(--charcoal-light)', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: '0.4rem' }}>Class Tests</div>
         <div style={{ display: 'flex', gap: '0.4rem', flexWrap: 'wrap', marginBottom: '0.8rem' }}>
           {TEST_TABS.filter(t => t.type === 'classtest').map((tab, i) => (
-            <button key={i} onClick={() => setActiveTab(i)} style={{ padding: '0.4rem 1rem', borderRadius: 20, background: activeTab === i ? 'var(--sky)' : 'white', color: activeTab === i ? 'white' : 'var(--charcoal)', fontFamily: 'Poppins', fontWeight: activeTab === i ? 600 : 400, fontSize: '0.78rem', cursor: 'pointer', border: `1.5px solid ${activeTab === i ? 'var(--sky)' : 'var(--sky-light)'}` }}>{tab.label}</button>
+            <button key={i} onClick={() => setActiveTab(i)} style={{ padding: '0.4rem 1rem', borderRadius: 20, background: activeTab === i ? 'var(--sky)' : 'white', color: activeTab === i ? 'white' : 'var(--charcoal)', fontFamily: 'Inter', fontWeight: activeTab === i ? 600 : 400, fontSize: '0.78rem', cursor: 'pointer', border: `1.5px solid ${activeTab === i ? 'var(--sky)' : 'var(--sky-light)'}` }}>{tab.label}</button>
           ))}
         </div>
         <div style={{ fontSize: '0.72rem', fontWeight: 600, color: 'var(--charcoal-light)', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: '0.4rem' }}>Exam / Term Marks</div>
@@ -175,7 +175,7 @@ function ClassViewContent() {
           {TEST_TABS.filter(t => t.type === 'exam').map((tab, i) => {
             const realIndex = i + 5;
             return (
-              <button key={realIndex} onClick={() => setActiveTab(realIndex)} style={{ padding: '0.4rem 1rem', borderRadius: 20, background: activeTab === realIndex ? '#434343' : 'white', color: activeTab === realIndex ? 'white' : 'var(--charcoal)', fontFamily: 'Poppins', fontWeight: activeTab === realIndex ? 600 : 400, fontSize: '0.78rem', cursor: 'pointer', border: `1.5px solid ${activeTab === realIndex ? '#434343' : 'var(--sky-light)'}` }}>{tab.label}</button>
+              <button key={realIndex} onClick={() => setActiveTab(realIndex)} style={{ padding: '0.4rem 1rem', borderRadius: 20, background: activeTab === realIndex ? '#434343' : 'white', color: activeTab === realIndex ? 'white' : 'var(--charcoal)', fontFamily: 'Inter', fontWeight: activeTab === realIndex ? 600 : 400, fontSize: '0.78rem', cursor: 'pointer', border: `1.5px solid ${activeTab === realIndex ? '#434343' : 'var(--sky-light)'}` }}>{tab.label}</button>
             );
           })}
         </div>

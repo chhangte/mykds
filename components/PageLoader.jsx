@@ -16,7 +16,7 @@ export default function PageLoader({ message = 'Loading...' }) {
           animation: kds-fade-in 0.3s ease both;
         }
         .kds-loader-msg {
-          font-family: 'Poppins', sans-serif;
+          font-family: 'Inter', sans-serif;
           font-size: 0.88rem; font-weight: 500;
           color: var(--charcoal-light, #6b6b6b);
         }

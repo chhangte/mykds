@@ -17,12 +17,8 @@ export default function LandingPage() {
   return (
     <>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital@1&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,700;1,800&display=swap');
-
-        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
         body {
-          font-family: 'Poppins', sans-serif;
+          font-family: 'Inter', sans-serif;
           color: #222222;
           overflow-x: hidden;
         }
@@ -52,7 +48,7 @@ export default function LandingPage() {
         .nav-btn {
           background: #4285F4; color: #fff; border: none;
           border-radius: 30px; padding: 0.55rem 1.5rem;
-          font-family: 'Poppins', sans-serif; font-weight: 600;
+          font-family: 'Inter', sans-serif; font-weight: 600;
           font-size: 0.88rem; cursor: pointer; transition: all 0.2s;
         }
         .nav-btn:hover { background: #2b6fd4; }
@@ -113,11 +109,11 @@ export default function LandingPage() {
           margin-bottom: 1.2rem;
         }
         .hero-title em {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Inter', sans-serif;
   font-style: italic; font-weight: 400;
 }
 .hero-title strong {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-style: normal; font-weight: 800;
   display: block;
 }
@@ -129,7 +125,7 @@ export default function LandingPage() {
           background: #4285F4; color: #fff;
           border: none; border-radius: 40px;
           padding: 1rem 2.8rem;
-          font-family: 'Poppins', sans-serif; font-weight: 700;
+          font-family: 'Inter', sans-serif; font-weight: 700;
           font-size: 1rem; cursor: pointer;
           transition: all 0.25s;
           display: inline-flex; align-items: center; gap: 8px;

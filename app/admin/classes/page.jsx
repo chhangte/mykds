@@ -86,7 +86,7 @@ export default function AdminClassesPage() {
 
   const inputStyle = {
     width: '100%', padding: '0.65rem 0.9rem', borderRadius: 10,
-    border: '1px solid #e0e0e0', fontFamily: 'Poppins',
+    border: '1px solid #e0e0e0', fontFamily: 'Inter',
     fontSize: '0.88rem', outline: 'none', marginTop: 4, background: 'white',
   };
 
@@ -118,7 +118,7 @@ export default function AdminClassesPage() {
         </div>
         <button onClick={openAdd} style={{
           background: 'var(--sky)', border: 'none', borderRadius: 10,
-          padding: '0.6rem 1.2rem', fontFamily: 'Poppins', fontWeight: 600,
+          padding: '0.6rem 1.2rem', fontFamily: 'Inter', fontWeight: 600,
           fontSize: '0.85rem', cursor: 'pointer', color: 'white'
         }}>+ Add Class</button>
       </div>
@@ -200,19 +200,19 @@ export default function AdminClassesPage() {
               <button onClick={() => openLocks(cls)} style={{
                 padding: '4px 12px', borderRadius: 7,
                 border: 'none',
-                background: '#f5fbff', fontFamily: 'Poppins',
+                background: '#f5fbff', fontFamily: 'Inter',
                 fontSize: '0.78rem', cursor: 'pointer',
               }}>Edit Lock</button>
               <button onClick={() => openEdit(cls)} style={{
                 padding: '4px 12px', borderRadius: 7,
                 border: 'none',
-                background: '#f5fbff', fontFamily: 'Poppins',
+                background: '#f5fbff', fontFamily: 'Inter',
                 fontSize: '0.78rem', cursor: 'pointer',
               }}>Edit</button>
               <button onClick={() => setDeleteConfirm(cls)} style={{
                 padding: '4px 12px', borderRadius: 7,
                 border: 'none', background: '#fff5f5',
-                fontFamily: 'Poppins', fontSize: '0.78rem',
+                fontFamily: 'Inter', fontSize: '0.78rem',
                 cursor: 'pointer', color: '#c0392b',
               }}>Delete</button>
             </div>
@@ -300,11 +300,11 @@ export default function AdminClassesPage() {
               <button onClick={() => setShowModal(false)} style={{
                 flex: 1, padding: '0.7rem', borderRadius: 10,
                 border: 'none', background: '#f5f5f5',
-                fontFamily: 'Poppins', fontSize: '0.88rem', cursor: 'pointer',
+                fontFamily: 'Inter', fontSize: '0.88rem', cursor: 'pointer',
               }}>Cancel</button>
               <button onClick={handleSubmit} disabled={loading} style={{
                 flex: 2, padding: '0.7rem', borderRadius: 10,
-                background: 'var(--sky)', border: 'none', fontFamily: 'Poppins',
+                background: 'var(--sky)', border: 'none', fontFamily: 'Inter',
                 fontWeight: 600, fontSize: '0.88rem', cursor: 'pointer', color: 'white'
               }}>
                 {loading ? 'Saving...' : editing ? 'Save Changes' : 'Add Class'}
@@ -335,12 +335,12 @@ export default function AdminClassesPage() {
               <button onClick={() => setDeleteConfirm(null)} style={{
                 flex: 1, padding: '0.7rem', borderRadius: 10,
                 border: 'none', background: '#f5f5f5',
-                fontFamily: 'Poppins', fontSize: '0.85rem', cursor: 'pointer',
+                fontFamily: 'Inter', fontSize: '0.85rem', cursor: 'pointer',
               }}>Cancel</button>
               <button onClick={() => handleDelete(deleteConfirm._id)} style={{
                 flex: 1, padding: '0.7rem', borderRadius: 10,
                 background: '#c0392b', border: 'none', color: 'white',
-                fontFamily: 'Poppins', fontWeight: 600, fontSize: '0.85rem', cursor: 'pointer',
+                fontFamily: 'Inter', fontWeight: 600, fontSize: '0.85rem', cursor: 'pointer',
               }}>Delete</button>
             </div>
           </div>
@@ -412,11 +412,11 @@ export default function AdminClassesPage() {
               <button onClick={() => setShowLocksModal(false)} style={{
                 flex: 1, padding: '0.7rem', borderRadius: 10,
                 border: 'none', background: '#f5f5f5',
-                fontFamily: 'Poppins', fontSize: '0.88rem', cursor: 'pointer',
+                fontFamily: 'Inter', fontSize: '0.88rem', cursor: 'pointer',
               }}>Cancel</button>
               <button onClick={handleSaveLocks} disabled={loading} style={{
                 flex: 2, padding: '0.7rem', borderRadius: 10,
-                background: 'var(--sky)', border: 'none', fontFamily: 'Poppins',
+                background: 'var(--sky)', border: 'none', fontFamily: 'Inter',
                 fontWeight: 600, fontSize: '0.88rem', cursor: 'pointer', color: 'white'
               }}>
                 {loading ? 'Saving...' : 'Save Locks'}

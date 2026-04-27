@@ -1,7 +1,14 @@
+import { Inter } from 'next/font/google';
 import Providers from './providers';
 import './globals.css';
 
+const inter = Inter({
+  subsets: ['latin'],
+  display: 'swap',
+});
+
 export const metadata = {
+
   metadataBase: new URL('https://my.kidsdenschool.in'),
 
   title: {
@@ -60,7 +67,7 @@ export default function RootLayout({ children }) {
           `
         }} />
       </head>
-      <body>
+      <body className={inter.className}>
         <Providers>
           {children}
         </Providers>

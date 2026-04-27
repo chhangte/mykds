@@ -133,7 +133,7 @@ export default function AdminStudentsPage() {
 
   const inputStyle = {
     width: '100%', padding: '0.65rem 0.9rem', borderRadius: 10,
-    border: '1px solid #e0e0e0', fontFamily: 'Poppins',
+    border: '1px solid #e0e0e0', fontFamily: 'Inter',
     fontSize: '0.88rem', outline: 'none', marginTop: 4,
     background: 'white',
   };
@@ -160,7 +160,7 @@ export default function AdminStudentsPage() {
         <div style={{ position: 'relative' }}>
           <button onClick={() => setMenuOpen(!menuOpen)} style={{
             background: 'var(--sky)', border: 'none', borderRadius: 10,
-            padding: '0.6rem 1.2rem', fontFamily: 'Poppins', fontWeight: 600,
+            padding: '0.6rem 1.2rem', fontFamily: 'Inter', fontWeight: 600,
             fontSize: '0.85rem', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '0.5rem'
           }}>
             + Add Student ▼
@@ -175,12 +175,12 @@ export default function AdminStudentsPage() {
             }}>
               <button onClick={() => { setMenuOpen(false); openAdd(); }} style={{
                 background: 'transparent', border: 'none', padding: '0.8rem 1.1rem',
-                textAlign: 'left', fontFamily: 'Poppins', fontSize: '0.85rem',
+                textAlign: 'left', fontFamily: 'Inter', fontSize: '0.85rem',
                 cursor: 'pointer', borderBottom: '1px solid #f0f4ff'
               }}>➕ Add Manually</button>
               <button onClick={() => { setMenuOpen(false); setShowImport(true); setImportSuccess(''); setImportError(''); }} style={{
                 background: 'transparent', border: 'none', padding: '0.8rem 1.1rem',
-                textAlign: 'left', fontFamily: 'Poppins', fontSize: '0.85rem',
+                textAlign: 'left', fontFamily: 'Inter', fontSize: '0.85rem',
                 cursor: 'pointer'
               }}>📁 Import Excel / CSV</button>
             </div>
@@ -275,13 +275,13 @@ export default function AdminStudentsPage() {
                     <button onClick={() => openEdit(s)} style={{
                       padding: '4px 12px', borderRadius: 7,
                       border: 'none',
-                      background: '#f5fbff', fontFamily: 'Poppins',
+                      background: '#f5fbff', fontFamily: 'Inter',
                       fontSize: '0.75rem', cursor: 'pointer',
                     }}>Edit</button>
                     <button onClick={() => setDeleteConfirm(s)} style={{
                       padding: '4px 12px', borderRadius: 7,
                       border: 'none',
-                      background: '#fff5f5', fontFamily: 'Poppins',
+                      background: '#fff5f5', fontFamily: 'Inter',
                       fontSize: '0.75rem', cursor: 'pointer', color: '#c0392b',
                     }}>Delete</button>
                   </div>
@@ -357,12 +357,12 @@ export default function AdminStudentsPage() {
               <button onClick={() => setShowModal(false)} style={{
                 flex: 1, padding: '0.7rem', borderRadius: 10,
                 border: 'none', background: '#f5f5f5',
-                fontFamily: 'Poppins', fontSize: '0.88rem', cursor: 'pointer',
+                fontFamily: 'Inter', fontSize: '0.88rem', cursor: 'pointer',
               }}>Cancel</button>
               <button onClick={handleSubmit} disabled={loading} style={{
                 flex: 2, padding: '0.7rem', borderRadius: 10,
                 background: 'var(--sky)', border: 'none',
-                fontFamily: 'Poppins', fontWeight: 600,
+                fontFamily: 'Inter', fontWeight: 600,
                 fontSize: '0.88rem', cursor: 'pointer',
               }}>
                 {loading ? 'Saving...' : editing ? 'Save Changes' : 'Add Student'}
@@ -394,12 +394,12 @@ export default function AdminStudentsPage() {
               <button onClick={() => setDeleteConfirm(null)} style={{
                 flex: 1, padding: '0.7rem', borderRadius: 10,
                 border: 'none', background: '#f5f5f5',
-                fontFamily: 'Poppins', fontSize: '0.85rem', cursor: 'pointer',
+                fontFamily: 'Inter', fontSize: '0.85rem', cursor: 'pointer',
               }}>Cancel</button>
               <button onClick={() => handleDelete(deleteConfirm._id)} style={{
                 flex: 1, padding: '0.7rem', borderRadius: 10,
                 background: '#c0392b', border: 'none', color: 'white',
-                fontFamily: 'Poppins', fontWeight: 600,
+                fontFamily: 'Inter', fontWeight: 600,
                 fontSize: '0.85rem', cursor: 'pointer',
               }}>Delete</button>
             </div>
@@ -442,7 +442,7 @@ export default function AdminStudentsPage() {
               />
               <label htmlFor="file-upload" style={{
                 background: 'var(--sky)', border: 'none', borderRadius: 8,
-                padding: '0.6rem 1.2rem', fontFamily: 'Poppins', fontWeight: 600,
+                padding: '0.6rem 1.2rem', fontFamily: 'Inter', fontWeight: 600,
                 fontSize: '0.85rem', cursor: 'pointer', display: 'inline-block',
                 pointerEvents: importLoading ? 'none' : 'auto',
                 opacity: importLoading ? 0.7 : 1
@@ -466,7 +466,7 @@ export default function AdminStudentsPage() {
               <button onClick={() => setShowImport(false)} disabled={importLoading} style={{
                 flex: 1, padding: '0.7rem', borderRadius: 10,
                 border: 'none', background: '#f5f5f5',
-                fontFamily: 'Poppins', fontSize: '0.88rem', cursor: 'pointer',
+                fontFamily: 'Inter', fontSize: '0.88rem', cursor: 'pointer',
               }}>Close</button>
             </div>
           </div>

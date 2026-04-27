@@ -48,7 +48,7 @@ function LoginHistoryPanel() {
         <select
           value={filterUser}
           onChange={e => setFilterUser(e.target.value)}
-          style={{ padding: '0.4rem 0.8rem', borderRadius: 8, border: '1px solid #e0e0e0', fontFamily: 'Poppins', fontSize: '0.82rem', outline: 'none', background: 'white' }}
+          style={{ padding: '0.4rem 0.8rem', borderRadius: 8, border: '1px solid #e0e0e0', fontFamily: 'Inter', fontSize: '0.82rem', outline: 'none', background: 'white' }}
         >
           <option value="">All users</option>
           {users.filter(u => u.role !== 'admin' || true).map(u => (
@@ -225,7 +225,7 @@ export default function AdminUsersPage() {
 
   const inputStyle = {
     width: '100%', padding: '0.65rem 0.9rem', borderRadius: 10,
-    border: '1px solid #e0e0e0', fontFamily: 'Poppins',
+    border: '1px solid #e0e0e0', fontFamily: 'Inter',
     fontSize: '0.88rem', outline: 'none', marginTop: 4, boxSizing: 'border-box',
     background: 'white',
   };
@@ -241,7 +241,7 @@ export default function AdminUsersPage() {
           <p style={{ fontSize: '0.78rem', color: 'var(--charcoal-light)', marginTop: 2 }}>Add, edit or remove staff accounts</p>
         </div>
         {tab !== 'history' && (
-          <button onClick={openAdd} style={{ background: 'var(--sky)', border: 'none', borderRadius: 10, padding: '0.6rem 1.2rem', fontFamily: 'Poppins', fontWeight: 600, fontSize: '0.85rem', cursor: 'pointer', color: 'white' }}>+ Add User</button>
+          <button onClick={openAdd} style={{ background: 'var(--sky)', border: 'none', borderRadius: 10, padding: '0.6rem 1.2rem', fontFamily: 'Inter', fontWeight: 600, fontSize: '0.85rem', cursor: 'pointer', color: 'white' }}>+ Add User</button>
         )}
       </div>
 
@@ -264,7 +264,7 @@ export default function AdminUsersPage() {
           <button onClick={toggleCtView} disabled={settingLoading} style={{
             padding: '0.5rem 1.2rem', borderRadius: 20,
             background: ctViewEnabled ? '#1a8a3c' : 'var(--charcoal)',
-            color: 'white', border: 'none', fontFamily: 'Poppins', fontWeight: 600,
+            color: 'white', border: 'none', fontFamily: 'Inter', fontWeight: 600,
             fontSize: '0.82rem', cursor: settingLoading ? 'not-allowed' : 'pointer', transition: 'all 0.2s', minWidth: 80,
           }}>{settingLoading ? '...' : ctViewEnabled ? 'Turn Off' : 'Turn On'}</button>
         </div>
@@ -282,7 +282,7 @@ export default function AdminUsersPage() {
               padding: '0.45rem 1.1rem', borderRadius: 20,
               background: tab === key ? 'var(--sky)' : 'white',
               color: tab === key ? 'white' : 'var(--charcoal-light)',
-              fontFamily: 'Poppins', fontWeight: tab === key ? 600 : 400, fontSize: '0.82rem',
+              fontFamily: 'Inter', fontWeight: tab === key ? 600 : 400, fontSize: '0.82rem',
               cursor: 'pointer',
               border: tab === key ? 'none' : '1px solid #e0e0e0',
             }}>
@@ -351,8 +351,8 @@ export default function AdminUsersPage() {
                   </div>
                 </div>
                 <div style={{ display: 'flex', gap: '0.5rem' }}>
-                  <button onClick={() => openEdit(user)} style={{ padding: '0.4rem 0.9rem', borderRadius: 8, border: 'none', background: '#f5fbff', fontFamily: 'Poppins', fontSize: '0.78rem', cursor: 'pointer', fontWeight: 500 }}>Edit</button>
-                  <button onClick={() => setDeleteConfirm(user)} style={{ padding: '0.4rem 0.9rem', borderRadius: 8, border: 'none', background: '#fff5f5', fontFamily: 'Poppins', fontSize: '0.78rem', cursor: 'pointer', fontWeight: 500, color: '#c0392b' }}>Delete</button>
+                  <button onClick={() => openEdit(user)} style={{ padding: '0.4rem 0.9rem', borderRadius: 8, border: 'none', background: '#f5fbff', fontFamily: 'Inter', fontSize: '0.78rem', cursor: 'pointer', fontWeight: 500 }}>Edit</button>
+                  <button onClick={() => setDeleteConfirm(user)} style={{ padding: '0.4rem 0.9rem', borderRadius: 8, border: 'none', background: '#fff5f5', fontFamily: 'Inter', fontSize: '0.78rem', cursor: 'pointer', fontWeight: 500, color: '#c0392b' }}>Delete</button>
                 </div>
               </div>
               {user.role === 'teacher' && user.assignedClasses?.length > 0 && (
@@ -454,8 +454,8 @@ export default function AdminUsersPage() {
             </div>
             {error && <p style={{ color: '#c0392b', fontSize: '0.78rem', background: '#fff5f5', padding: '8px 12px', borderRadius: 8, marginTop: '1rem' }}>{error}</p>}
             <div style={{ display: 'flex', gap: '0.7rem', marginTop: '1.5rem' }}>
-              <button onClick={() => setShowModal(false)} style={{ flex: 1, padding: '0.7rem', borderRadius: 10, border: 'none', background: '#f5f5f5', fontFamily: 'Poppins', fontSize: '0.88rem', cursor: 'pointer' }}>Cancel</button>
-              <button onClick={handleSubmit} disabled={loading} style={{ flex: 2, padding: '0.7rem', borderRadius: 10, background: 'var(--sky)', border: 'none', fontFamily: 'Poppins', fontWeight: 600, fontSize: '0.88rem', cursor: 'pointer', color: 'white' }}>
+              <button onClick={() => setShowModal(false)} style={{ flex: 1, padding: '0.7rem', borderRadius: 10, border: 'none', background: '#f5f5f5', fontFamily: 'Inter', fontSize: '0.88rem', cursor: 'pointer' }}>Cancel</button>
+              <button onClick={handleSubmit} disabled={loading} style={{ flex: 2, padding: '0.7rem', borderRadius: 10, background: 'var(--sky)', border: 'none', fontFamily: 'Inter', fontWeight: 600, fontSize: '0.88rem', cursor: 'pointer', color: 'white' }}>
                 {loading ? 'Saving...' : editing ? 'Save Changes' : 'Create User'}
               </button>
             </div>
@@ -470,8 +470,8 @@ export default function AdminUsersPage() {
             <h3 style={{ fontWeight: 700, fontSize: '1rem', marginBottom: '0.5rem' }}>Delete {deleteConfirm.name}?</h3>
             <p style={{ fontSize: '0.82rem', color: 'var(--charcoal-light)', marginBottom: '1.5rem' }}>This will permanently remove @{deleteConfirm.username}.</p>
             <div style={{ display: 'flex', gap: '0.7rem' }}>
-              <button onClick={() => setDeleteConfirm(null)} style={{ flex: 1, padding: '0.7rem', borderRadius: 10, border: 'none', background: '#f5f5f5', fontFamily: 'Poppins', fontSize: '0.88rem', cursor: 'pointer' }}>Cancel</button>
-              <button onClick={() => handleDelete(deleteConfirm._id)} style={{ flex: 1, padding: '0.7rem', borderRadius: 10, background: '#c0392b', border: 'none', color: 'white', fontFamily: 'Poppins', fontWeight: 600, fontSize: '0.88rem', cursor: 'pointer' }}>Delete</button>
+              <button onClick={() => setDeleteConfirm(null)} style={{ flex: 1, padding: '0.7rem', borderRadius: 10, border: 'none', background: '#f5f5f5', fontFamily: 'Inter', fontSize: '0.88rem', cursor: 'pointer' }}>Cancel</button>
+              <button onClick={() => handleDelete(deleteConfirm._id)} style={{ flex: 1, padding: '0.7rem', borderRadius: 10, background: '#c0392b', border: 'none', color: 'white', fontFamily: 'Inter', fontWeight: 600, fontSize: '0.88rem', cursor: 'pointer' }}>Delete</button>
             </div>
           </div>
         </div>

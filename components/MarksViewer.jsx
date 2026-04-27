@@ -137,7 +137,7 @@ export default function MarksViewer({ students, classId, type, classInfo }) {
         <div style={{ marginTop: '1.2rem' }}>
           <button onClick={() => setShowLogs(p => !p)} style={{
             display: 'flex', alignItems: 'center', gap: 6,
-            background: 'none', border: 'none', fontFamily: 'Poppins',
+            background: 'none', border: 'none', fontFamily: 'Inter',
             fontSize: '0.82rem', fontWeight: 600,
             color: 'var(--text-light)', cursor: 'pointer',
             padding: 0, marginBottom: '0.6rem',

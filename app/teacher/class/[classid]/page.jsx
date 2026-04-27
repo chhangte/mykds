@@ -98,7 +98,7 @@ function ClassPageInner() {
               padding: '0.5rem 1.1rem', borderRadius: 20,
               background: activeTab === tab.id ? 'var(--sky)' : 'white',
               color: activeTab === tab.id ? 'white' : 'var(--charcoal)',
-              fontFamily: 'Poppins', fontWeight: activeTab === tab.id ? 600 : 400,
+              fontFamily: 'Inter', fontWeight: activeTab === tab.id ? 600 : 400,
               fontSize: '0.82rem', cursor: 'pointer', whiteSpace: 'nowrap',
               border: activeTab === tab.id ? 'none' : '1px solid #e0e0e0',
               transition: 'all 0.15s',
@@ -181,12 +181,12 @@ function NotesPanel({ students, classId }) {
             <textarea rows={2} placeholder="Add a note for this student..."
               value={notes[s._id] || ''}
               onChange={e => setNotes(prev => ({ ...prev, [s._id]: e.target.value }))}
-              style={{ flex: 1, padding: '0.6rem 0.8rem', borderRadius: 8, border: '1px solid #e0e0e0', background: 'white', fontFamily: 'Poppins', fontSize: '0.82rem', resize: 'vertical', outline: 'none' }}
+              style={{ flex: 1, padding: '0.6rem 0.8rem', borderRadius: 8, border: '1px solid #e0e0e0', background: 'white', fontFamily: 'Inter', fontSize: '0.82rem', resize: 'vertical', outline: 'none' }}
             />
             <button onClick={() => handleSave(s._id)} style={{
               padding: '0.5rem 1rem', borderRadius: 8,
               background: saved[s._id] ? '#e6f9ee' : 'var(--sky)',
-              border: 'none', fontFamily: 'Poppins', fontSize: '0.78rem',
+              border: 'none', fontFamily: 'Inter', fontSize: '0.78rem',
               fontWeight: 600, cursor: 'pointer', alignSelf: 'flex-end',
               color: saved[s._id] ? '#1a8a3c' : 'white',
               transition: 'all 0.2s',
