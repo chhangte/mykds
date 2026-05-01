@@ -147,7 +147,7 @@ export default function AttendanceTable({ students, classId }) {
         <table style={{ width: '100%', borderCollapse: 'collapse', minWidth: 400 }}>
           <thead>
             <tr>
-              <th style={{ ...thStyle, textAlign: 'left', padding: '0.6rem 0.8rem' }}>Roll No</th>
+              <th style={{ ...thStyle, textAlign: 'left', padding: '0.6rem 0.8rem', position: 'sticky', left: 0, zIndex: 20, borderRight: '1px solid var(--border)' }}>Roll No</th>
               <th style={{ ...thStyle, textAlign: 'left', minWidth: 120 }}>Name</th>
               {dates.map(date => (
                 <th key={date} style={thStyle}>
@@ -178,7 +178,16 @@ export default function AttendanceTable({ students, classId }) {
 
               return (
                 <tr key={s._id} style={{ background: idx % 2 === 0 ? 'var(--card-bg)' : 'var(--bg)' }}>
-                  <td style={{ ...tdStyle, textAlign: 'left', padding: '0.5rem 0.8rem' }}>
+                  <td style={{ 
+                    ...tdStyle, 
+                    textAlign: 'left', 
+                    padding: '0.5rem 0.8rem',
+                    position: 'sticky',
+                    left: 0,
+                    zIndex: 10,
+                    background: idx % 2 === 0 ? 'var(--card-bg)' : 'var(--bg)',
+                    borderRight: '1px solid var(--border)'
+                  }}>
                     {s.rollNo}
                   </td>
                   <td style={{ ...tdStyle, textAlign: 'left', fontWeight: 500 }}>

@@ -192,7 +192,7 @@ export default function MarksTable({ students, classId, type, classInfo }) {
           }}>
             <thead>
               <tr>
-                <th style={thStyle}>Roll No</th>
+                <th style={{ ...thStyle, position: 'sticky', left: 0, zIndex: 20, borderRight: '1.5px solid var(--sky-light)' }}>Roll No</th>
                 <th style={thStyle}>Student Name</th>
                 {Array.from({ length: numTests }, (_, i) => {
                   const colIdx = i + 1;
@@ -241,7 +241,15 @@ export default function MarksTable({ students, classId, type, classInfo }) {
               {students.map((s, idx) => (
                 <tr key={s._id}
                   style={{ background: idx % 2 === 0 ? 'var(--card-bg)' : 'var(--bg)' }}>
-                  <td style={{ ...tdStyle, fontWeight: 600 }}>{s.rollNo}</td>
+                  <td style={{
+                    ...tdStyle,
+                    fontWeight: 600,
+                    position: 'sticky',
+                    left: 0,
+                    zIndex: 10,
+                    background: idx % 2 === 0 ? 'var(--card-bg)' : 'var(--bg)',
+                    borderRight: '1.5px solid var(--sky-light)'
+                  }}>{s.rollNo}</td>
                   <td style={{ ...tdStyle, fontWeight: 500 }}>{s.name}</td>
                   {Array.from({ length: numTests }, (_, i) => {
                     const key = `${s._id}_${i + 1}`;

@@ -187,7 +187,7 @@ function TeacherClassOverviewContent() {
             <table style={{ width: '100%', borderCollapse: 'collapse', minWidth: 400 + (data.subjects.length * 100) }}>
               <thead>
                 <tr>
-                  <th style={{ ...thStyle, minWidth: 80 }}>Roll No</th>
+                  <th style={{ ...thStyle, minWidth: 80, position: 'sticky', left: 0, zIndex: 20, borderRight: '1px solid var(--border)' }}>Roll No</th>
                   <th style={{ ...thStyle, minWidth: 160 }}>Student Name</th>
                   {data.subjects.map(subject => (
                     <th key={subject} style={{ ...thStyle, textAlign: 'center', minWidth: 110 }}>{subject}</th>
@@ -201,9 +201,18 @@ function TeacherClassOverviewContent() {
                   const scores = data.subjects.map(s => student.marks[s]);
                   const filled = scores.filter(s => s !== null && s !== undefined);
                   const total = filled.reduce((a, b) => a + b, 0);
+                  const rowBg = idx % 2 === 0 ? 'white' : '#fafeff';
                   return (
-                    <tr key={student._id} style={{ background: idx % 2 === 0 ? 'white' : '#fafeff' }}>
-                      <td style={{ ...tdStyle, fontWeight: 600 }}>{student.rollNo}</td>
+                    <tr key={student._id} style={{ background: rowBg }}>
+                      <td style={{ 
+                        ...tdStyle, 
+                        fontWeight: 600,
+                        position: 'sticky',
+                        left: 0,
+                        zIndex: 10,
+                        background: rowBg,
+                        borderRight: '1px solid var(--border)'
+                      }}>{student.rollNo}</td>
                       <td style={{ ...tdStyle, fontWeight: 500 }}>{student.name}</td>
                       {data.subjects.map(subject => {
                         const score = student.marks[subject];
@@ -227,9 +236,19 @@ function TeacherClassOverviewContent() {
                         <button
                           onClick={() => generateReportCardPDF(student, { className, section, academicYear: data.classes?.[0]?.academicYear || '2026', classTeacherName: data.classTeacherName }, data.subjects, currentTab.label, currentTab.type)}
                           title="Download Report Card"
-                          style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: '1.2rem', padding: '4px' }}
+                          style={{ 
+                            background: 'var(--sky-light)', 
+                            color: 'var(--sky)', 
+                            border: 'none', 
+                            borderRadius: 8, 
+                            padding: '4px 10px', 
+                            cursor: 'pointer', 
+                            fontSize: '0.72rem', 
+                            fontWeight: 700,
+                            fontFamily: 'Inter'
+                          }}
                         >
-                          📥
+                          Download
                         </button>
                       </td>
                     </tr>
