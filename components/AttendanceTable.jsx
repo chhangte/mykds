@@ -143,6 +143,7 @@ export default function AttendanceTable({ students, classId }) {
       <div style={{
         overflowX: 'auto', borderRadius: '16px',
         border: '1px solid var(--border)', background: 'var(--card-bg)',
+        width: '100%',
       }}>
         <table style={{ width: '100%', borderCollapse: 'collapse', minWidth: 400 }}>
           <thead>

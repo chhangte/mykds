@@ -102,7 +102,7 @@ export default function AdminClassesPage() {
   );
 
   return (
-    <div style={{ padding: '1.5rem', maxWidth: 750, margin: '0 auto' }}>
+    <div style={{ padding: '1.5rem', width: '100%', maxWidth: 1200, margin: '0 auto', minHeight: 'calc(100vh - 180px)' }}>
       <div style={{
         display: 'flex', justifyContent: 'space-between',
         alignItems: 'center', marginBottom: '1.5rem', flexWrap: 'wrap', gap: '0.8rem'

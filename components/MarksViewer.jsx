@@ -54,7 +54,7 @@ export default function MarksViewer({ students, classId, type, classInfo }) {
     <div>
       <div style={{
         borderRadius: '16px', border: '1px solid var(--border)',
-        background: 'var(--card-bg)', overflow: 'hidden',
+        background: 'var(--card-bg)', overflow: 'hidden', width: '100%',
       }}>
         {/* Header */}
         <div style={{

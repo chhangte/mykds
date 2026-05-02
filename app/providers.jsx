@@ -1,6 +1,7 @@
 'use client';
 import { SessionProvider, useSession } from 'next-auth/react';
 import Navbar from '@/components/Navbar';
+import Footer from '@/components/Footer';
 import { usePathname } from 'next/navigation';
 
 function NavbarWrapper() {
@@ -45,10 +46,13 @@ function NavbarWrapper() {
 export default function Providers({ children }) {
   return (
     <SessionProvider>
-      <NavbarWrapper />
-      <main>
-        {children}
-      </main>
+      <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+        <NavbarWrapper />
+        <main style={{ flex: '1 0 auto', display: 'flex', flexDirection: 'column' }}>
+          {children}
+        </main>
+        <Footer />
+      </div>
     </SessionProvider>
   );
 }

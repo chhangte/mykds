@@ -5,11 +5,10 @@ import Image from 'next/image';
 import { useState, useEffect, useRef } from 'react';
 import ThemeToggle from './ThemeToggle';
 
-function ProfileDrawer({ onClose, role, name, username }) {
+function LoginHistoryModal({ onClose }) {
   const [history, setHistory] = useState([]);
   const [loading, setLoading] = useState(true);
-  const drawerRef = useRef(null);
-  const router = useRouter();
+  const modalRef = useRef(null);
 
   useEffect(() => {
     fetch('/api/auth/login-history')
@@ -20,7 +19,7 @@ function ProfileDrawer({ onClose, role, name, username }) {
 
   useEffect(() => {
     const handler = (e) => {
-      if (drawerRef.current && !drawerRef.current.contains(e.target)) onClose();
+      if (modalRef.current && !modalRef.current.contains(e.target)) onClose();
     };
     document.addEventListener('mousedown', handler);
     return () => document.removeEventListener('mousedown', handler);
@@ -35,59 +34,110 @@ function ProfileDrawer({ onClose, role, name, username }) {
   };
 
   return (
-    <div ref={drawerRef} style={{
-      position: 'fixed', top: 66, right: 12, width: 320,
-      background: 'var(--card-bg)', borderRadius: 16, zIndex: 200,
-      border: '1px solid var(--border)',
-      maxHeight: '75vh', display: 'flex', flexDirection: 'column',
-      animation: 'kds-fade-up 0.2s ease both',
+    <div style={{
+      position: 'fixed', top: 0, left: 0, right: 0, bottom: 0,
+      background: 'rgba(0,0,0,0.4)', backdropFilter: 'blur(4px)',
+      display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 300,
+      padding: '1.25rem'
     }}>
-      <div style={{ padding: '1rem 1.2rem 0.8rem', borderBottom: '1.5px solid var(--sky-light)' }}>
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1rem' }}>
-          <div>
-            <div style={{ fontWeight: 700, fontSize: '1.05rem', color: 'var(--charcoal)', marginBottom: '0.2rem' }}>{name || 'User'}</div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
-              <div style={{ fontSize: '0.78rem', fontWeight: 600, color: 'var(--charcoal-light)' }}>@{username}</div>
-              <div style={{ fontSize: '0.72rem', fontWeight: 600, color: 'var(--charcoal)', textTransform: 'capitalize', background: 'var(--sky-light)', padding: '2px 8px', borderRadius: 12, display: 'inline-block' }}>{role}</div>
-            </div>
-          </div>
-          <button onClick={onClose} style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: '1rem', color: 'var(--charcoal-light)', padding: 0, alignSelf: 'flex-start' }}>✕</button>
+      <div ref={modalRef} style={{
+        background: 'var(--card-bg)', borderRadius: 20, width: '100%', maxWidth: 400,
+        maxHeight: '80vh', display: 'flex', flexDirection: 'column',
+        boxShadow: '0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04)',
+        animation: 'kds-fade-up 0.3s ease both', overflow: 'hidden'
+      }}>
+        <div style={{ padding: '1.25rem', borderBottom: '1px solid var(--border)', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+          <h3 style={{ margin: 0, fontSize: '1.1rem', fontWeight: 700, color: 'var(--charcoal)' }}>Login History</h3>
+          <button onClick={onClose} style={{ width: 32, height: 32, borderRadius: '50%', background: 'var(--sky-light)', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--charcoal-light)' }}>✕</button>
         </div>
-
-        <a href="https://link.kidsdenschool.in/u1T4boZT" style={{ display: 'block', width: '100%', padding: '0.6rem', borderRadius: 8, background: '#f0fbff', border: 'none', color: 'var(--sky)', fontFamily: 'Inter', fontWeight: 600, fontSize: '0.8rem', cursor: 'pointer', textAlign: 'center', textDecoration: 'none' }}>
-          Contact Support
-        </a>
-      </div>
-
-      <div style={{ padding: '1rem 1.2rem 0.2rem', fontWeight: 700, fontSize: '0.85rem', color: 'var(--charcoal-light)' }}>
-        Login History
-      </div>
-
-      <div style={{ overflowY: 'auto', flex: 1, padding: '0.4rem 0 0.6rem' }}>
-        {loading && <div style={{ padding: '2rem', textAlign: 'center', color: 'var(--charcoal-light)', fontSize: '0.82rem' }}>Loading...</div>}
-        {!loading && history.length === 0 && <div style={{ padding: '2rem', textAlign: 'center', color: 'var(--charcoal-light)', fontSize: '0.82rem' }}>No login history yet.</div>}
-        {!loading && history.map((entry, i) => (
-          <div key={entry._id || i} style={{ padding: '0.7rem 1.2rem', borderBottom: '1px solid #f0f4ff', display: 'flex', alignItems: 'flex-start', gap: '0.7rem' }}>
-            <div style={{ width: 8, height: 8, borderRadius: '50%', flexShrink: 0, background: i === 0 ? '#1a8a3c' : 'var(--sky-light)', marginTop: 5 }} />
-            <div style={{ flex: 1 }}>
-              <div style={{ fontSize: '0.8rem', fontWeight: 600, color: 'var(--charcoal)' }}>{fmt(entry.loginAt)}</div>
-              <div style={{ fontSize: '0.72rem', color: 'var(--charcoal-light)', marginTop: 2, display: 'flex', gap: '0.6rem', flexWrap: 'wrap' }}>
-                {i === 0 && <span style={{ background: '#e6f9ee', color: '#1a8a3c', padding: '1px 6px', borderRadius: 10, fontWeight: 600 }}>Current</span>}
-                <span style={{ background: entry.changesCount > 0 ? '#fff8e1' : '#f5f5f5', color: entry.changesCount > 0 ? '#c67c00' : '#999', padding: '1px 7px', borderRadius: 10, fontWeight: 600 }}>
-                  {entry.changesCount > 0 ? `${entry.changesCount} edit${entry.changesCount !== 1 ? 's' : ''}` : 'No edits'}
-                </span>
+        <div style={{ overflowY: 'auto', flex: 1, padding: '0.5rem 0' }}>
+          {loading && <div style={{ padding: '3rem', textAlign: 'center', color: 'var(--charcoal-light)' }}>Loading...</div>}
+          {!loading && history.length === 0 && <div style={{ padding: '3rem', textAlign: 'center', color: 'var(--charcoal-light)' }}>No login history yet.</div>}
+          {!loading && history.map((entry, i) => (
+            <div key={entry._id || i} style={{ padding: '0.8rem 1.25rem', borderBottom: '1px solid #f0f4ff', display: 'flex', alignItems: 'flex-start', gap: '0.8rem' }}>
+              <div style={{ width: 8, height: 8, borderRadius: '50%', flexShrink: 0, background: i === 0 ? '#1a8a3c' : 'var(--sky-light)', marginTop: 6 }} />
+              <div style={{ flex: 1 }}>
+                <div style={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--charcoal)' }}>{fmt(entry.loginAt)}</div>
+                <div style={{ fontSize: '0.75rem', color: 'var(--charcoal-light)', marginTop: 4, display: 'flex', gap: '0.6rem', flexWrap: 'wrap' }}>
+                  {i === 0 && <span style={{ background: '#e6f9ee', color: '#1a8a3c', padding: '1px 6px', borderRadius: 10, fontWeight: 600 }}>Current</span>}
+                  <span style={{ background: entry.changesCount > 0 ? '#fff8e1' : '#f5f5f5', color: entry.changesCount > 0 ? '#c67c00' : '#999', padding: '1px 7px', borderRadius: 10, fontWeight: 600 }}>
+                    {entry.changesCount > 0 ? `${entry.changesCount} edit${entry.changesCount !== 1 ? 's' : ''}` : 'No edits'}
+                  </span>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
+        <div style={{ padding: '1rem 1.25rem', textAlign: 'center' }}>
+          <button onClick={onClose} style={{ width: '100%', padding: '0.7rem', borderRadius: 12, background: 'var(--sky-light)', border: 'none', color: 'var(--charcoal)', fontWeight: 600, cursor: 'pointer' }}>Close</button>
+        </div>
       </div>
+    </div>
+  );
+}
 
-      <div style={{ padding: '0.8rem 1.2rem', borderTop: '1.5px solid var(--sky-light)' }}>
-        <button onClick={() => router.push('/signout')} style={{ width: '100%', padding: '0.6rem', borderRadius: 10, background: '#fff5f5', border: 'none', color: '#c0392b', fontFamily: 'Inter', fontWeight: 600, fontSize: '0.82rem', cursor: 'pointer' }}>
+function ProfileDrawer({ onClose, role, name, username }) {
+  const [showHistory, setShowHistory] = useState(false);
+  const drawerRef = useRef(null);
+  const router = useRouter();
+
+  useEffect(() => {
+    const handler = (e) => {
+      if (drawerRef.current && !drawerRef.current.contains(e.target)) onClose();
+    };
+    document.addEventListener('mousedown', handler);
+    return () => document.removeEventListener('mousedown', handler);
+  }, [onClose]);
+
+  const btnStyle = {
+    display: 'block', width: '100%', padding: '0.75rem 1rem',
+    borderRadius: 12, border: 'none', textAlign: 'left',
+    fontFamily: 'Inter', fontWeight: 600, fontSize: '0.85rem',
+    cursor: 'pointer', transition: 'all 0.2s', marginBottom: '0.5rem',
+    textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.8rem'
+  };
+
+  return (
+    <>
+      <div ref={drawerRef} style={{
+        position: 'fixed', top: 66, right: 12, width: 280,
+        background: 'var(--card-bg)', borderRadius: 20, zIndex: 200,
+        border: '1px solid var(--border)',
+        boxShadow: '0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05)',
+        display: 'flex', flexDirection: 'column',
+        animation: 'kds-fade-up 0.2s ease both',
+        padding: '1.25rem'
+      }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1.25rem' }}>
+          <div style={{ flex: 1 }}>
+            <div style={{ fontWeight: 700, fontSize: '1rem', color: 'var(--charcoal)', marginBottom: '0.1rem' }}>{name || 'User'}</div>
+            <div style={{ fontSize: '0.75rem', fontWeight: 600, color: 'var(--charcoal-light)' }}>@{username}</div>
+          </div>
+          <button onClick={onClose} style={{
+            width: 32, height: 32, borderRadius: '50%',
+            background: 'var(--sky-light)', border: 'none', cursor: 'pointer',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            fontSize: '0.9rem', color: 'var(--charcoal-light)', transition: 'all 0.2s'
+          }} onMouseOver={(e) => e.currentTarget.style.background = '#e2e8f0'} onMouseOut={(e) => e.currentTarget.style.background = 'var(--sky-light)'}>✕</button>
+        </div>
+
+        <button onClick={() => setShowHistory(true)} style={{ ...btnStyle, background: 'var(--sky-light)', color: 'var(--charcoal)' }}>
+          View Login History
+        </button>
+
+        <a href="https://link.kidsdenschool.in/u1T4boZT" style={{ ...btnStyle, background: '#f0fbff', color: 'var(--sky)', marginBottom: '0' }}>
+          Contact Support
+        </a>
+
+        <div style={{ height: '1px', background: 'var(--sky-light)', margin: '0.8rem 0' }} />
+
+        <button onClick={() => router.push('/signout')} style={{ ...btnStyle, background: '#c0392b', color: 'white', marginBottom: 0, justifyContent: 'center' }}>
           Sign Out
         </button>
       </div>
-    </div>
+
+      {showHistory && <LoginHistoryModal onClose={() => setShowHistory(false)} />}
+    </>
   );
 }
 
@@ -125,7 +175,6 @@ export default function Navbar({ role, name, username }) {
           to   { opacity: 1; transform: translateY(0); }
         }
         .kds-nav { animation: kds-nav-in 0.3s ease both; }
-        .kds-signout-btn:hover { background: var(--sky-light) !important; }
         .kds-avatar:hover { opacity: 0.85; }
         @media (max-width: 480px) {
           .kds-role-badge { display: none !important; }
@@ -155,10 +204,6 @@ export default function Navbar({ role, name, username }) {
           {/* Profile avatar */}
           <button className="kds-avatar" onClick={() => setShowDrawer(p => !p)} title="View profile and login history" style={{ width: 36, height: 36, borderRadius: '50%', background: showDrawer ? '#e6c700' : '#FFDD00', border: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.72rem', fontWeight: 700, color: 'var(--charcoal)', cursor: 'pointer', transition: 'all 0.15s', flexShrink: 0 }}>
             {initials}
-          </button>
-
-          <button className="kds-signout-btn" onClick={() => router.push('/signout')} style={{ background: 'transparent', border: 'none', borderRadius: 8, padding: '5px 12px', fontFamily: 'Inter', fontSize: '0.78rem', fontWeight: 500, color: 'var(--charcoal)', cursor: 'pointer', transition: 'background 0.15s' }}>
-            Sign out
           </button>
         </div>
       </nav>

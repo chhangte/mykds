@@ -120,7 +120,7 @@ export default function MarksTable({ students, classId, type, classInfo }) {
       {/* ── TABLE CARD ── */}
       <div style={{
         borderRadius: '16px', border: '1.5px solid var(--sky-light)',
-        background: 'var(--card-bg)', overflow: 'hidden',
+        background: 'var(--card-bg)', overflow: 'hidden', width: '100%',
       }}>
 
         {/* Header bar */}

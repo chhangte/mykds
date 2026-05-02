@@ -232,7 +232,7 @@ export default function AdminUsersPage() {
   const classLabel = (cls) => `${cls.name} ${cls.section} — ${cls.subject}`;
 
   return (
-    <div style={{ padding: '1.5rem', maxWidth: 800, margin: '0 auto' }}>
+    <div style={{ padding: '1.5rem', width: '100%', maxWidth: 1200, margin: '0 auto', minHeight: 'calc(100vh - 180px)' }}>
       {/* Header */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem', flexWrap: 'wrap', gap: '0.8rem' }}>
         <div>

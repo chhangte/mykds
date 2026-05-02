@@ -57,7 +57,7 @@ function ClassPageInner() {
         .kds-class-content { animation: kds-fade-up 0.3s ease both; }
       `}</style>
 
-      <div className="kds-class-content" style={{ padding: '1rem', maxWidth: 960, margin: '0 auto' }}>
+      <div className="kds-class-content" style={{ padding: '1rem 1.5rem', width: '100%', maxWidth: 1200, margin: '0 auto', minHeight: 'calc(100vh - 180px)' }}>
 
         {/* Header */}
         <div style={{ marginBottom: '1.2rem' }}>
@@ -119,28 +119,30 @@ function ClassPageInner() {
           </div>
         )}
 
-        {/* Tab content */}
-        {activeTab === 0 && (
-          isCtView
-            ? <MarksViewer students={students} classId={classId} type="classtest" classInfo={classInfo} />
-            : <MarksTable students={students} classId={classId} type="classtest" classInfo={classInfo} />
-        )}
-        {activeTab === 1 && (
-          isCtView
-            ? <MarksViewer students={students} classId={classId} type="exam" classInfo={classInfo} />
-            : <MarksTable students={students} classId={classId} type="exam" classInfo={classInfo} />
-        )}
-        {activeTab === 2 && (
-          <AttendanceTable students={students} classId={classId} readOnly={isCtView} />
-        )}
-        {activeTab === 3 && !isCtView && (
-          <NotesPanel students={students} classId={classId} />
-        )}
-        {activeTab === 3 && isCtView && (
-          <div style={{ padding: '2rem', textAlign: 'center', background: 'white', borderRadius: 16, border: '1px solid #f0f4ff', color: 'var(--charcoal-light)', fontSize: '0.88rem' }}>
-            Notes are not available in Class Teacher view.
-          </div>
-        )}
+        {/* Tab content wrapper */}
+        <div style={{ width: '100%', flex: 1 }}>
+          {activeTab === 0 && (
+            isCtView
+              ? <MarksViewer students={students} classId={classId} type="classtest" classInfo={classInfo} />
+              : <MarksTable students={students} classId={classId} type="classtest" classInfo={classInfo} />
+          )}
+          {activeTab === 1 && (
+            isCtView
+              ? <MarksViewer students={students} classId={classId} type="exam" classInfo={classInfo} />
+              : <MarksTable students={students} classId={classId} type="exam" classInfo={classInfo} />
+          )}
+          {activeTab === 2 && (
+            <AttendanceTable students={students} classId={classId} readOnly={isCtView} />
+          )}
+          {activeTab === 3 && !isCtView && (
+            <NotesPanel students={students} classId={classId} />
+          )}
+          {activeTab === 3 && isCtView && (
+            <div style={{ padding: '2rem', textAlign: 'center', background: 'white', borderRadius: 16, border: '1px solid #f0f4ff', color: 'var(--charcoal-light)', fontSize: '0.88rem', width: '100%' }}>
+              Notes are not available in Class Teacher view.
+            </div>
+          )}
+        </div>
       </div>
     </>
   );

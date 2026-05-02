@@ -142,7 +142,7 @@ export default function AdminStudentsPage() {
   const sectionText = { A: '#1a8a3c', B: '#2c5fe6', C: '#e67e22' };
 
   return (
-    <div style={{ padding: '1.5rem', maxWidth: 820, margin: '0 auto' }}>
+    <div style={{ padding: '1.5rem', width: '100%', maxWidth: 1200, margin: '0 auto', minHeight: 'calc(100vh - 180px)' }}>
       {/* Header */}
       <div style={{
         display: 'flex', justifyContent: 'space-between',

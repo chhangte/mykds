@@ -110,15 +110,26 @@ export default function TeacherDashboard() {
         .kds-tile:nth-child(4) { animation-delay: 0.20s; }
         .kds-tile:nth-child(5) { animation-delay: 0.25s; }
         .kds-tile:nth-child(6) { animation-delay: 0.30s; }
+        
+        .kds-classes-grid {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 1.2rem;
+        }
+        @media (max-width: 768px) {
+          .kds-classes-grid {
+            grid-template-columns: 1fr;
+          }
+        }
       `}</style>
 
-      <div style={{ padding: '1.5rem', maxWidth: 700, margin: '0 auto' }}>
+      <div style={{ padding: '1rem 1.5rem', width: '100%', maxWidth: 1200, margin: '0 auto', minHeight: 'calc(100vh - 180px)' }}>
         {/* Welcome */}
         <div style={{ marginBottom: '2rem' }}>
           <h2 style={{ fontSize: '1.3rem', fontWeight: 700, color: 'var(--charcoal)' }}>
             {loading ? 'Welcome ' : `Welcome, ${session?.user?.name ?? 'Teacher'}`}
           </h2>
-          <p style={{ fontSize: '0.82rem', color: 'var(--charcoal-light)', marginTop: 4 }}>
+          <p style={{ fontSize: '0.82rem', color: 'var(--charcoal-light)', marginTop: 4 }}> <br />
             Your classes
           </p>
         </div>
@@ -153,7 +164,7 @@ export default function TeacherDashboard() {
                 No subject classes set up yet for {ctData.classTeacherClass} – {ctData.classTeacherSection}.
               </div>
             ) : (
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '0.9rem' }}>
+              <div className="kds-classes-grid">
                 <div
                   onClick={() => router.push(`/teacher/class-overview?class=${encodeURIComponent(ctData.classTeacherClass)}&section=${encodeURIComponent(ctData.classTeacherSection)}`)}
                   className="kds-tile"
@@ -206,7 +217,7 @@ export default function TeacherDashboard() {
           )}
 
           {loading && (
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))', gap: '1rem' }}>
+            <div className="kds-classes-grid">
               {[1, 2, 3].map(i => <TileSkeleton key={i} />)}
             </div>
           )}
@@ -225,7 +236,7 @@ export default function TeacherDashboard() {
           )}
 
           {!loading && classes.length > 0 && (
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))', gap: '1rem' }}>
+            <div className="kds-classes-grid">
               {classes.map(cls => (
                 <ClassTile
                   key={cls._id}

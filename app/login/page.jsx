@@ -128,7 +128,7 @@ export default function LoginPage() {
         
         .split-layout {
           display: flex;
-          min-height: 100vh;
+          flex: 1;
         }
 
         .left-pane {
@@ -286,7 +286,7 @@ export default function LoginPage() {
                     <div style={{ marginBottom: '2rem', textAlign: 'left' }}>
                       <span style={{ fontSize: '0.85rem', color: 'var(--charcoal-light)' }}>
                         {'Need help? '}
-                        <a href="https://link.kidsdenschool.in/u1T4boZT" target="_blank" rel="noopener noreferrer" className="kds-support-link">Contact support</a>
+                        <a href="/support" className="kds-support-link">Contact support</a>
                       </span>
                     </div>
 

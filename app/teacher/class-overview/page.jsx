@@ -118,7 +118,7 @@ function TeacherClassOverviewContent() {
   };
 
   return (
-    <div style={{ padding: '1rem', maxWidth: 1100, margin: '0 auto' }}>
+    <div style={{ padding: '1rem', maxWidth: 1200, margin: '0 auto', minHeight: 'calc(100vh - 180px)' }}>
       <div style={{ marginBottom: '1.2rem' }}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '0.8rem' }}>
           <div>

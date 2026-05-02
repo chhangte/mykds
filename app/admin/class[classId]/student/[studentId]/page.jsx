@@ -17,7 +17,7 @@ export default function StudentReport() {
 
   // report.subjects = [{ subject, classTests:[m1,m2,m3], exams:[e1,e2] }]
   return (
-    <div style={{ padding:'1rem', maxWidth:900, margin:'0 auto' }}>
+    <div style={{ padding: '1rem 1.5rem', width: '100%', maxWidth: 1200, margin: '0 auto', minHeight: 'calc(100vh - 180px)' }}>
       <BackButton />
       <h2 style={{ fontWeight:700 }}>{report.student.name}</h2>
       <p style={{ fontSize:'0.82rem', color:'var(--charcoal-light)' }}>
